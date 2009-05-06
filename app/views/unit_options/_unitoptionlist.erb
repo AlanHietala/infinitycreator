@@ -1,0 +1,35 @@
+<table>
+	<tr>
+	<th>name</th>
+	<th>skills</th>
+	<th>Movement
+	</th>
+	<th>CC
+	</th>
+	<th>BS
+	</th>
+	<th>PH
+	</th>
+	<th>WIP
+	</th>
+	<th>ARM
+	</th>
+	<th>BTS
+	</th>
+	<th>W
+	</th>
+	<th>Avail
+	</th>
+	<th>BS Weapons</th>
+	<th>CC Weapons</th>
+	<th>SWC</th>
+	<th>Cost</th>
+	<%if(removelink)%>
+	<th>Action</th>
+	<%end%>
+	</tr>
+	<%unitoptionlist.each do |u|%>
+		<%=render :partial=>"unit_options/unitoptionrow",:object=>u,:locals=>{:removelink=>removelink}%>
+	<%end%>
+	
+</table>

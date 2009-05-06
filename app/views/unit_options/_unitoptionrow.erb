@@ -1,0 +1,44 @@
+<tr>
+	<td><%=unitoptionrow.unit_option.unit.name%>: <%=unitoptionrow.unit_option.name%></td>
+	<td><%=unitoptionrow.unit_option.unit.skills%></td>
+	<td><%=unitoptionrow.unit_option.unit.mov1%> - <%=unitoptionrow.unit_option.unit.mov2%></td>
+	
+
+
+	
+	<td><%=unitoptionrow.unit_option.unit.cc%></td>
+
+	<td><%=unitoptionrow.unit_option.unit.bs%></td>
+
+	<td><%=unitoptionrow.unit_option.unit.ph%></td>
+
+
+	<td><%=unitoptionrow.unit_option.unit.wip%></td>
+
+	
+	<td><%=unitoptionrow.unit_option.unit.arm%></td>
+
+
+	<td><%=unitoptionrow.unit_option.unit.bts%></td>
+
+	<td><%=unitoptionrow.unit_option.unit.w%></td>
+
+	<td><%=unitoptionrow.unit_option.unit.avail%></td>
+	<td><%unitoptionrow.unit_option.bsweapons.each do |bs|%>
+		<%if(!bs.cc)%>
+			<%= bs.abbr != nil ? bs.abbr : bs.name%>
+
+		<%end%> 
+	<%end%></td>
+	<td><%unitoptionrow.unit_option.ccweapons.each do |cc|%>
+		<%if(cc.cc)%>
+		<%=cc.abbr != nil ? cc.abbr : cc.name%>
+		<%end%>
+	<%end%></td>
+	<td>	<%=unitoptionrow.unit_option.swc%></td>
+	<td>	<%=unitoptionrow.unit_option.cost%></td>
+	<%if(removelink)%>
+	<td><%=	link_to "Remove", {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
+	            :confirm => "Are you sure?", :method => :delete%></td>
+	<%end%>
+</tr>

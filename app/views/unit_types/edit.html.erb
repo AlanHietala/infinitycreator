@@ -1,0 +1,12 @@
+<h1>Editing unit_type</h1>
+
+<% form_for(@unit_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @unit_type %> |
+<%= link_to 'Back', unit_types_path %>

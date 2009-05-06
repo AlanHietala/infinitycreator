@@ -1,0 +1,18 @@
+<h1>Listing armies</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for army in @armies %>
+  <tr>
+    <td><%= link_to 'Show', army %></td>
+    <td><%= link_to 'Edit', edit_army_path(army) %></td>
+    <td><%= link_to 'Destroy', army, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New army', new_army_path %>

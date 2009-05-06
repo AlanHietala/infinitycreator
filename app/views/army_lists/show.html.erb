@@ -1,0 +1,72 @@
+
+<%if(@validation.errors.length>0)%>
+<div class="span-22 last prepend-top">	
+	<div class="error">
+	<ul>
+		<%@validation.errors.each do |e|%>
+		<li><%=e%></li>
+		<%end%>
+		
+	</ul>
+	</div>
+</div><%end%>
+
+<div class="span-22 last">
+<h2>List: <%=@army_list.name%></h2>
+<div>
+<%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%> // <%=link_to "Edit List Points",edit_army_list_path(@army_list)%>
+</div>
+	<strong>Points Used:</strong> <%=@validation.actualpoints%>  // <strong>Army Points:</strong> <%=@validation.allowedpoints%> //  <strong>SWC Used:</strong> <%=@validation.currentswc %>  // <strong>SWC Allowed:</strong> <%=@validation.maxswc%> // 
+
+</div>
+
+<div class="span-22 last prepend-top">
+
+<%@army_list.combat_groups.each_with_index do |cgroup,i|%>
+	<h3>Combat Group <%=(i+1).to_s%></h3>
+	<%if(cgroup.combat_group_units.count<10)%>
+		<%=link_to 'Add Unit',new_combat_group_unit_path(:combat_group_id=>cgroup.id,:army_list_id=>@army_list.id)%> /
+		<%=	link_to "Remove Entire Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
+		            :confirm => "Are you sure?", :method => :delete%>
+	<%end%>
+		
+	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList}%>
+<%end%>
+</div>
+<hr />
+<%if(@validation.weapons.length>0)%>
+<h3>Weapons Table</h3>
+<table>
+	<tr>
+		<th>Weapon</th>
+		<th>Short</th>
+		<th>Medium</th>
+		<th>Long</th>
+		<th>Max</th>
+		<th>Dam</th>
+		<th>B</th>
+		<th>Ammo</th>
+		<th>Template</th>
+		<th>EM Vul</th>
+		<th>CC</th>
+		
+	</tr>
+<%@validation.weapons.each do |w|%>
+	<tr>
+		<td><%=w.name%></td>
+		<td><%= (w.shortrange>0) ? "0-"+w.shortrange.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
+		<td><%= (w.mediumrange>0) ? w.shortrange.to_s+"-"+w.mediumrange.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
+		<td><%= (w.longrange>0) ? w.mediumrange.to_s+"-"+w.longrange.to_s+"/"+w.longrangemod.to_s : "-"%></td>
+		<td><%= (w.maxrange>0) ? w.longrange.to_s+"-"+w.maxrange.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
+		<td><%=w.damage%></td>
+		<td><%=w.b%></td>
+		<td><%=w.ammo%></td>
+		<td><%=w.template%></td>
+		<td><%=w.emvul ? "Yes" : "No"%></td>
+		<td><%=w.cc ? "Yes" : "No"%></td>
+	</tr>
+<%end%>
+</table>
+
+<hr /><%end%>
+

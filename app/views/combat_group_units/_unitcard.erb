@@ -1,0 +1,89 @@
+<table>
+	<tr>
+	<th>Movement
+	</th>
+	<th>CC
+	</th>
+	<th>BS
+	</th>
+	<th>PH
+	</th>
+	<th>WIP
+	</th>
+	<th>ARM
+	</th>
+	<th>BTS
+	</th>
+	<th>W
+	</th>
+	<th>Avail
+	</th>
+	</tr>	
+	<tr>
+		<td><%=unitcard.mov1%> - <%=unitcard.mov2%></td>
+		
+	
+
+		
+		<td><%=unitcard.cc%></td>
+	
+		<td><%=unitcard.bs%></td>
+	
+		<td><%=unitcard.ph%></td>
+	
+
+		<td><%=unitcard.wip%></td>
+
+		
+		<td><%=unitcard.arm%></td>
+	
+	
+		<td><%=unitcard.bts%></td>
+
+		<td><%=unitcard.w%></td>
+
+		<td><%=unitcard.avail%></td>
+</tr>
+</table>
+<!--Unit Options -->
+<table>
+	<tr>
+		<th>select</th>
+		<th>Name</th>
+		<th>BS Weapons</th>
+		<th>CC Weapons</th>
+		<th>SWC</th>
+		<th>Cost</th>
+	</tr>
+<%unitcard.unit_options.each_with_index do |uopt,ind|%>
+	<tr>
+	<td><%if(ind==0)%><%=radio_button_tag "combat_group_unit[unit_option_id]",uopt.id, true%><%else%> <%=radio_button_tag "combat_group_unit[unit_option_id]",uopt.id%><%end%></td>
+	<td>	<%=uopt.name%></td>
+	
+		<td>
+		<%uopt.bsweapons.each do |bs|%>
+			<%if(!bs.cc)%>
+			<%=bs.name%>
+			<%end%> 
+		<%end%>
+		</td>
+		<td>
+			<%uopt.ccweapons.each do |cc|%>
+				<%if(cc.cc)%>
+				<%=cc.name%>
+				<%end%>
+			<%end%>
+		</td>
+		<td>
+				<%=uopt.swc%>
+		</td>
+		<td>
+			<%=uopt.cost%>
+		</td>
+	</tr>
+	
+			
+
+	
+<%end%>
+</table>

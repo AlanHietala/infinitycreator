@@ -1,0 +1,66 @@
+<table>
+	<tr>
+	<th>name</th>
+	<th>Movement
+	</th>
+	<th>CC
+	</th>
+	<th>BS
+	</th>
+	<th>PH
+	</th>
+	<th>WIP
+	</th>
+	<th>ARM
+	</th>
+	<th>BTS
+	</th>
+	<th>W
+	</th>
+	<th>Avail
+	</th>
+	<th>BS Weapons</th>
+	<th>CC Weapons</th>
+	<th>SWC</th>
+	<th>Cost</th>
+	</tr>	
+	<%=render :partial=>"unitoptionrow",:object=>unitoptioncard%>
+</table>
+<!--Unit Options -->
+<table>
+	<tr>
+	
+		<th>Name</th>
+		<th>BS Weapons</th>
+		<th>CC Weapons</th>
+		<th>SWC</th>
+		<th>Cost</th>
+	</tr>
+
+	<tr>
+
+	<td>	<%=unitoptioncard.name%></td>
+	
+		<td>
+		<%unitoptioncard.bsweapons.each do |bs|%>
+			<%if(!bs.cc)%>
+			<%=bs.name%>
+			<%end%> 
+		<%end%>
+		</td>
+		<td>
+			<%unitoptioncard.ccweapons.each do |cc|%>
+				<%if(cc.cc)%>
+				<%=cc.name%>
+				<%end%>
+			<%end%>
+		</td>
+		<td>
+				<%=unitoptioncard.swc%>
+		</td>
+		<td>
+			<%=unitoptioncard.cost%>
+		</td>
+	</tr>
+	
+</table>

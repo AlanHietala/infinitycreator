@@ -1,0 +1,27 @@
+<html>
+<head>
+ <title>Infinity Pool</title>
+<%= javascript_include_tag "prototype" %>
+<%=stylesheet_link_tag('blueprint/screen')%>
+<%=stylesheet_link_tag('blueprint/src/typography')%>
+<!--[if IE]><%=stylesheet_link_tag('blueprint/print')%><![endif]-->
+   <%=stylesheet_link_tag(:all, :cache => true)	%>
+</head>
+<body>
+	<div class="container">
+		<div class="span-24 header last">
+			<h1 class="prepend-2">Game Tracker</h1>
+			<div class="prepend-15"><%if(current_user!=nil)%>
+				<%=link_to 'My Profile',profile_path(current_user.id)%> or <%=link_to "Logout",logout_path%>
+
+			<%else%>
+			<p><%=link_to 'Login',login_path%> or <%=link_to 'Signup', signup_path %> for an account to get started.</p>
+			<%end%>
+			</div>
+		</div>
+		<div class="span-22 content prepend-1 last">
+		<%= @content_for_layout%>
+		</div>
+		
+</body>
+</html>

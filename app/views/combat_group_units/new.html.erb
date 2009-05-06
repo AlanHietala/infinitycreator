@@ -1,0 +1,20 @@
+<h1>Add Unit</h1>
+
+<% form_for(@combat_group_unit) do |f| %>
+  <%= f.error_messages %>
+	<%=f.hidden_field :combat_group_id,:value=>params[:combat_group_id]%>
+	<%=collection_select :unit,:id,@units,:id,:name,{},
+	{:onChange=>remote_function(:update => "unitoptioncontainer",
+		:url =>{ :action => :getunit},
+		:with=>"'unit_id=' + this.value")}%>
+	
+  <p>
+
+	<div id="unitoptioncontainer">
+		<%=render :partial=>"unitcard",:object=>@firstunit%>
+	</div>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', combat_group_units_path %>

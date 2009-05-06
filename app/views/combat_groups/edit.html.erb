@@ -1,0 +1,12 @@
+<h1>Editing combat_group</h1>
+
+<% form_for(@combat_group) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @combat_group %> |
+<%= link_to 'Back', combat_groups_path %>

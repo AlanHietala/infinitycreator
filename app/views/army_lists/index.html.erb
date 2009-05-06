@@ -1,0 +1,17 @@
+<h1>Army Lists</h1>
+
+<table>
+	<th>List</th>
+	<th>Actions</th>
+<% for army_list in @army_lists %>
+  <tr>
+
+    <td><%= link_to army_list.name, army_list %></td>
+    <td><%= link_to 'Delete', army_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New army_list', new_army_list_path %>

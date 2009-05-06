@@ -1,0 +1,18 @@
+<h1>Listing combat_groups</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for combat_group in @combat_groups %>
+  <tr>
+    <td><%= link_to 'Show', combat_group %></td>
+    <td><%= link_to 'Edit', edit_combat_group_path(combat_group) %></td>
+    <td><%= link_to 'Destroy', combat_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New combat_group', new_combat_group_path %>
