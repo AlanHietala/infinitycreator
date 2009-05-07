@@ -1,21 +1,9 @@
 
-<%if(@validation.errors.length>0)%>
-<div class="span-22 last prepend-top">	
-	<div class="error">
-	<ul>
-		<%@validation.errors.each do |e|%>
-		<li><%=e%></li>
-		<%end%>
-		
-	</ul>
-	</div>
-</div><%end%>
+
 
 <div class="span-22 last">
 <h2>List: <%=@army_list.name%></h2>
-<div>
-<%if @myList%><%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%> // <%=link_to "Edit List Points",edit_army_list_path(@army_list)%>
-<%end%>// <%=link_to "Print",print_army_lists_path(:id=>@army_list.id)%></div>
+
 	<strong>Points Used:</strong> <%=@validation.actualpoints%>  // <strong>Army Points:</strong> <%=@validation.allowedpoints%> //  <strong>SWC Used:</strong> <%=@validation.currentswc %>  // <strong>SWC Allowed:</strong> <%=@validation.maxswc%> // 
 
 </div>
@@ -34,8 +22,7 @@
 	<strong>orders:</strong><%=@validation.combatgrouporders[i]%>	
 	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList}%>
 <%end%>
-</div>
-<hr />
+
 <%if(@validation.weapons.length>0)%>
 <h3>Weapons Table</h3>
 <table>
@@ -70,5 +57,8 @@
 <%end%>
 </table>
 
-<hr /><%end%>
+<%end%>
+
+</div>
+
 

@@ -1,8 +1,24 @@
 class ArmyListsController < ApplicationController
   require 'listvalidation.rb'
+  layout "standard", :except => :print
+ 
+  #layout "print",:only=>:print
   # GET /army_lists
   # GET /army_lists.xml
-  before_filter :login_required,:except=>[:show]
+  before_filter :login_required,:except=>[:show,:print]
+  
+  def print
+    
+    @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
+    @validation = validate_army(@army_list)
+    respond_to do |format|
+      format.html {render :layout=>"print"}# show.html.erb
+      format.xml  { render :xml => @army_list }
+    end
+    
+    
+  end
+  
   def index
     @current_user = current_user
     @army_lists = ArmyList.find(:all,:conditions=>['user_id=?',current_user.id])

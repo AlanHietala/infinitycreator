@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :units
 
-  map.resources :army_lists
+  map.resources :army_lists,:collection=>[:print]
 
   map.resources :armies
   map.homepage '/',:controller=>'pages', :action=>'index'
