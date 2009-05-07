@@ -3199,7 +3199,7 @@ class Loaddata < ActiveRecord::Migration
       
       ###  Veteran Doctor
       @unitopt = UnitOption.new
-      @unitopt.name ="MSV 1"
+      @unitopt.name="Doctor"
       @unitopt.lt = false;
       @unitopt.swc=0
       @unitopt.cost=48

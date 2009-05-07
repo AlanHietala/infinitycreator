@@ -99,8 +99,11 @@ class CombatGroupUnitsController < ApplicationController
     
     @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>:combat_group)
     army_list_id = @combat_group_unit.combat_group.army_list_id
-    @combat_group_unit.destroy
-    
+    armyList = ArmyList.find(army_list_id)
+    if(current_user!=nil and armyList.user_id==current_user.id)
+	@combat_group_unit.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to(army_list_path(army_list_id)) }
       format.xml  { head :ok }

@@ -4,6 +4,7 @@ class ArmyListsController < ApplicationController
   # GET /army_lists.xml
   before_filter :login_required,:except=>[:show]
   def index
+    @current_user = current_user
     @army_lists = ArmyList.find(:all,:conditions=>['user_id=?',current_user.id])
 
     respond_to do |format|
@@ -15,6 +16,7 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/1
   # GET /army_lists/1.xml
   def show
+    @current_user = current_user
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
     @validation = validate_army(@army_list)
     @myList = false
@@ -30,6 +32,7 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/new
   # GET /army_lists/new.xml
   def new
+    @current_user = current_user
     @army_list = ArmyList.new
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +48,7 @@ class ArmyListsController < ApplicationController
   # POST /army_lists
   # POST /army_lists.xml
   def create
+    @current_user = current_user
     @army_list = ArmyList.new(params[:army_list])
     @army_list.user_id = current_user.id
     respond_to do |format|
@@ -65,7 +69,7 @@ class ArmyListsController < ApplicationController
   # PUT /army_lists/1
   # PUT /army_lists/1.xml
   def update
-    
+    @current_user = current_user
     @army_list = ArmyList.find(params[:id])
 
     respond_to do |format|
@@ -84,6 +88,7 @@ class ArmyListsController < ApplicationController
   # DELETE /army_lists/1
   # DELETE /army_lists/1.xml
   def destroy
+    @current_user = current_user
     @army_list = ArmyList.find(params[:id])
     if(@army_list.user_id == current_user.id)
       @army_list.combat_groups.each do |g|
@@ -114,8 +119,14 @@ private
     armypoints = 0;
     ltcount = 0
     bonusswc = 0.0;
-    army.combat_groups.each do |cgroup|
+    army.combat_groups.each_with_index do |cgroup,i|
+      validation.combatgrouporders[i]=0
       cgroup.combat_group_units.each do |unit|
+        #check if this unit gives an order
+        if(!unit.unit_option.unit.isaddon)
+          validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
+        end
+        
         #check if this is an LT
         if(unit.unit_option.lt)
           ltcount = ltcount+1

@@ -14,8 +14,8 @@
 <div class="span-22 last">
 <h2>List: <%=@army_list.name%></h2>
 <div>
-<%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%> // <%=link_to "Edit List Points",edit_army_list_path(@army_list)%>
-</div>
+<%if @myList%><%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%> // <%=link_to "Edit List Points",edit_army_list_path(@army_list)%>
+<%end%></div>
 	<strong>Points Used:</strong> <%=@validation.actualpoints%>  // <strong>Army Points:</strong> <%=@validation.allowedpoints%> //  <strong>SWC Used:</strong> <%=@validation.currentswc %>  // <strong>SWC Allowed:</strong> <%=@validation.maxswc%> // 
 
 </div>
@@ -24,12 +24,14 @@
 
 <%@army_list.combat_groups.each_with_index do |cgroup,i|%>
 	<h3>Combat Group <%=(i+1).to_s%></h3>
-	<%if(cgroup.combat_group_units.count<10)%>
-		<%=link_to 'Add Unit',new_combat_group_unit_path(:combat_group_id=>cgroup.id,:army_list_id=>@army_list.id)%> /
+	
+	<%if(@validation.combatgrouporders[i]<10)%>
+		<%if @myList%><%=link_to 'Add Unit',new_combat_group_unit_path(:combat_group_id=>cgroup.id,:army_list_id=>@army_list.id)%> /
 		<%=	link_to "Remove Entire Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
 		            :confirm => "Are you sure?", :method => :delete%>
-	<%end%>
-		
+<%end%>	
+<%end%>
+	<strong>orders:</strong><%=@validation.combatgrouporders[i]%>	
 	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList}%>
 <%end%>
 </div>

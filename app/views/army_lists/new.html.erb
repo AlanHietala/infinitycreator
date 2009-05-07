@@ -3,7 +3,7 @@
 <% form_for(@army_list) do |f| %>
   <%= f.error_messages %>
 	<p><%=label_tag "List Name"%><br /> <%=f.text_field :name%></p>
-	<p><%=label_tag "Army (Ariadna the only one with data loaded currently)"%><br />
+	<p><%=label_tag "Army"%><br />
 	<%=collection_select :army_list,:army_id,Army.find(:all),:id,:name%></p>
 	<p><%=label_tag "point value"%><br /><%=f.text_field :maxpointvalue%></p>
 	<p><%=label_tag "description"%><br /><%=f.text_area :description,:rows=>5,:cols=>80%>
