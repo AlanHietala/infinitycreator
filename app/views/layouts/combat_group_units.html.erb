@@ -5,20 +5,32 @@
 <%=stylesheet_link_tag('blueprint/screen')%>
 <%=stylesheet_link_tag('blueprint/src/typography')%>
 <%=stylesheet_link_tag('blueprint/src/forms')%>
+<%=stylesheet_link_tag('site')%>
 <!--[if IE]><%=stylesheet_link_tag('blueprint/ie')%><![endif]-->
-   <%=stylesheet_link_tag(:all, :cache => true)	%>
 </head>
 <body>
 	<div class="container">
 		<div class="span-24 header last">
-			<h1 class="prepend-2">Game Tracker</h1>
-			<div class="prepend-15"><%if(current_user!=nil)%>
-				<%=link_to 'My Profile',profile_path(current_user.id)%> or <%=link_to "Logout",logout_path%>
-
+			<h1 class="pagetitle">Infinity Pool</h1>
+			
+			
+		</div>
+		<div class="span-24 navbar last">
+				<ul>
+					<li><%=link_to "Home",pages_path%></li>
+			<%if(@current_user!=nil)%>
+				
+						
+					<li><%=link_to 'My Army Lists',army_lists_path%></li> 
+					<li><%=link_to 'My Profile',profile_path(current_user.id)%></li>
+					 <li><%=link_to "Logout",logout_path%></li>
+					
 			<%else%>
-			<p><%=link_to 'Login',login_path%> or <%=link_to 'Signup', signup_path %> for an account to get started.</p>
+				<li><%=link_to 'Login',login_path%></li>
+			 	<li><%=link_to 'Signup', signup_path %> </li>
 			<%end%>
-			</div>
+			
+			</ul>
 		</div>
 		<div class="span-22 content prepend-1 last">
 		<%= @content_for_layout%>

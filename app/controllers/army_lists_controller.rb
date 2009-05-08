@@ -1,6 +1,6 @@
 class ArmyListsController < ApplicationController
   require 'listvalidation.rb'
-  layout "standard", :except => :print
+  layout "application", :except => :print
  
   #layout "print",:only=>:print
   # GET /army_lists
@@ -138,8 +138,8 @@ private
     army.combat_groups.each_with_index do |cgroup,i|
       validation.combatgrouporders[i]=0
       cgroup.combat_group_units.each do |unit|
-        #check if this unit gives an order
-        if(!unit.unit_option.unit.isaddon)
+        #check if this unit gives an order to the pool
+        if(unit.unit_option.unit.regular)
           validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
         end
         

@@ -1,0 +1,94 @@
+body{
+	background:#1e1e1e;
+	color:#d2d2d2;
+}
+.pagetitle{
+	margin-top:25px;
+	margin-left:40px;
+}
+.container{
+	background:#303030;
+	
+}
+h1,h2,h3,h4,h5,h6{
+	color:#d2d2d2;
+	
+}
+.header{height:100px;}
+.header h1{color:#DDD;}
+.altrow{background:#AAA;}
+th{background:#303030;color:#DDD;}
+tr{background:#444;}
+td{}
+.navbar{height:30px;
+		background:url('/images/bluegrad.png');
+		
+		}
+		
+.navbar a,.navbar a:hover{
+	color:#1e1e1e;
+	font-size:1.5em;
+}
+	
+	
+.navbar ul{
+	list-style-type:none;
+}
+.navbar li{
+	float:left;
+	margin-left:20px;
+	}
+	
+.listtitle{
+	font-size:2em;
+	float:left;
+}
+.listtitlegroup{
+	margin-top:13px;
+	margin-left:30px;
+	float:left;
+}
+.listtitleactions{
+	float:right;
+	margin-top:13px;
+	margin-right:20px;
+}
+
+a{
+	color:#098eff;
+	text-decoration:none;
+}
+
+a:hover{
+	color:#098eff;
+	text-decoration:underline;
+}
+.combatgroupheader{
+	background:url('/images/greygrad.png');
+	height:30px;
+	border-left:solid 1px #1e1e1e;
+	border-top:solid 1px #1e1e1e;
+	border-right:solid 1px #1e1e1e;
+	
+}
+.textheader{
+	font-size:1.3em;
+	border-top:solid 1px #1e1e1e;
+	border-left:solid 1px #1e1e1e;
+	border-right:solid 1px #1e1e1e;
+	margin:30px 0 0 0;
+	padding:0 0 0 20px;
+	background:url('/images/greygrad.png');
+	height:30px;
+}
+
+.textblock{border:solid 1px #1e1e1e;padding:20px;
+		margin-bottom:30px;
+		background:#444;
+	}
+.combatgrouptitle{float:left;margin:3px 0 0 20px;font-size:1.2em;}
+.combatgroupactions{float:right;margin-right:20px;}
+table{
+	border:solid 1px #1e1e1e;
+	
+}
