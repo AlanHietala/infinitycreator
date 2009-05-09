@@ -12,7 +12,7 @@
   <p>
 
 	<div id="unitoptioncontainer">
-		<%=render :partial=>"unitcard",:object=>@firstunit%>
+		<%=render :partial=>"unitcard",:object=>@firstunit,:locals=>{:isInch=>@isInch}%>
 	</div>
     <%= f.submit "Create" %>
   </p>

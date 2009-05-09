@@ -20,7 +20,7 @@
 <%end%>	
 <%end%>
 	<strong>orders:</strong><%=@validation.combatgrouporders[i]%>	
-	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList}%>
+	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList,:isInch=>@isInch}%>
 <%end%>
 
 <%if(@validation.weapons.length>0)%>

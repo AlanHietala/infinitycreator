@@ -24,7 +24,7 @@
 	<th>SWC</th>
 	<th>Cost</th>
 	</tr>	
-	<%=render :partial=>"unitoptionrow",:object=>unitoptioncard%>
+	<%=render :partial=>"unitoptionrow",:object=>unitoptioncard,:locals=>{:isInch=>isInch}%>
 </table>
 <!--Unit Options -->
 <table>

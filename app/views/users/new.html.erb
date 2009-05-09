@@ -15,6 +15,9 @@
 
 <p><%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
 <%= f.password_field :password_confirmation %></p>
+<p><%= label_tag 'isinch','Measurement Unit'%><br />
+<%=radio_button_tag 'isinch', 'inches', true%> inches<br />
+<%=radio_button_tag 'isinch', 'centimeters', false%> centimeters
 
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>

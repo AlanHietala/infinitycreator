@@ -11,6 +11,11 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    if(params[:isinch]=="inches")
+      @user.isinch = true
+    else
+      @user.isinch = false
+    end
     success = @user && @user.save
     if success && @user.errors.empty?
             # Protects against session fixation attacks, causes request forgery
@@ -25,7 +30,32 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+  # edit your profile
+  def edit
+    @user = User.find(current_user.id)
+    
+  end
   
+  #update
+  def update
+     @user = User.find(current_user.id)
+    isInch= true;
+    if(params[:isinch]=="inches")
+      @user.isinch = true
+    else
+      @user.isinch = false
+    end
+    respond_to do |format|
+        if @user.save
+           flash[:notice] = 'Unit was successfully updated.'
+           format.html { redirect_to(army_lists_path) }
+           format.xml  { head :ok }
+         else
+           format.html { render :action => "edit" }
+           format.xml  { render :xml => @unit.errors, :status => :unprocessable_entity }
+         end
+     end
+  end
   def show
     @user = User.find(params[:id])
     

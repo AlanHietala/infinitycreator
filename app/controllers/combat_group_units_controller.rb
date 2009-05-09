@@ -27,6 +27,10 @@ class CombatGroupUnitsController < ApplicationController
   # GET /combat_group_units/new.xml
   def new
     @army_list = ArmyList.find(params[:army_list_id])
+    @isInch = true
+   if(current_user!=nil && !current_user.isinch)
+    @isInch = false
+   end
     if(@army_list.user_id!=current_user.id) #check if we're logged in
       redirect_to(@armylist)
     end
@@ -62,6 +66,16 @@ class CombatGroupUnitsController < ApplicationController
           addunit = CombatGroupUnit.new(params[:combat_group_unit])
           addunit.unit_option_id = 85
           addunit.save
+          
+        elsif(@combat_group_unit.unit_option_id == 437 or @combat_group_unit.unit_option_id == 439 )
+          addunit = CombatGroupUnit.new(params[:combat_group_unit]) #auxbot1
+          addunit.unit_option_id = 440
+          addunit.save
+          
+         elsif(@combat_group_unit.unit_option_id == 438)
+            addunit = CombatGroupUnit.new(params[:combat_group_unit]) #auxbot 2
+            addunit.unit_option_id = 441 
+            addunit.save
         else 
           
         end
@@ -79,10 +93,12 @@ class CombatGroupUnitsController < ApplicationController
   # PUT /combat_group_units/1
   # PUT /combat_group_units/1.xml
   def update
-    @combat_group_unit = CombatGroupUnit.find(params[:id])
+    @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>[:combat_group=>:army_list])
+    
+    
 
     respond_to do |format|
-      if @combat_group_unit.update_attributes(params[:combat_group_unit])
+      if (current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id and @combat_group_unit.update_attributes(params[:combat_group_unit]))
         flash[:notice] = 'CombatGroupUnit was successfully updated.'
         format.html { redirect_to(@combat_group_unit) }
         format.xml  { head :ok }
@@ -97,15 +113,14 @@ class CombatGroupUnitsController < ApplicationController
   # DELETE /combat_group_units/1.xml
   def destroy
     
-    @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>:combat_group)
-    army_list_id = @combat_group_unit.combat_group.army_list_id
-    armyList = ArmyList.find(army_list_id)
-    if(current_user!=nil and armyList.user_id==current_user.id)
+    @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>[:combat_group=>:army_list])
+    
+    if(current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id)
 	@combat_group_unit.destroy
     end
 
     respond_to do |format|
-      format.html { redirect_to(army_list_path(army_list_id)) }
+      format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
       format.xml  { head :ok }
     end
   end

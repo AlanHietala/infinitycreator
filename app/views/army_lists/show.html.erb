@@ -1,81 +1,87 @@
-
 <%if(@validation.errors.length>0)%>
-<div class="span-22 last prepend-top">	
-	<div class="error">
-	<ul>
-		<%@validation.errors.each do |e|%>
-		<li><%=e%></li>
-		<%end%>
+	<div class="span-22 last prepend-top">	
+		<div class="error">
+		<ul>
+			<%@validation.errors.each do |e|%>
+			<li><%=e%></li>
+			<%end%>
 		
-	</ul>
+		</ul>
+		</div>
 	</div>
-</div><%end%>
+<%end%>
 
 <div class="span-22 prepend-top last">
 
-<div class="listtitle">List: <%=@army_list.name%></div>
+	<div class="listtitle">List: <%=@army_list.name%></div>
 
-	<div class="listtitlegroup"><strong>Points:</strong> <%=@validation.actualpoints%>  &raquo; <strong>Allowed:</strong> <%=@validation.allowedpoints%> </div> <div class="listtitlegroup"><strong>SWC:</strong> <%=@validation.currentswc %>  &raquo; <strong>Allowed:</strong> <%=@validation.maxswc%></div>
+	<div class="listtitlegroup"><strong>Points:</strong> <%=@validation.actualpoints%>  &raquo; <strong>Allowed:</strong> <%=@validation.allowedpoints%> </div> 
+	<div class="listtitlegroup"><strong>SWC:</strong> <%=@validation.currentswc %>  &raquo; <strong>Allowed:</strong> <%=@validation.maxswc%></div>
 	
-<div class="listtitleactions">	<%if @myList%> &raquo; <%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%>  &raquo; <%=link_to "Edit",edit_army_list_path(@army_list)%>
-	<%end%> &raquo; <%=link_to "Print View",print_army_lists_path(:id=>@army_list.id)%>
-</div>
+	<div class="listtitleactions">	<%if @myList%> &raquo; <%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%>  &raquo; <%=link_to "Edit",edit_army_list_path(@army_list)%>
+		<%end%> &raquo; <%=link_to "Print View",print_army_lists_path(:id=>@army_list.id)%>
+	</div>
 </div>
 
 <div class="span-22 last prepend-top">
 
-<%@army_list.combat_groups.each_with_index do |cgroup,i|%>
-	<div class="combatgroupheader">
-		<div class="combatgrouptitle">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
-		<div class="combatgroupactions">
-		<%if(@validation.combatgrouporders[i]<10)%>
-			<%if @myList%> &raquo; <%=link_to 'Add Unit',new_combat_group_unit_path(:combat_group_id=>cgroup.id,:army_list_id=>@army_list.id)%>  &raquo;
-			<%=	link_to "Remove Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
-			            :confirm => "Are you sure?", :method => :delete%>
-	<%end%>	
-	<%end%>
-		</div>
+	<%@army_list.combat_groups.each_with_index do |cgroup,i|%>
+		<div class="combatgroupheader">
+			<div class="combatgrouptitle">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
+			<div class="combatgroupactions">
+				<%if(@validation.combatgrouporders[i]<10)%>
+					<%if @myList%> &raquo; <%=link_to 'Add Unit', new_combat_group_unit_path(:combat_group_id=>cgroup.id, :army_list_id=>@army_list.id)%>
+					  &raquo;	<%=link_to "Remove Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
+					            :confirm => "Are you sure?", :method => :delete%>
+					<%end%>	
+				<%end%>
+			</div>
 		
 		</div>
 	
 		
-	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList}%>
-<%end%>
+		<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList,:isInch=>@isInch}%>
+	<%end%>
 
 
-<%if(@validation.weapons.length>0)%>
-<div class="combatgroupheader"><div class="combatgrouptitle">Weapons Table</div></div>
-<table>
-	<tr>
-		<th>Weapon</th>
-		<th>Short</th>
-		<th>Medium</th>
-		<th>Long</th>
-		<th>Max</th>
-		<th>Dam</th>
-		<th>B</th>
-		<th>Ammo</th>
-		<th>Template</th>
-		<th>EM Vul</th>
-		<th>CC</th>
+	<%if(@validation.weapons.length>0)%>
+		<div class="combatgroupheader"><div class="combatgrouptitle">Weapons Table</div></div>
+		<table>
+			<tr>
+				<th>Weapon</th>
+				<th>Short</th>
+				<th>Medium</th>
+				<th>Long</th>
+				<th>Max</th>
+				<th>Dam</th>
+				<th>B</th>
+				<th>Ammo</th>
+				<th>Template</th>
+				<th>EM Vul</th>
+				<th>CC</th>
 		
-	</tr>
-<%@validation.weapons.each do |w|%>
-	<tr>
-		<td><%=w.name%></td>
-		<td><%= (w.shortrange>0) ? "0-"+w.shortrange.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
-		<td><%= (w.mediumrange>0) ? w.shortrange.to_s+"-"+w.mediumrange.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
-		<td><%= (w.longrange>0) ? w.mediumrange.to_s+"-"+w.longrange.to_s+"/"+w.longrangemod.to_s : "-"%></td>
-		<td><%= (w.maxrange>0) ? w.longrange.to_s+"-"+w.maxrange.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
-		<td><%=w.damage%></td>
-		<td><%=w.b%></td>
-		<td><%=w.ammo%></td>
-		<td><%=w.template%></td>
-		<td><%=w.emvul ? "Yes" : "No"%></td>
-		<td><%=w.cc ? "Yes" : "No"%></td>
-	</tr>
-<%end%>
-</table>
+			</tr>
+		<%@validation.weapons.each do |w|
+			s = @isInch ? w.shortrange : (w.shortrange*10/4);
+			m =  @isInch ? w.mediumrange : (w.mediumrange*10/4);
+			l =  @isInch?w.longrange : (w.longrange*10/4);
+			x =  @isInch?w.maxrange : (w.maxrange*10/4);
+			%>
+			<tr>
+				<td><%=w.name%></td>
+				<td><%= (w.shortrange>0) ? "0-"+s.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
+				<td><%= (w.mediumrange>0) ? s.to_s+"-"+m.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
+				<td><%= (w.longrange>0) ? m.to_s+"-"+l.to_s+"/"+w.longrangemod.to_s : "-"%></td>
+				<td><%= (w.maxrange>0) ? l.to_s+"-"+x.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
+				<td><%=w.damage%></td>
+				<td><%=w.b%></td>
+				<td><%=w.ammo%></td>
+				<td><%=w.template%></td>
+				<td><%=w.emvul ? "Yes" : "No"%></td>
+				<td><%=w.cc ? "Yes" : "No"%></td>
+			</tr>
+		<%end%>
+		</table>
+		
+	<%end%>
 </div>
-<%end%>
-

@@ -33,10 +33,10 @@ class CombatGroupsController < ApplicationController
     end
   end
 
-  # GET /combat_groups/1/edit
-  def edit
-    @combat_group = CombatGroup.find(params[:id])
-  end
+  # # GET /combat_groups/1/edit
+  # def edit
+  #   @combat_group = CombatGroup.find(params[:id])
+  # end
 
   # POST /combat_groups
   # POST /combat_groups.xml
@@ -64,22 +64,22 @@ class CombatGroupsController < ApplicationController
     
   end
 
-  # PUT /combat_groups/1
-  # PUT /combat_groups/1.xml
-  def update
-    @combat_group = CombatGroup.find(params[:id])
-
-    respond_to do |format|
-      if @combat_group.update_attributes(params[:combat_group])
-        flash[:notice] = 'CombatGroup was successfully updated.'
-        format.html { redirect_to(@combat_group) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @combat_group.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # # PUT /combat_groups/1
+  # # PUT /combat_groups/1.xml
+  # def update
+  #   @combat_group = CombatGroup.find(params[:id],:include=>)
+  # 
+  #   respond_to do |format|
+  #     if ()@combat_group.update_attributes(params[:combat_group])
+  #       flash[:notice] = 'CombatGroup was successfully updated.'
+  #       format.html { redirect_to(@combat_group) }
+  #       format.xml  { head :ok }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.xml  { render :xml => @combat_group.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /combat_groups/1
   # DELETE /combat_groups/1.xml

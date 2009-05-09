@@ -2,7 +2,7 @@
 	<tr>
 	<th>name</th>
 	<th>skills</th>
-	<th>Movement
+	<th>Mov
 	</th>
 	<th>CC
 	</th>
@@ -18,7 +18,7 @@
 	</th>
 	<th>W
 	</th>
-	<th>Avail
+	<th>Ava
 	</th>
 	<th>BS Weapons</th>
 	<th>CC Weapons</th>
@@ -29,7 +29,7 @@
 	<%end%>
 	</tr>
 	<%unitoptionlist.each do |u|%>
-		<%=render :partial=>"unit_options/unitoptionrow",:object=>u,:locals=>{:removelink=>removelink}%>
+		<%=render :partial=>"unit_options/unitoptionrow",:object=>u,:locals=>{:removelink=>removelink,:isInch=>isInch}%>
 	<%end%>
 	
 </table>

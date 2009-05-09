@@ -1,6 +1,6 @@
 <table>
 	<tr>
-	<th>Movement
+	<th>Mov
 	</th>
 	<th>CC
 	</th>
@@ -20,7 +20,11 @@
 	</th>
 	</tr>	
 	<tr>
-		<td><%=unitcard.mov1%> - <%=unitcard.mov2%></td>
+		<td><%if(isInch)%>
+				<%=unitcard.mov1%>-<%=unitcard.mov2%>
+			<%else%>
+				<%=unitcard.mov1*10/4%>-<%=unitcard.mov2*10/4%>
+			<%end%></td>
 		
 	
 

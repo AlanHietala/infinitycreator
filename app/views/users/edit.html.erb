@@ -1,0 +1,13 @@
+<h2 class="textheader">Edit Settings</h2>
+<div class="textblock">
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+	
+  <p><%= label_tag 'isinch','Measurement Unit'%><br />
+<%=radio_button_tag 'isinch', 'inches', @user.isinch%> inches<br />
+<%=radio_button_tag 'isinch', 'centimeters', !@user.isinch%> centimeters
+</p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+</div>

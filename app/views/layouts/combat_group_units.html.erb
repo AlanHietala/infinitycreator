@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
 <head>
  <title>Infinity Pool</title>
 <%= javascript_include_tag "prototype" %>
@@ -18,11 +20,11 @@
 		<div class="span-24 navbar last">
 				<ul>
 					<li><%=link_to "Home",pages_path%></li>
-			<%if(@current_user!=nil)%>
+			<%if(current_user!=nil)%>
 				
 						
 					<li><%=link_to 'My Army Lists',army_lists_path%></li> 
-					<li><%=link_to 'My Profile',profile_path(current_user.id)%></li>
+					<li><%=link_to "Settings",edit_user_path(:id=>current_user.id)%></li>
 					 <li><%=link_to "Logout",logout_path%></li>
 					
 			<%else%>
@@ -35,6 +37,17 @@
 		<div class="span-22 content prepend-1 last">
 		<%= @content_for_layout%>
 		</div>
-		
+	
+	</div>
+		<!--google analytics-->
+				<script type="text/javascript">
+				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+				</script>
+				<script type="text/javascript">
+				try {
+				var pageTracker = _gat._getTracker("UA-628893-7");
+				pageTracker._trackPageview();
+				} catch(err) {}</script>	
 </body>
 </html>

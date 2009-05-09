@@ -8,7 +8,10 @@ class ArmyListsController < ApplicationController
   before_filter :login_required,:except=>[:show,:print]
   
   def print
-    
+     @isInch = true
+     if(current_user!=nil && !current_user.isinch)
+      @isInch = false
+     end
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
     @validation = validate_army(@army_list)
     respond_to do |format|
@@ -32,7 +35,10 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/1
   # GET /army_lists/1.xml
   def show
-    @current_user = current_user
+    @isInch = true
+   if(current_user!=nil && !current_user.isinch)
+    @isInch = false
+   end
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
     @validation = validate_army(@army_list)
     @myList = false
@@ -137,12 +143,16 @@ private
     bonusswc = 0.0;
     army.combat_groups.each_with_index do |cgroup,i|
       validation.combatgrouporders[i]=0
+      validation.modelcount[i]=0
       cgroup.combat_group_units.each do |unit|
         #check if this unit gives an order to the pool
         if(unit.unit_option.unit.regular)
           validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
         end
-        
+        #check if the unit counts towards the model count
+        if(!unit.unit_option.unit.isaddon)
+          validation.modelcount[i] = validation.modelcount[i] + 1
+        end
         #check if this is an LT
         if(unit.unit_option.lt)
           ltcount = ltcount+1
