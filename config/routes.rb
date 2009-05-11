@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :pages
 
-  map.resources :combat_group_units,:collection=>[:getunitoptions,:getunitoptiondetails,:getunit]
+  map.resources :combat_group_units,:collection=>[:getunitoptions,:getunitoptiondetails,:getunit,:movelower,:movehigher]
 
   map.resources :weapons
 

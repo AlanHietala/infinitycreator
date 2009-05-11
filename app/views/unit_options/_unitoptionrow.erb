@@ -1,6 +1,18 @@
 <tr>
 	<td><%=unitoptionrow.unit_option.unit.name%>: <%=unitoptionrow.unit_option.name%></td>
-	<td><%=unitoptionrow.unit_option.unit.skills%></td>
+	<td>
+	<%if(unitoptionrow.unit_option.unit.regular)%>
+	regular, 
+	<%else%>
+	irregular, 
+	<%end%>
+	<%=case unitoptionrow.unit_option.unit.impetuous
+	   		when 0 then "not impetuous"
+			when 1 then "impetuous"
+			when 2 then "frenzy"
+		end%>
+	
+	<%=unitoptionrow.unit_option.unit.skills%></td>
 	<td><%if(isInch)%>
 			<%=unitoptionrow.unit_option.unit.mov1%>-<%=unitoptionrow.unit_option.unit.mov2%>
 		<%else%>
@@ -29,20 +41,23 @@
 
 	<td><%=unitoptionrow.unit_option.unit.avail%></td>
 	<td><%unitoptionrow.unit_option.bsweapons.each do |bs|%>
-		<%if(!bs.cc)%>
-			<%= bs.abbr != nil ? bs.abbr : bs.name%>
+		
+			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
 
-		<%end%> 
+		
 	<%end%></td>
-	<td><%unitoptionrow.unit_option.ccweapons.each do |cc|%>
-		<%if(cc.cc)%>
-		<%=cc.abbr != nil ? cc.abbr : cc.name%>
-		<%end%>
-	<%end%></td>
+	
 	<td>	<%=unitoptionrow.unit_option.swc%></td>
 	<td>	<%=unitoptionrow.unit_option.cost%></td>
 	<%if(removelink)%>
-	<td><%=	link_to "Remove", {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
+	<td>
+		<%if !unitoptionrow.first?%>
+			<%=	link_to image_tag("uparrow.png"), {:controller=>"combat_group_units", :action => "movehigher", :id => unitoptionrow.id }, :method => :delete%>
+		<%end%>
+		<%if !unitoptionrow.last?%>
+				<%=	link_to image_tag("dnarrow.png"), {:controller=>"combat_group_units", :action => "movelower", :id => unitoptionrow.id }, :method => :delete%>
+		<%end%>
+	<%=	link_to image_tag("delete.png"), {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
 	            :confirm => "Are you sure?", :method => :delete%></td>
 	<%end%>
 </tr>

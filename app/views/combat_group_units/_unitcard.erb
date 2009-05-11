@@ -1,5 +1,6 @@
 <table>
 	<tr>
+		<th>Skills</th>
 	<th>Mov
 	</th>
 	<th>CC
@@ -20,6 +21,19 @@
 	</th>
 	</tr>	
 	<tr>
+		<td>
+			<%if(unitcard.regular)%>
+			regular, 
+			<%else%>
+			irregular, 
+			<%end%>
+		<%=case unitcard.impetuous
+		   		when 0 then "not impetuous"
+				when 1 then "impetuous"
+				when 2 then "frenzy"
+			end%>
+			<%=unitcard.skills%>
+			</td>
 		<td><%if(isInch)%>
 				<%=unitcard.mov1%>-<%=unitcard.mov2%>
 			<%else%>

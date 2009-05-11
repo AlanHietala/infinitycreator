@@ -1,6 +1,27 @@
 class CombatGroupUnitsController < ApplicationController
     before_filter :login_required
+  def movelower
+     @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>[:combat_group=>:army_list])
+     respond_to do |format|
+        if(current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id)
+          @combat_group_unit.move_lower
+        end
+        format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
+        format.xml  { head :ok }
+      end
+  end
   
+  def movehigher
+    @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>[:combat_group=>:army_list])
+
+      respond_to do |format|
+          if(current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id)
+            @combat_group_unit.move_higher
+          end
+          format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
+          format.xml  { head :ok }
+        end
+  end
   # GET /combat_group_units
   # GET /combat_group_units.xml
   def index
@@ -127,7 +148,12 @@ class CombatGroupUnitsController < ApplicationController
   
   
   def getunit
-   render :partial=>"unitcard", :object=>Unit.find(:first,:conditions=>["id=?",params[:unit_id]],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+     
+      @isInch = true
+     if(current_user!=nil && !current_user.isinch)
+      @isInch = false
+     end
+   render :partial=>"unitcard", :object=>Unit.find(:first,:conditions=>["id=?",params[:unit_id]],:include=>[:unit_options=>[:bsweapons,:ccweapons]]),:locals=>{:isInch=>@isInch}
   end
   
   def getunitoptiondetails
