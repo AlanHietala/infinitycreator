@@ -2,6 +2,17 @@
 
 
 <div class="span-22 last">
+	<div class="listimage">
+		<%= case @army_list.army_id
+			when 1 then image_tag("Ariadna.png") + "<div class='factiontitle'>Ariadna</div>"
+			when 2 then image_tag("IAECombinado.png")+"<div class='factiontitle'>Combined</div>"
+			when 3 then image_tag("Haqqislam.png")+"<div class='factiontitle'>Haqqislam</div>"
+			when 4 then image_tag("Nomadas.png")+"<div class='factiontitle'>Nomads</div>"
+			when 5 then image_tag("PanOceania.png")+"<div class='factiontitle'>Pan Oceania</div>"
+			when 6 then image_tag ("YuJing.png")+"<div class='factiontitle'>Yu Jing</div>"
+			end
+								%>
+	</div>
 <h2>List: <%=@army_list.name%></h2>
 
 	<strong>Points Used:</strong> <%=@validation.actualpoints%>  // <strong>Army Points:</strong> <%=@validation.allowedpoints%> //  <strong>SWC Used:</strong> <%=@validation.currentswc %>  // <strong>SWC Allowed:</strong> <%=@validation.maxswc%> // 
@@ -19,7 +30,7 @@
 		            :confirm => "Are you sure?", :method => :delete%>
 <%end%>	
 <%end%>
-	<strong>orders:</strong><%=@validation.combatgrouporders[i]%>	
+	<strong>Order Pool:</strong> <%=@validation.combatgrouporders[i]%>	
 	<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList,:isInch=>@isInch}%>
 <%end%>
 

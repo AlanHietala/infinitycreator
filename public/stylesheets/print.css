@@ -1,3 +1,8 @@
 h3{border-bottom:solid #DDD 2px;}
 th{border-bottom:solid #DDD 2px;}
 td{border-bottom:solid #DDD 1px;}
+.listimage img{margin:0;}
+.listimage{float:left;margin-right:20px;}
+.factiontitle{
+	text-align:center;
+}

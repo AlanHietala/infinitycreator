@@ -7,12 +7,16 @@
 </div>
 <table>
 	<th>List</th>
+	<th>Faction</th>
+	<th>Points</th>
 	<th>Actions</th>
 <% for army_list in @army_lists %>
   <tr>
 
     <td><%= link_to army_list.name, army_list %></td>
-    <td><%= link_to 'Delete', army_list, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td><%=army_list.army.name%></td>
+	<td><%=army_list.maxpointvalue%></td>
+    <td><%= link_to image_tag("delete.png"), army_list, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

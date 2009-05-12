@@ -23,8 +23,9 @@ class ArmyListsController < ApplicationController
   end
   
   def index
+    store_location
     @current_user = current_user
-    @army_lists = ArmyList.find(:all,:conditions=>['user_id=?',current_user.id])
+    @army_lists = ArmyList.find(:all,:conditions=>['user_id=?',current_user.id],:include=>[:army])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,6 +36,7 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/1
   # GET /army_lists/1.xml
   def show
+    store_location
     @isInch = true
    if(current_user!=nil && !current_user.isinch)
     @isInch = false
@@ -54,6 +56,7 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/new
   # GET /army_lists/new.xml
   def new
+    store_location
     @current_user = current_user
     @army_list = ArmyList.new
     respond_to do |format|
@@ -70,6 +73,7 @@ class ArmyListsController < ApplicationController
   # POST /army_lists
   # POST /army_lists.xml
   def create
+    store_location
     @current_user = current_user
     @army_list = ArmyList.new(params[:army_list])
     @army_list.user_id = current_user.id
@@ -91,6 +95,7 @@ class ArmyListsController < ApplicationController
   # PUT /army_lists/1
   # PUT /army_lists/1.xml
   def update
+    store_location
     @current_user = current_user
     @army_list = ArmyList.find(params[:id])
 

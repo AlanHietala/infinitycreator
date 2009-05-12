@@ -39,7 +39,7 @@
 
 	<td><%=unitoptionrow.unit_option.unit.w%></td>
 
-	<td><%=unitoptionrow.unit_option.unit.avail%></td>
+	<td><%=unitoptionrow.unit_option.unit.avail<1 ? "T" : unitoptionrow.unit_option.unit.avail%></td>
 	<td><%unitoptionrow.unit_option.bsweapons.each do |bs|%>
 		
 			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
@@ -51,6 +51,7 @@
 	<td>	<%=unitoptionrow.unit_option.cost%></td>
 	<%if(removelink)%>
 	<td>
+		<div class="rowactions">
 		<%if !unitoptionrow.first?%>
 			<%=	link_to image_tag("uparrow.png"), {:controller=>"combat_group_units", :action => "movehigher", :id => unitoptionrow.id }, :method => :delete%>
 		<%end%>
@@ -60,4 +61,5 @@
 	<%=	link_to image_tag("delete.png"), {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
 	            :confirm => "Are you sure?", :method => :delete%></td>
 	<%end%>
+	</div>
 </tr>
