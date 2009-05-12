@@ -1,6 +1,6 @@
 class Addlistfunctions < ActiveRecord::Migration
   def self.up
-    #add_column(:combat_group_units, :position, :int);
+    add_column(:combat_group_units, :position, :int);
     cgroups = CombatGroup.find(:all,:include=>[:combat_group_units])
     cgroups.each do |c|
       
