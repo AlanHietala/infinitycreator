@@ -195,7 +195,11 @@ private
             end
          end
        end
-       armyswc = armyswc + unit.unit_option.swc
+       if(unit.unit_option.swc<0.0)
+		bonusswc = bonusswc - unit.unit_option.swc
+	else
+	armyswc = armyswc + unit.unit_option.swc
+	end
        armypoints = armypoints + unit.unit_option.cost
       end
     end
