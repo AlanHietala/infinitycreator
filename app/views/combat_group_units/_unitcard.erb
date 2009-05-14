@@ -93,7 +93,7 @@
 			<%end%>
 		</td>
 		<td>
-				<%=uopt.swc%>
+				<%=uopt.swc< 0 ? "+"+uopt.swc.abs.to_s : uopt.swc %>
 		</td>
 		<td>
 			<%=uopt.cost%>

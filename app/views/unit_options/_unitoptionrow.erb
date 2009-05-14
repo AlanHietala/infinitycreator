@@ -47,7 +47,7 @@
 		
 	<%end%></td>
 	
-	<td>	<%=unitoptionrow.unit_option.swc%></td>
+	<td>	<%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %></td>
 	<td>	<%=unitoptionrow.unit_option.cost%></td>
 	<%if(removelink)%>
 	<td>
