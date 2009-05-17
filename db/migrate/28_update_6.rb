@@ -1,7 +1,7 @@
 class Update6 < ActiveRecord::Migration
   def self.up
    #add the ghost column
-   #add_column(:units, :ghost, :boolean,:default=>false);
+   add_column(:units, :ghost, :boolean,:default=>false);
    
    palbot = Unit.find(120)
    palbot.unit_type_id = 5
