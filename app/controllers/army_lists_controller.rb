@@ -151,7 +151,7 @@ private
       validation.modelcount[i]=0
       cgroup.combat_group_units.each do |unit|
         #check if this unit gives an order to the pool
-        if(unit.unit_option.unit.regular)
+        if(unit.unit_option.unit.regular && !unit.unit_option.unit.ghost)
           validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
         end
         #check if the unit counts towards the model count
