@@ -56,6 +56,24 @@ class CombatGroupUnitsController < ApplicationController
       redirect_to(@armylist)
     end
     @units = Unit.find(:all,:conditions=>['army_id=?',@army_list.army_id])
+    @li = Array.new
+    @mi  = Array.new
+    @hi = Array.new
+    @sk = Array.new
+    @wb = Array.new
+    @rem = Array.new
+    @tag = Array.new
+    @units.each do |unit|
+        case unit.unit_type_id 
+          when 1 then @li<<unit
+          when 4 then @mi<<unit
+          when 2 then @hi<<unit
+          when 3 then @sk<<unit
+          when 7 then @wb << unit
+          when 5 then @rem << unit
+          when 6 then @tag << unit
+        end
+    end
     @firstunit = Unit.find(:first,:conditions=>["army_id=?",@army_list.army_id],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
     @combat_group_unit = CombatGroupUnit.new
     

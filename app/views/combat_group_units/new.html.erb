@@ -4,19 +4,22 @@
 <% form_for(@combat_group_unit) do |f| %>
   <%= f.error_messages %>
 	<%=f.hidden_field :combat_group_id,:value=>params[:combat_group_id]%>
-	<%=collection_select :unit,:id,@units,:id,:name,{},
-	{:onChange=>remote_function(:update => "unitoptioncontainer",
+
+<%=select_tag 'unit[id]',"<optgroup label='Light Infantry'>" + options_from_collection_for_select(@li, :id, :name)+"</optgroup><optgroup label='Medium Infantry'>" + options_from_collection_for_select(@mi, :id, :name)+"</optgroup><optgroup label='Heavy Infantry'>" + options_from_collection_for_select(@hi, :id, :name)+"</optgroup>
+<optgroup label='Scouts'>" + options_from_collection_for_select(@sk, :id, :name)+"</optgroup><optgroup label='Warbands'>" + options_from_collection_for_select(@wb, :id, :name)+"</optgroup><optgroup label='Remotes'>" + options_from_collection_for_select(@rem, :id, :name)+"</optgroup><optgroup label='TAGs'>" + options_from_collection_for_select(@tag, :id, :name)+"</optgroup>",	{:onChange=>remote_function(:update => "unitoptioncontainer",
 		:url =>{ :action => :getunit},
 		:with=>"'unit_id=' + this.value")}%>
-	
-  <p>
+
+  <div>
 
 	<div id="unitoptioncontainer">
+	
 		<%=render :partial=>"unitcard",:object=>@firstunit,:locals=>{:isInch=>@isInch}%>
 	</div>
     <%= f.submit "Create" %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Back', army_list_path(params[:army_list_id]) %>
+<div class="clear"></div>
 </div>
