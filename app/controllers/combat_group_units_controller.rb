@@ -55,7 +55,11 @@ class CombatGroupUnitsController < ApplicationController
     if(@army_list.user_id!=current_user.id) #check if we're logged in
       redirect_to(@armylist)
     end
-    @units = Unit.find(:all,:conditions=>['army_id=?',@army_list.army_id])
+    if(@army_list.army_id<7)
+      @units = Unit.find(:all,:conditions=>['army_id in (?,7)',@army_list.army_id])
+    else
+      @units = Unit.find(:all,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'])
+    end
     @li = Array.new
     @mi  = Array.new
     @hi = Array.new
@@ -74,7 +78,12 @@ class CombatGroupUnitsController < ApplicationController
           when 6 then @tag << unit
         end
     end
-    @firstunit = Unit.find(:first,:conditions=>["army_id=?",@army_list.army_id],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+     if(@army_list.army_id<7)
+        @firstunit = Unit.find(:first,:conditions=>["army_id in (?,7)",@army_list.army_id],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+      else
+        @firstunit = Unit.find(:first,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+      end
+   
     @combat_group_unit = CombatGroupUnit.new
     
     respond_to do |format|

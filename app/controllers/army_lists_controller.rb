@@ -42,7 +42,11 @@ class ArmyListsController < ApplicationController
     @isInch = false
    end
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
-    @validation = validate_army(@army_list)
+    if(@army_list.army_id != 7)
+      @validation = validate_army(@army_list)
+    else
+     @validation = validate_mercarmy(@army_list)
+    end
     @myList = false
     if(current_user!=nil and current_user.id==@army_list.user_id)
       @myList=true
@@ -205,6 +209,138 @@ private
     end
     
     
+    if(ltcount<1)
+      validation.errors<<"No Lieutenant"
+    end
+    totalmaxswc = swctotal + bonusswc
+    validation.maxswc = totalmaxswc
+    validation.currentswc = armyswc
+    if(armyswc>totalmaxswc)
+      validation.errors<<"actual SWC: "+armyswc.to_s+" allowed: "+totalmaxswc.to_s;
+    end
+    
+    if(armypoints>army.maxpointvalue)
+      validation.errors<<"actual points: "+armypoints.to_s+" allowed: "+army.maxpointvalue.to_s
+    end
+    validation.actualpoints = armypoints
+    validation.allowedpoints = army.maxpointvalue
+    return validation
+  end
+  
+  def validate_mercarmy(army)
+    validation = ListValidation.new
+    validation.errors = Array.new
+    unitCountHash = Hash.new
+    weaponHash = Hash.new
+    armyHash = Hash.new
+    swctotal = army.maxpointvalue.div(50)
+    ava1total = army.maxpointvalue.div(200)
+    validation.weapons = Array.new
+    #validate swc
+    numArmies = 0;
+    armyswc = 0.0;
+    armypoints = 0;
+    ltcount = 0
+    bonusswc = 0.0;
+    armyava1 = 0
+    army.combat_groups.each_with_index do |cgroup,i|
+      validation.combatgrouporders[i]=0
+      validation.modelcount[i]=0
+      cgroup.combat_group_units.each do |unit|
+        #check if this unit gives an order to the pool
+        if(unit.unit_option.unit.regular && !unit.unit_option.unit.ghost)
+          validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
+        end
+        #check if the unit counts towards the model count
+        if(!unit.unit_option.unit.isaddon)
+          validation.modelcount[i] = validation.modelcount[i] + 1
+        end
+        #check if this is an LT
+        if(unit.unit_option.lt)
+          ltcount = ltcount+1
+        end
+        #check if it provides bonus swc
+        if(unit.unit_option.bonusswc>0)
+          bonusswc = bonusswc+1
+        end
+       #add weapons to the weapon list
+       unit.unit_option.bsweapons.each do |bs|
+         if(weaponHash[bs.name]==nil)
+           weaponHash[bs.name]=true
+           validation.weapons<<bs
+         end
+       end
+       unit.unit_option.ccweapons.each do |cc|
+          if(weaponHash[cc.name]==nil)
+            weaponHash[cc.name]=true
+            validation.weapons<<cc
+          end
+         
+       end
+       
+       #add army to the army hash
+       if(armyHash[unit.unit_option.unit.army_id.to_s]==nil)
+         armyHash[unit.unit_option.unit.army_id.to_s] = true
+          numArmies = numArmies +1
+       end
+       if(unit.unit_option.unit.avail>1)## check availablity validity
+         if(unitCountHash[unit.unit_option.unit.name]==nil) #First time we've seen this unit
+           unitCountHash[unit.unit_option.unit.name]=1;
+         
+         else #seen this unit before, increment
+           unitCountHash[unit.unit_option.unit.name]=unitCountHash[unit.unit_option.unit.name] + 1
+         
+         end
+         if(unitCountHash[unit.unit_option.unit.name]>unit.unit_option.unit.avail.div(2)) #check if it has exceeded
+            if(unitCountHash[unit.unit_option.unit.name]==unit.unit_option.unit.avail+1)
+              validation.errors<<"Too many "+unit.unit_option.unit.name+" in army max is "+unit.unit_option.unit.avail.to_s
+            else
+            end
+         end
+       
+       elsif(unit.unit_option.unit.avail==1) #the special 200 point case for ava 1
+         if(unitCountHash[unit.unit_option.unit.name]==nil) #First time we've seen this unit
+            unitCountHash[unit.unit_option.unit.name]=1;
+            armyava1 = armyava1+1
+          else #seen this unit before, increment
+            unitCountHash[unit.unit_option.unit.name]=unitCountHash[unit.unit_option.unit.name] + 1
+            armyava1 = armyava1+1
+          end
+          if(unitCountHash[unit.unit_option.unit.name]>1) #check if it has exceeded
+             
+               validation.errors<<"Too many "+unit.unit_option.unit.name+" in army max is 1"
+             
+          end
+         
+       else # Total ava = ava 4 in mercs
+          if(unitCountHash[unit.unit_option.unit.name]==nil) #First time we've seen this unit
+             unitCountHash[unit.unit_option.unit.name]=1;
+
+           else #seen this unit before, increment
+             unitCountHash[unit.unit_option.unit.name]=unitCountHash[unit.unit_option.unit.name] + 1
+
+           end
+           if(unitCountHash[unit.unit_option.unit.name]>4)
+              validation.errors<<"Too many "+unit.unit_option.unit.name+" in army max is 4"
+           else
+           end
+         
+       end
+       if(numArmies>3)
+          validation.errors<<"Too many armies used in merc force. maximum is 3"
+       end
+       if(unit.unit_option.swc<0.0)
+		bonusswc = bonusswc - unit.unit_option.swc
+	else
+	armyswc = armyswc + unit.unit_option.swc
+	end
+       armypoints = armypoints + unit.unit_option.cost
+      end
+    end
+    
+    if(armyava1>ava1total)
+      validation.errors<<"Too many Ava 1 Units Max is " +ava1total.to_s
+    end
     if(ltcount<1)
       validation.errors<<"No Lieutenant"
     end
