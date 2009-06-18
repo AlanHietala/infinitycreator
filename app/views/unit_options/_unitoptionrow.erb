@@ -1,5 +1,5 @@
-<div class="unit">
-<div class="unitheader rounded">
+<div class="unit span-22 last">
+<div class="unitheader span-22 last rounded">
 	
 <div class="span-1"><%=link_to image_tag("plus.png"),"#",:class=>"expand"%></div>	
 <div class="span-6 unitname"><%=unitoptionrow.unit_option.unit.name%> &raquo; <%=unitoptionrow.unit_option.name%></div>
@@ -17,7 +17,7 @@ Irregular
 	</div>
 	
 	
-	<div class="span-8 last swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
+	<div class="span-8  swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
 	
 	
 	</div>
@@ -37,9 +37,9 @@ Irregular
 		<%end%>
 		</div>
 </div>
-	<div class="unitdetails rounded">
+	<div class="unitdetails span-22 last rounded">
 			
-	
+<div class="span-20 prepend-top prepend-bottom prepend-1 append-1 last">	
 <table>
 <tr>
 
@@ -109,6 +109,7 @@ Irregular
 	</div>
 	<div class="skills">
 	<strong>Skills:</strong> <%=unitoptionrow.unit_option.unit.skills%>
+	</div>
 	</div>
 	</div>
 	</div>

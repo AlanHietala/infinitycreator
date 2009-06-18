@@ -1,4 +1,4 @@
-<div class="span-22  last">
+<div class="span-22 last">
 	<%unitoptionlist.each do |u|%>
 		<%=render :partial=>"unit_options/unitoptionrow",:object=>u,:locals=>{:removelink=>removelink,:isInch=>isInch}%>
 	<%end%>
