@@ -1,0 +1,65 @@
+<tr>
+	<td><%=unitoptionrowprint.unit_option.unit.name%>: <%=unitoptionrowprint.unit_option.name%></td>
+	<td>
+	<%if(unitoptionrowprint.unit_option.unit.regular)%>
+	regular, 
+	<%else%>
+	irregular, 
+	<%end%>
+	<%=case unitoptionrowprint.unit_option.unit.impetuous
+	   		when 0 then "not impetuous"
+			when 1 then "impetuous"
+			when 2 then "frenzy"
+		end%>
+	
+	<%=unitoptionrowprint.unit_option.unit.skills%></td>
+	<td><%if(isInch)%>
+			<%=unitoptionrowprint.unit_option.unit.mov1%>-<%=unitoptionrowprint.unit_option.unit.mov2%>
+		<%else%>
+			<%=unitoptionrowprint.unit_option.unit.mov1*10/4%>-<%=unitoptionrowprint.unit_option.unit.mov2*10/4%>
+		<%end%></td>
+	
+
+
+	
+	<td><%=unitoptionrowprint.unit_option.unit.cc%></td>
+
+	<td><%=unitoptionrowprint.unit_option.unit.bs%></td>
+
+	<td><%=unitoptionrowprint.unit_option.unit.ph%></td>
+
+
+	<td><%=unitoptionrowprint.unit_option.unit.wip%></td>
+
+	
+	<td><%=unitoptionrowprint.unit_option.unit.arm%></td>
+
+
+	<td><%=unitoptionrowprint.unit_option.unit.bts%></td>
+
+	<td><%=unitoptionrowprint.unit_option.unit.w%></td>
+
+	<td><%=unitoptionrowprint.unit_option.unit.avail<1 ? "T" : unitoptionrowprint.unit_option.unit.avail%></td>
+	<td><%unitoptionrowprint.unit_option.bsweapons.each do |bs|%>
+		
+			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
+
+		
+	<%end%></td>
+	
+	<td>	<%= unitoptionrowprint.unit_option.swc< 0 ? "+"+unitoptionrowprint.unit_option.swc.abs.to_s : unitoptionrowprint.unit_option.swc %></td>
+	<td>	<%=unitoptionrowprint.unit_option.cost%></td>
+	<%if(removelink)%>
+	<td>
+		<div class="rowactions">
+		<%if !unitoptionrowprint.first?%>
+			<%=	link_to image_tag("uparrow.png"), {:controller=>"combat_group_units", :action => "movehigher", :id => unitoptionrowprint.id }, :method => :delete%>
+		<%end%>
+		<%if !unitoptionrowprint.last?%>
+				<%=	link_to image_tag("dnarrow.png"), {:controller=>"combat_group_units", :action => "movelower", :id => unitoptionrowprint.id }, :method => :delete%>
+		<%end%>
+	<%=	link_to image_tag("delete.png"), {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrowprint.id },
+	            :confirm => "Are you sure?", :method => :delete%></td>
+	<%end%>
+	</div>
+</tr>
