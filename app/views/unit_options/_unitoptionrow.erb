@@ -1,65 +1,117 @@
+<div class="unit">
+<div class="unitheader rounded">
+	
+<div class="span-1"><%=link_to image_tag("plus.png"),"#",:class=>"expand"%></div>	
+<div class="span-6 unitname"><%=unitoptionrow.unit_option.unit.name%> &raquo; <%=unitoptionrow.unit_option.name%></div>
+<div class="span-5 orderspan">
+<%if(unitoptionrow.unit_option.unit.regular)%>
+Regular
+<%else%>
+Irregular
+<%end%>
+<%=case unitoptionrow.unit_option.unit.impetuous
+		when 0 then " &raquo; not impetuous" 
+		when 1 then " &raquo; impetuous"
+		when 2 then " &raquo; frenzy"
+	end%>
+	</div>
+	
+	
+	<div class="span-8 last swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
+	
+	
+	</div>
+	<div class="span-2 last actions">
+		<%if(removelink)%>
+		
+
+			<%if !unitoptionrow.first?%>
+				<%=	link_to image_tag("uparrow.png"), {:controller=>"combat_group_units", :action => "movehigher", :id => unitoptionrow.id }, :method => :delete%>
+			<%end%>
+			<%if !unitoptionrow.last?%>
+					<%=	link_to image_tag("dnarrow.png"), {:controller=>"combat_group_units", :action => "movelower", :id => unitoptionrow.id }, :method => :delete%>
+			<%end%>
+		<%=	link_to image_tag("delete.png"), {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
+		            :confirm => "Are you sure?", :method => :delete%>
+
+		<%end%>
+		</div>
+</div>
+	<div class="unitdetails rounded">
+			
+	
+<table>
 <tr>
-	<td><%=unitoptionrow.unit_option.unit.name%>: <%=unitoptionrow.unit_option.name%></td>
-	<td>
-	<%if(unitoptionrow.unit_option.unit.regular)%>
-	regular, 
-	<%else%>
-	irregular, 
-	<%end%>
-	<%=case unitoptionrow.unit_option.unit.impetuous
-	   		when 0 then "not impetuous"
-			when 1 then "impetuous"
-			when 2 then "frenzy"
-		end%>
-	
-	<%=unitoptionrow.unit_option.unit.skills%></td>
-	<td><%if(isInch)%>
-			<%=unitoptionrow.unit_option.unit.mov1%>-<%=unitoptionrow.unit_option.unit.mov2%>
-		<%else%>
-			<%=unitoptionrow.unit_option.unit.mov1*10/4%>-<%=unitoptionrow.unit_option.unit.mov2*10/4%>
-		<%end%></td>
-	
+
+<th>Mov
+</th>
+<th>CC
+</th>
+<th>BS
+</th>
+
+<th>PH
+</th>
+<th>WIP
+</th>
+<th>ARM
+</th>
+<th>BTS
+</th>
+<th>W
+</th>
+<th>Ava
+</th>
 
 
-	
-	<td><%=unitoptionrow.unit_option.unit.cc%></td>
+</tr>
 
-	<td><%=unitoptionrow.unit_option.unit.bs%></td>
-
-	<td><%=unitoptionrow.unit_option.unit.ph%></td>
-
-
-	<td><%=unitoptionrow.unit_option.unit.wip%></td>
-
-	
-	<td><%=unitoptionrow.unit_option.unit.arm%></td>
+	<tr>
+		<td><%if(isInch)%>
+				<%=unitoptionrow.unit_option.unit.mov1%>-<%=unitoptionrow.unit_option.unit.mov2%>
+			<%else%>
+				<%=unitoptionrow.unit_option.unit.mov1*10/4%>-<%=unitoptionrow.unit_option.unit.mov2*10/4%>
+			<%end%></td>
 
 
-	<td><%=unitoptionrow.unit_option.unit.bts%></td>
 
-	<td><%=unitoptionrow.unit_option.unit.w%></td>
 
-	<td><%=unitoptionrow.unit_option.unit.avail<1 ? "T" : unitoptionrow.unit_option.unit.avail%></td>
-	<td><%unitoptionrow.unit_option.bsweapons.each do |bs|%>
+		<td><%=unitoptionrow.unit_option.unit.cc%></td>
+
+		<td><%=unitoptionrow.unit_option.unit.bs%></td>
+
+		<td><%=unitoptionrow.unit_option.unit.ph%></td>
+
+
+		<td><%=unitoptionrow.unit_option.unit.wip%></td>
+
+
+		<td><%=unitoptionrow.unit_option.unit.arm%></td>
+
+
+		<td><%=unitoptionrow.unit_option.unit.bts%></td>
+
+		<td><%=unitoptionrow.unit_option.unit.w%></td>
+
+		<td><%=unitoptionrow.unit_option.unit.avail<1 ? "T" : unitoptionrow.unit_option.unit.avail%></td>
+
+
+</tr>
+
+</table>
+	<div class="weapons">
+	<strong>Weapons:</strong> 	<%unitoptionrow.unit_option.bsweapons.each do |bs|%>
 		
 			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
 
 		
-	<%end%></td>
-	
-	<td>	<%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %></td>
-	<td>	<%=unitoptionrow.unit_option.cost%></td>
-	<%if(removelink)%>
-	<td>
-		<div class="rowactions">
-		<%if !unitoptionrow.first?%>
-			<%=	link_to image_tag("uparrow.png"), {:controller=>"combat_group_units", :action => "movehigher", :id => unitoptionrow.id }, :method => :delete%>
-		<%end%>
-		<%if !unitoptionrow.last?%>
-				<%=	link_to image_tag("dnarrow.png"), {:controller=>"combat_group_units", :action => "movelower", :id => unitoptionrow.id }, :method => :delete%>
-		<%end%>
-	<%=	link_to image_tag("delete.png"), {:controller=>"combat_group_units", :action => "destroy", :id => unitoptionrow.id },
-	            :confirm => "Are you sure?", :method => :delete%></td>
 	<%end%>
 	</div>
-</tr>
+	<div class="skills">
+	<strong>Skills:</strong> <%=unitoptionrow.unit_option.unit.skills%>
+	</div>
+	</div>
+	</div>
+
+
+
