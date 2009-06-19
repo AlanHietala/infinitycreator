@@ -13,6 +13,10 @@ class ArmyListsController < ApplicationController
       @isInch = false
      end
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
+    @isMerc = false;
+    if(@army_list.army_id == 7)
+      @isMerc = true;
+    end
     @validation = validate_army(@army_list)
     respond_to do |format|
       format.html {render :layout=>"print"}# show.html.erb
@@ -41,11 +45,13 @@ class ArmyListsController < ApplicationController
    if(current_user!=nil && !current_user.isinch)
     @isInch = false
    end
+   @isMerc = false;
     @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
     if(@army_list.army_id != 7)
       @validation = validate_army(@army_list)
     else
      @validation = validate_mercarmy(@army_list)
+     @isMerc = true
     end
     @myList = false
     if(current_user!=nil and current_user.id==@army_list.user_id)
@@ -200,15 +206,18 @@ private
          end
        end
        if(unit.unit_option.swc<0.0)
-		bonusswc = bonusswc - unit.unit_option.swc
-	else
-	armyswc = armyswc + unit.unit_option.swc
-	end
+	    	bonusswc = bonusswc - unit.unit_option.swc
+       else
+    	  armyswc = armyswc + unit.unit_option.swc
+    	 end
        armypoints = armypoints + unit.unit_option.cost
+      end
+      if(validation.combatgrouporders[i]>10)
+        validation.errors<<"Combat Group "+(i+1).to_s+" has too many units"
       end
     end
     
-    
+     
     if(ltcount<1)
       validation.errors<<"No Lieutenant"
     end
@@ -335,6 +344,9 @@ private
 	armyswc = armyswc + unit.unit_option.swc
 	end
        armypoints = armypoints + unit.unit_option.cost
+      end
+      if(validation.combatgrouporders[i]>10)
+        validation.errors<<"Combat Group "+(i+1).to_s+" has too many units"
       end
     end
     

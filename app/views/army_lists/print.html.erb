@@ -25,7 +25,7 @@
 	<div class="combatgroupheader prepend-top">
 		<div class="combatgrouptitle">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
 		</div>
-	<%=render :partial=>'unit_options/unitoptionlistprint',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList,:isInch=>@isInch}%>
+	<%=render :partial=>'unit_options/unitoptionlistprint',:object=>cgroup.combat_group_units,:locals=>{:isMerc=>@isMerc,:removelink=>@myList,:isInch=>@isInch}%>
 <%end%>
 
 <%if(@validation.weapons.length>0)%>

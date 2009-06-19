@@ -46,18 +46,18 @@
 		<div class="combatgroupheader span-22 prepend-top last">
 			<div class="combatgrouptitle prepend-1 span-15">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
 			<div class="combatgroupactions span-6 last">
-				<%if(@validation.combatgrouporders[i]<10)%>
+				
 					<%if @myList%> &raquo; <%=link_to 'Add Unit', new_combat_group_unit_path(:combat_group_id=>cgroup.id, :army_list_id=>@army_list.id)%>
 					  &raquo;	<%=link_to "Remove Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
 					            :confirm => "Are you sure?", :method => :delete%>
 					<%end%>	
-				<%end%>
+				
 			</div>
 		
 		</div>
 	
 		
-		<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:removelink=>@myList,:isInch=>@isInch}%>
+		<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:isMerc=>@isMerc,:removelink=>@myList,:isInch=>@isInch}%>
 	<%end%>
 
 
@@ -65,6 +65,7 @@
 		<div class="combatgroupheader span-22 last prepend-top">
 			<div class="combatgrouptitle prepend-1 span-21 last">Weapons Table</div>
 		</div>
+		<div class="span-22 last">
 		<table>
 			<tr>
 				<th>Weapon</th>
@@ -101,6 +102,6 @@
 			</tr>
 		<%end%>
 		</table>
-		
+		</div>
 	<%end%>
 </div>

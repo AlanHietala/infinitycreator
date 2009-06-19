@@ -29,7 +29,7 @@
 	<%end%>
 	</tr>
 	<%unitoptionlistprint.each do |u|%>
-		<%=render :partial=>"unit_options/unitoptionrowprint",:object=>u,:locals=>{:removelink=>removelink,:isInch=>isInch}%>
+		<%=render :partial=>"unit_options/unitoptionrowprint",:object=>u,:locals=>{:isMerc=>isMerc,:removelink=>removelink,:isInch=>isInch}%>
 	<%end%>
 	
 </table>
