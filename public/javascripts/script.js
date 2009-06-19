@@ -42,14 +42,18 @@ $(document).ready(function(){
 	clickareas.bind("mouseout",function(e){
 		var img = ""
 		var unit = $(this).parents(".unit");
-			if($(this).parents(".unit").find(".unitdetails").css("display")=="none"){
-				img = "/images/plus.png";
-				
-			}else{
-				img = "/images/minus.png";
-				
-			}
-			unit.find(".unitheader .expand img").attr("src",img);
+					
+		var imagehandle = unit.find(".unitheader .expand img");
+
+		if(imagehandle.attr("src").indexOf("minus")>0){
+			img = "/images/minus.png";
+
+		}else{
+			img ="/images/plus.png";
+
+		}
+
+			imagehandle.attr("src",img);
 			unit.find(".unitheader").removeClass("active");
 	});
 	
