@@ -3,5 +3,4 @@ $(document).ready(function(){
 		$(this).parents(".unit").find(".unitdetails").toggle("scale");
 		return false;
 	});
-	$(".rounded").corners();
 });

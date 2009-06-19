@@ -177,7 +177,26 @@ epulse = 3
 @unitweapon.unit_option_id = @unitopt.id
 @unitweapon.weapon_id = epulse
 @unitweapon.save
-#
+#update haqq errors
+az = Unit.find(49)
+az.mov2 = 2
+az.save
+
+naf = Unit.find(27)
+naf.name = 'Halqa'
+naf.save
+
+hac = UnitOption.find(310);
+hac.cost = 70
+hac.save
+
+tank = Unit.find(4);
+tank.ph = 12
+tank.save
+
+lklt = UnitOption.find(8)
+lklt.swc = 0;
+lklt.save
   end
 
   def self.down

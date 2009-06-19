@@ -1,8 +1,21 @@
 <div class="unit span-22 last">
-<div class="unitheader span-22 last rounded">
+<div class="unitheader span-22 last ui-corner-all">
 	
 <div class="span-1"><%=link_to image_tag("plus.png"),"#",:class=>"expand"%></div>	
-<div class="span-6 unitname"><%=unitoptionrow.unit_option.unit.name%> &raquo; <%=unitoptionrow.unit_option.name%></div>
+<div class="span-8 unitname"><%=unitoptionrow.unit_option.unit.name%> &raquo;
+<%if (unitoptionrow.unit_option.name == nil or unitoptionrow.unit_option.name=="")%>
+<%unitoptionrow.unit_option.bsweapons.each_with_index do |bs,i|%>
+		
+		<%if(!bs.cc and i<2) %>	<%= bs.abbr != nil ? bs.abbr : bs.name%> 
+		<%end%>
+		
+	<%end%>
+
+<%else%>
+ <%=unitoptionrow.unit_option.name%>
+<%end%>
+</div>
+
 <div class="span-5 orderspan">
 <%if(unitoptionrow.unit_option.unit.regular)%>
 Regular
@@ -17,7 +30,7 @@ Irregular
 	</div>
 	
 	
-	<div class="span-8  swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
+	<div class="span-6  swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
 	
 	
 	</div>
@@ -37,7 +50,7 @@ Irregular
 		<%end%>
 		</div>
 </div>
-	<div class="unitdetails span-22 last rounded">
+	<div class="unitdetails span-22 last ui-corner-all">
 			
 <div class="span-20 prepend-top prepend-bottom prepend-1 append-1 last">	
 <table>

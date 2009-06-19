@@ -138,3 +138,8 @@ color:#1E1E1E;
 .expand img{margin:3px 5px 0 3px;}
 .expand{}
 .orderspan{margin-top:3px;}
+.ui-corner-all{
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+
+}
