@@ -130,7 +130,7 @@ color:#1E1E1E;
 }
 .actions{margin-top:5px;}
 .unit{margin-top:5px;}
-.unitheader{background:#444;height:30px;}
+.unitheader{background:#444;height:30px;border:solid #444 1px;cursor:pointer;}
 .unitheader .unitname{margin-top:3px;}
 .unitheader .specialist{}
 .unitdetails{background:#444;margin-top:5px;display:none;}
@@ -143,3 +143,4 @@ color:#1E1E1E;
 -webkit-border-radius: 5px;
 
 }
+.active{border:solid #098eff 1px;}
