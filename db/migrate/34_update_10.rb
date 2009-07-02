@@ -26,7 +26,7 @@ dcharges = 18
 smokelightgl = 45
 dep = 49
 emauler = 21
-
+knife = 6
 weapon = Weapon.new
      weapon.name = "Viral Mines"
      weapon.abbr = ""
