@@ -1,7 +1,7 @@
 <h2 class="textheader">New Army List</h2>
 <div class="textblock">
 
-<% form_for(@army_list) do |f| %>
+<% form_for([current_user,@army_list]) do |f| %>
   <%= f.error_messages %>
 	<p><%=label_tag "List Name"%><br /> <%=f.text_field :name%></p>
 	<p><%=label_tag "Army"%><br />
@@ -13,5 +13,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', army_lists_path %>
+<%= link_to 'Back', user_army_lists_path(current_user) %>
 </div>

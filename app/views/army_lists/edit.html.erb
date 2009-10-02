@@ -2,7 +2,7 @@
 <div class="textblock">
 
 
-<% form_for(@army_list) do |f| %>
+<% form_for([current_user,@army_list]) do |f| %>
   <%= f.error_messages %>
 	<p><%=label_tag "List Name"%><br /> <%=f.text_field :name%></p>
 	
@@ -13,8 +13,8 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @army_list %> |
-<%= link_to 'Back', army_lists_path %>
+<%= link_to 'Show', [current_user,@army_list] %> |
+<%= link_to 'Back', user_army_lists_path(current_user) %>
 
 
 </div>

@@ -6,7 +6,7 @@ class CombatGroupUnitsController < ApplicationController
         if(current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id)
           @combat_group_unit.move_lower
         end
-        format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
+        format.html { redirect_to([current_user,@combat_group_unit.combat_group.army_list]) }
         format.xml  { head :ok }
       end
   end
@@ -18,7 +18,7 @@ class CombatGroupUnitsController < ApplicationController
           if(current_user!=nil and @combat_group_unit.combat_group.army_list.user_id==current_user.id)
             @combat_group_unit.move_higher
           end
-          format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
+          format.html { redirect_to([current_user,@combat_group_unit.combat_group.army_list]) }
           format.xml  { head :ok }
         end
   end
@@ -53,7 +53,7 @@ class CombatGroupUnitsController < ApplicationController
     @isInch = false
    end
     if(@army_list.user_id!=current_user.id) #check if we're logged in
-      redirect_to(@armylist)
+      redirect_to([current_user,@armylist])
     end
     if(@army_list.army_id<7)
       @units = Unit.find(:all,:conditions=>['army_id in (?,7)',@army_list.army_id])
@@ -129,10 +129,10 @@ class CombatGroupUnitsController < ApplicationController
         end
         
         flash[:notice] = 'CombatGroupUnit was successfully created.'
-        format.html { redirect_to(@combatgroup.army_list) }
+        format.html { redirect_to([current_user,@combatgroup.army_list]) }
         format.xml  { render :xml => @combat_group_unit, :status => :created, :location => @combat_group_unit }
       else
-        format.html { redirect_to(@combatgroup.army_list) }
+        format.html { redirect_to([current_user,@combatgroup.army_list]) }
         format.xml  { render :xml => @combat_group_unit.errors, :status => :unprocessable_entity }
       end
     end
@@ -168,7 +168,7 @@ class CombatGroupUnitsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(army_list_path(@combat_group_unit.combat_group.army_list_id)) }
+      format.html { redirect_to([current_user,@combat_group_unit.combat_group.army_list]) }
       format.xml  { head :ok }
     end
   end

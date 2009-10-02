@@ -1,0 +1,40 @@
+<div class="span-22 prepend-top last">
+<% form_tag "/search", :method => 'get' do %>
+  <div class="span-4">
+    Min Point value:
+</div>
+<div class="span-18 last">
+    <%= text_field_tag :pmin, params[:pmin] %>
+</div>
+	<div class="span-4">Max Point Value: </div><div class="span-18 last"><%= text_field_tag :pmax, params[:pmax] %> </div>
+	<div class="span-4">
+	Army List</div>
+	<div class="span-18 last">
+	<%=collection_select :army_list,:army_id,Army.find(:all),:id,:name%></p>
+  </div>
+<%= submit_tag 'Search' %>
+<% end %>
+
+<%if(@results !=nil)%>
+<div class="span-22 prepend-top last">	
+	
+	<table>
+		<th>List</th>
+		<th>Faction</th>
+		<th>Points</th>
+		
+	<% for army_list in @results %>
+	  <tr>
+
+	    <td><%= link_to army_list.name, [current_user,army_list] %></td>
+		<td><%=army_list.army.name%></td>
+		<td><%=army_list.maxpointvalue%></td>
+	    
+	  </tr>
+	<% end %>
+	</table>
+
+<%= will_paginate @results %>
+</div>
+<%end%>
+

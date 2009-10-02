@@ -13,17 +13,20 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :units
 
-  map.resources :army_lists,:collection=>[:print]
+  
 
   map.homepage '/',:controller=>'pages', :action=>'index'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
-  map.resources :users
+  map.resources :users do |user|
+    user.resources :army_lists,:collection=>[:print,:search]
+  end
   map.resource :session
   map.getunitoptions '/combat_group_units/get_unit_options', :controller =>'combat_group_units',:action=>'get_unit_options'
   map.profile '/profile/:id',:controller=>'users',:action=>'show'
+  map.search '/search',:controller=>'army_lists',:action=>'search'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,5 +1,5 @@
 <div class="prepend-top combatgroupheader span-22 last">
-	<div class="combatgrouptitle span-21 prepend-1 last">Army Lists &raquo; <%= link_to 'New Army List', new_army_list_path %></div>
+	<div class="combatgrouptitle span-21 prepend-1 last">Army Lists &raquo; <%= link_to 'New Army List', new_user_army_list_path(current_user) %></div>
 
 
 </div>
@@ -11,10 +11,10 @@
 <% for army_list in @army_lists %>
   <tr>
 
-    <td><%= link_to army_list.name, army_list %></td>
+    <td><%= link_to army_list.name, user_army_list_url(current_user,army_list) %></td>
 	<td><%=army_list.army.name%></td>
 	<td><%=army_list.maxpointvalue%></td>
-    <td><%= link_to image_tag("delete.png"), army_list, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag("delete.png"), user_army_list_path(current_user,army_list), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

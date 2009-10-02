@@ -47,14 +47,14 @@ class CombatGroupsController < ApplicationController
       @combat_group.army_list_id = @army_list.id
       
     else
-      redirect_to(@army_list)
+      redirect_to([current_user,@army_list])
     end
     
     
       respond_to do |format|
         if @combat_group.save
           flash[:notice] = 'CombatGroup was successfully created.'
-          format.html { redirect_to(@army_list) }
+          format.html { redirect_to([current_user,@army_list]) }
           format.xml  { render :xml => @combat_group, :status => :created, :location => @combat_group }
         else
           format.html { render :action => "new" }
@@ -85,8 +85,9 @@ class CombatGroupsController < ApplicationController
   # DELETE /combat_groups/1.xml
   def destroy
     @combat_group = CombatGroup.find(params[:id],:include=>[:army_list])
+    
     if(@combat_group.army_list.user_id!=current_user.id)
-      redirect_to(army_list_path(@combat_group.army_list.id))
+      redirect_to([current_user,@combat_group.army_list])
     end
     @combat_group.combat_group_units.each do |cunit|
       cunit.destroy
@@ -94,7 +95,7 @@ class CombatGroupsController < ApplicationController
     @combat_group.destroy
     
     respond_to do |format|
-      format.html { redirect_to(army_list_path(:id=>@combat_group.army_list.id)) }
+      format.html { redirect_to([current_user,@combat_group.army_list]) }
       format.xml  { head :ok }
     end
   end

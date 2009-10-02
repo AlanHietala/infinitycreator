@@ -29,8 +29,8 @@
 		<div class="liststats">
 			<div class="listtitlegroup"><strong>Points:</strong> <%=@validation.actualpoints%>  &raquo; <strong>Allowed:</strong> <%=@validation.allowedpoints%> </div> 
 			<div class="listtitlegroup"><strong>SWC:</strong> <%=@validation.currentswc %>  &raquo; <strong>Allowed:</strong> <%=@validation.maxswc%></div>
-			<div class="littitlegroup">	<%if @myList%> &raquo; <%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%>  &raquo; <%=link_to "Edit",edit_army_list_path(@army_list)%>
-				<%end%> &raquo; <%=link_to "Print View",print_army_lists_path(:id=>@army_list.id)%>
+			<div class="littitlegroup">	<%if @myList%> &raquo; <%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%>  &raquo; <%=link_to "Edit",edit_user_army_list_path(current_user,@army_list)%>
+				<%end%> &raquo; <%=link_to "Print View",print_user_army_lists_path(current_user,:id=>@army_list.id)%>
 			</div>
 		</div>
 		<div class="listdescription">

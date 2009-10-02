@@ -20,6 +20,6 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', army_list_path(params[:army_list_id]) %>
+<%= link_to 'Back', user_army_list_path(current_user.id,params[:army_list_id]) %>
 <div class="clear"></div>
 </div>

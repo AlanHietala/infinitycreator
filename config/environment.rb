@@ -58,6 +58,11 @@ Rails::Initializer.run do |config|
     :session_key => '_infinitypool_session',
     :secret      => '4b9c2f6eba726780dffe717c137e1a43051cfcb1e82fa38c77981e2f5d97cd8758e9599d03a68257bad9ec4b11546dae0ea5a85162fdb734cb23fc133cc77a67'
   }
+  
+  #Rails::Initializer.run do |config|
+  #  config.gem 'mislav-will_paginate', :version => '~> 2.3.11', :lib => 'will_paginate', 
+  #    :source => 'http://gems.github.com'
+  #end
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
@@ -73,3 +78,4 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
+require "will_paginate"

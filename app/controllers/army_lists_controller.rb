@@ -5,8 +5,21 @@ class ArmyListsController < ApplicationController
   #layout "print",:only=>:print
   # GET /army_lists
   # GET /army_lists.xml
-  before_filter :login_required,:except=>[:show,:print]
+  before_filter :login_required,:except=>[:show,:print,:search]
+  def search
+    if(params[:army_list]!=nil&&params[:pmin]!=nil && params[:pmax]!=nil)
+      pageNum = 1;
+      if(params[:page] != nil)
+        pageNum = params[:page];
+      end
+      @results = ArmyList.search(params[:pmin],params[:pmax],params[:army_list][:army_id],pageNum);
+      #@results = ArmyList.find(:all,:conditions => ['maxpointvalue <= ? and maxpointvalue >= ? and army_id = ?', params[:minp],params[:maxp],params[:army_id]])
+    
+    
+    end
   
+    
+  end
   def print
      @isInch = true
      if(current_user!=nil && !current_user.isinch)
@@ -93,7 +106,7 @@ class ArmyListsController < ApplicationController
         @combat_group.army_list_id = @army_list.id
         @combat_group.save
         flash[:notice] = 'ArmyList was successfully created.'
-        format.html { redirect_to(@army_list) }
+        format.html { redirect_to([current_user,@army_list]) }
         format.xml  { render :xml => @army_list, :status => :created, :location => @army_list }
       else
         format.html { render :action => "new" }
@@ -113,7 +126,7 @@ class ArmyListsController < ApplicationController
       
       if ((@army_list.user_id == current_user.id) and @army_list.update_attributes(params[:army_list]))
         flash[:notice] = 'ArmyList was successfully updated.'
-        format.html { redirect_to(@army_list) }
+        format.html { redirect_to([current_user,@army_list]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -138,7 +151,7 @@ class ArmyListsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(army_lists_url) }
+      format.html { redirect_to(user_army_lists_url(current_user)) }
       format.xml  { head :ok }
     end
   end
