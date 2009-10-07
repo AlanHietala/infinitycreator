@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   
   has_many :army_lists
-
+  has_many :favourites
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login

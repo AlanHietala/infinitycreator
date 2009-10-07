@@ -1,0 +1,23 @@
+<div class="prepend-top combatgroupheader span-22 last">
+	<div class="combatgrouptitle span-21 prepend-1 last">Favourites</div>
+
+
+</div>
+<table>
+	<th>List</th>
+	<th>Faction</th>
+	<th>Points</th>
+	<th>User</th>
+	<th>Actions</th>
+<% for favourite in @favourites %>
+  <tr>
+
+    <td><%= link_to favourite.army_list.name, user_army_list_url(favourite.army_list.user,favourite.army_list) %></td>
+	<td><%=favourite.army_list.army.name%></td>
+	<td><%=favourite.army_list.maxpointvalue%></td>
+	<td><%=favourite.army_list.user.login%></td>
+    <td><%= link_to image_tag("delete.png"), user_favourite_path(current_user,favourite), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>

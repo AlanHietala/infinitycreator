@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :favourites
+
   map.resources :unit_options
 
   map.resources :pages
@@ -22,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.resources :users do |user|
     user.resources :army_lists,:collection=>[:print,:search]
+    user.resources :favourites
   end
   map.resource :session
   map.getunitoptions '/combat_group_units/get_unit_options', :controller =>'combat_group_units',:action=>'get_unit_options'

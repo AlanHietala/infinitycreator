@@ -25,12 +25,20 @@
 								%>
 	</div>
 	<div class="listinfo">
-		<div class="listtitle"><%=@army_list.name%></div>
+		<div class="listtitle"><%=@army_list.name%> &raquo; <%=@army_list.user.login%></div>
 		<div class="liststats">
 			<div class="listtitlegroup"><strong>Points:</strong> <%=@validation.actualpoints%>  &raquo; <strong>Allowed:</strong> <%=@validation.allowedpoints%> </div> 
 			<div class="listtitlegroup"><strong>SWC:</strong> <%=@validation.currentswc %>  &raquo; <strong>Allowed:</strong> <%=@validation.maxswc%></div>
 			<div class="littitlegroup">	<%if @myList%> &raquo; <%=link_to 'Add Combat Group',{:controller=>"combat_groups",:action=>"create",:army_list_id=>@army_list.id},:method=>:post%>  &raquo; <%=link_to "Edit",edit_user_army_list_path(current_user,@army_list)%>
 				<%end%> &raquo; <%=link_to "Print View",print_user_army_lists_path(current_user,:id=>@army_list.id)%>
+				
+			<%if (!@myList && current_user!=nil && !@favourited)%>	&raquo; 
+				<%=link_to_function "add favourite","$('#new_favourite').submit()"%>
+				<%form_for [current_user,@favourite] do |f|%> 
+					<%=f.hidden_field :army_list_id,:value=>@army_list.id%>
+					
+				<%end%>
+			<%end%>
 			</div>
 		</div>
 		<div class="listdescription">

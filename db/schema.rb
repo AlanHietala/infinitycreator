@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 41) do
+ActiveRecord::Schema.define(:version => 100) do
 
   create_table "armies", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(:version => 41) do
 
   create_table "combat_groups", :force => true do |t|
     t.integer  "army_list_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favourites", :force => true do |t|
+    t.integer  "army_list_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

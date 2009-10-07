@@ -54,7 +54,13 @@ class ArmyListsController < ApplicationController
   # GET /army_lists/1.xml
   def show
     store_location
+    @favourite = Favourite.new
+    @favourited = false 
+    
     @isInch = true
+    if(current_user!=nil)
+     @favourited = Favourite.exists?(["user_id = ? and army_list_id = ?",current_user.id,params[:id]])
+    end
    if(current_user!=nil && !current_user.isinch)
     @isInch = false
    end

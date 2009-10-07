@@ -1,0 +1,12 @@
+<h1>Editing favourites</h1>
+
+<% form_for(@favourites) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @favourites %> |
+<%= link_to 'Back', favourites_path %>
