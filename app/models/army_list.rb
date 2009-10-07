@@ -10,7 +10,7 @@ validates_presence_of :name
   end
   
   def self.search(min,max,armyid,page)
-    paginate :per_page => 5, :page => page,
+    paginate :per_page => 20, :page => page,
                :conditions => ['maxpointvalue >= ? and maxpointvalue <= ? and army_id = ?', min,max,armyid], :order => 'name'
     
   end
