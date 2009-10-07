@@ -70,7 +70,7 @@ $(document).ready(function(){
 	<% for army_list in @results %>
 	  <tr>
 
-	    <td><%= link_to army_list.name, [current_user,army_list] %></td>
+	    <td><%= link_to army_list.name, [army_list.user,army_list] %></td>
 		<td><%=army_list.army.name%></td>
 		<td><%=army_list.maxpointvalue%></td>
 	    
