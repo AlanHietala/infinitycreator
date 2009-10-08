@@ -9,8 +9,11 @@
 <%=stylesheet_link_tag('blueprint/src/forms')%>
 <%=stylesheet_link_tag('site')%>
 <%=stylesheet_link_tag('ui-lightness/jquery-ui-1.7.2.custom.css');%>
-
+<%= javascript_include_tag "prototype" %>
 <%= javascript_include_tag "jquery-1.3.2.min" %>
+<script>
+jQuery.noConflict();
+</script>
 <%= javascript_include_tag "jquery-ui-1.7.2.custom.min.js" %>
 <%= javascript_include_tag "script" %>
 <!--[if IE]><%=stylesheet_link_tag('blueprint/ie')%><![endif]-->

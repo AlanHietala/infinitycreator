@@ -1,8 +1,8 @@
-$(document).ready(function(){
-	var clickareas = $(".unitheader");
+jQuery(document).ready(function(){
+	var clickareas = jQuery(".unitheader");
 	clickareas.bind("click",function(e){
-		$(e.target).parents("actions")
-		var unit = $(this).parents(".unit");
+		jQuery(e.target).parents("actions")
+		var unit = jQuery(this).parents(".unit");
 		var unitdetails = unit.find(".unitdetails");
 		var imagehandle = unit.find(".unitheader .expand img");
 		unitdetails.toggle("scale");
@@ -22,13 +22,13 @@ $(document).ready(function(){
 	
 		return false;
 	});
-	$(".actions").bind("click",function(e){
+	jQuery(".actions").bind("click",function(e){
 	
 		e.stopPropagation;
 	});
 	clickareas.bind("mouseover",function(e){
 		var img = "";
-		var unit = $(this).parents(".unit");
+		var unit = jQuery(this).parents(".unit");
 			if(unit.find(".unitdetails").css("display")=="none"){
 				img = "/images/plushover.png";
 				
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	});
 	clickareas.bind("mouseout",function(e){
 		var img = ""
-		var unit = $(this).parents(".unit");
+		var unit = jQuery(this).parents(".unit");
 					
 		var imagehandle = unit.find(".unitheader .expand img");
 
@@ -55,6 +55,17 @@ $(document).ready(function(){
 
 			imagehandle.attr("src",img);
 			unit.find(".unitheader").removeClass("active");
+	});
+	jQuery(".addunit").click(function(){
+		var cid = jQuery(this).parent().find("input").val();
+		jQuery("#combat_group_unit_combat_group_id").val(cid);
+		// move the div
+		var moveItem = jQuery("#addunitdiv").clone();
+		jQuery("#addunitdiv").remove();
+		moveItem.insertAfter(jQuery(this).parent().parent());
+		// show the div
+		jQuery("#addunitdiv").slideDown();
+		return false;
 	});
 	
 });

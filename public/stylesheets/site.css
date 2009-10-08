@@ -71,7 +71,7 @@ a:hover{
 	color:#098eff;
 	text-decoration:underline;
 }
-.combatgroupheader{
+.combatgroupheader,.addunitheader{
 	background:url('/images/greygrad.png');
 	height:30px;
 	border-left:solid 1px #1e1e1e;
@@ -89,12 +89,15 @@ a:hover{
 	background:url('/images/greygrad.png');
 	
 }
-
+.addunitblock{
+	border:solid 1px #1e1e1e;
+		background:#444;
+}
 .textblock{border:solid 1px #1e1e1e;padding:20px;
 		
 		background:#444;
 	}
-.combatgrouptitle{font-size:1.2em;margin-top:3px;}
+.combatgrouptitle,.addunittitle{font-size:1.2em;margin-top:3px;}
 .combatgroupactions{margin-top:3px;}
 table{
 	border:solid 1px #1e1e1e;
@@ -144,3 +147,7 @@ color:#1E1E1E;
 
 }
 .active{border:solid #098eff 1px;}
+#addunitdiv{
+	
+	display:none;
+}

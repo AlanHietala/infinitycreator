@@ -76,6 +76,42 @@ class ArmyListsController < ApplicationController
     if(current_user!=nil and current_user.id==@army_list.user_id)
       @myList=true
     end
+    
+    if(@myList)
+      
+      
+      if(@army_list.army_id<7)
+        @units = Unit.find(:all,:conditions=>['army_id in (?,7)',@army_list.army_id])
+      else
+        @units = Unit.find(:all,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'])
+      end
+      @li = Array.new
+      @mi  = Array.new
+      @hi = Array.new
+      @sk = Array.new
+      @wb = Array.new
+      @rem = Array.new
+      @tag = Array.new
+      @units.each do |unit|
+          case unit.unit_type_id 
+            when 1 then @li<<unit
+            when 4 then @mi<<unit
+            when 2 then @hi<<unit
+            when 3 then @sk<<unit
+            when 7 then @wb << unit
+            when 5 then @rem << unit
+            when 6 then @tag << unit
+          end
+      end
+       if(@army_list.army_id<7)
+          @firstunit = Unit.find(:first,:conditions=>["army_id in (?,7)",@army_list.army_id],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+        else
+          @firstunit = Unit.find(:first,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
+        end
+
+      @combat_group_unit = CombatGroupUnit.new
+      
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @army_list }

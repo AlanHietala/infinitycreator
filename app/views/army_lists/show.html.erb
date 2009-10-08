@@ -47,15 +47,20 @@
 	</div>
 	
 </div>
-
+<%if(@myList)%>
+<div id="addunitdiv" class="span-22 last">
+	<%=render :partial=>"combat_group_units/addunit"%>
+</div>
+<%end%>
 <div class="span-22 last prepend-top">
 
 	<%@army_list.combat_groups.each_with_index do |cgroup,i|%>
+	
 		<div class="combatgroupheader span-22 prepend-top last">
 			<div class="combatgrouptitle prepend-1 span-15">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
 			<div class="combatgroupactions span-6 last">
-				
-					<%if @myList%> &raquo; <%=link_to 'Add Unit', new_combat_group_unit_path(:combat_group_id=>cgroup.id, :army_list_id=>@army_list.id)%>
+				<%=hidden_field_tag "combatgroup"+i.to_s,cgroup.id %>
+					<%if @myList%> &raquo; <a href="#" class="addunit">Add Unit</a>
 					  &raquo;	<%=link_to "Remove Combat Group", {:controller=>"combat_groups", :action => "destroy", :id => cgroup.id },
 					            :confirm => "Are you sure?", :method => :delete%>
 					<%end%>	
