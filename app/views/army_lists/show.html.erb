@@ -69,7 +69,11 @@
 		
 		</div>
 	
-		
+		<%if(cgroup.combat_group_units.length==0)%>
+<div class="unitheader span-22 last ui-corner-all">
+	<div class="prepend-8 unitname">Click "Add Unit" to get started</div>
+</div>
+		<%end%>
 		<%=render :partial=>'unit_options/unitoptionlist',:object=>cgroup.combat_group_units,:locals=>{:isMerc=>@isMerc,:removelink=>@myList,:isInch=>@isInch}%>
 	<%end%>
 
