@@ -56,17 +56,33 @@ jQuery(document).ready(function(){
 			imagehandle.attr("src",img);
 			unit.find(".unitheader").removeClass("active");
 	});
+	jQuery("#closeadd").click(function(){
+		alert("");
+		jQuery("#addunitdiv").slideUp();
+		
+		
+	});
+	var moveItem = jQuery("#addunitdiv").clone();
+	jQuery("#addunitdiv").remove();
 	jQuery(".addunit").click(function(){
 		var cid = jQuery(this).parent().find("input").val();
 		jQuery("#combat_group_unit_combat_group_id").val(cid);
 		// move the div
-		var moveItem = jQuery("#addunitdiv").clone();
+		var insertDiv = moveItem.clone();
 		jQuery("#addunitdiv").remove();
-		moveItem.insertAfter(jQuery(this).parent().parent());
+		insertDiv.insertAfter(jQuery(this).parent().parent());
 		// show the div
 		jQuery("#addunitdiv").slideDown();
+		jQuery("#closeadd").click(function(){
+		
+			jQuery("#addunitdiv").slideUp();
+
+
+		});
 		return false;
 	});
+	
+	
 	
 });
 

@@ -63,7 +63,17 @@
 
 				<td><%=unitcard.w%></td>
 
-				<td><%=unitcard.avail%></td>
+				<td><%if(@isMerc)%>
+						<%if(unitcard.avail<1)%>
+							4
+						<%elsif(unitcard.avail==1)%>
+							S
+						<%else%>
+							<%=unitcard.avail.div(2).to_s%>
+						<%end%>
+					<%else%>
+				<%=unitcard.avail<1 ? "T" : unitcard.avail%>
+					<%end%></td>
 		</tr>
 		</table>
 </div>

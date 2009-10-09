@@ -79,7 +79,17 @@
 
 				<td><%=@firstunit.w%></td>
 
-				<td><%=@firstunit.avail%></td>
+				<td><%if(@isMerc)%>
+						<%if(@firstunit.avail<1)%>
+							4
+						<%elsif(@firstunit.avail==1)%>
+							S
+						<%else%>
+							<%=@firstunit.avail.div(2).to_s%>
+						<%end%>
+					<%else%>
+				<%=@firstunit.avail<1 ? "T" : @firstunit.avail%>
+					<%end%></td>
 		</tr>
 		</table>
 </div>
@@ -137,7 +147,9 @@
 </div>
 
 </div>
-<%= f.submit "Create" %>
+<div class="append-bottom span-20">
+<%= f.submit "Create" %>  <a href="#" id="closeadd">close</a>
+</div>
 <% end %>
 
 </div>
