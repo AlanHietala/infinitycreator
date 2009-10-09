@@ -76,7 +76,7 @@ jQuery(document).ready(function(){
 		jQuery("#closeadd").click(function(){
 		
 			jQuery("#addunitdiv").slideUp();
-
+			return false;
 
 		});
 		return false;
