@@ -12,10 +12,10 @@ jQuery(document).ready(function(){
 				max: 600,
 				step: 50,
 				slide: function(event, ui) {
-					$("#pmin").val(ui.values[0]);
-					$("#pmax").val(ui.values[1]);
-					$("#minshow").html(ui.values[0]);
-					$("#maxshow").html(ui.values[1]);
+					jQuery("pmin").val(ui.values[0]);
+					jQuery("#pmax").val(ui.values[1]);
+					jQuery("#minshow").html(ui.values[0]);
+					jQuery("#maxshow").html(ui.values[1]);
 				}
 			}
 	);
