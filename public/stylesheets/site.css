@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6{
 .listtable{
 	width:800px;
 }
-.header{height:100px;}
+.header{height:100px;background-image:url(/images/infinitypoolheader.png);}
 .header h1{color:#DDD;}
 .altrow{background:#AAA;}
 th{background:#303030;color:#DDD;}
@@ -153,4 +153,13 @@ color:#1E1E1E;
 #addunitdiv{
 	
 	display:none;
+}
+.hide-text{
+	text-indent:-99999px;
+	position:absolute;
+}
+.login-controls{
+	margin-top:80px;
+	margin-left:60px;
+	
 }

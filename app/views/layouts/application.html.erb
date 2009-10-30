@@ -23,17 +23,17 @@ jQuery.noConflict();
 	<div class="container">
 		<div class="span-24 header last">
 			<div class="pagetitle">
-				<h1>Infinity Pool</h1>
-				An Infinity Army Builder
-				<span style="float:right;margin-right:50px;">
-
+				<h1 class="hide-text">Infinity Pool</h1>
+				<div class="hide-text">An Infinity Army Builder</div>
+			
+				<div class="login-controls">
 				<%if current_user!=nil%>
 				Welcome <%=current_user.login%>, <%=link_to "Logout",logout_path%>
 				<%else%>
 					<%=link_to 'Login', login_path %> or
 				 	<%=link_to 'Signup', signup_path %>
 				<%end%>
-				</span>
+				</div>
 			</div>
 			
 			
