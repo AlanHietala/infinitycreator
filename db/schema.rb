@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 100) do
+ActiveRecord::Schema.define(:version => 20091103121553) do
 
   create_table "armies", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(:version => 100) do
     t.string   "description"
     t.integer  "maxpointvalue"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "availabilities", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,6 +58,20 @@ ActiveRecord::Schema.define(:version => 100) do
     t.datetime "updated_at"
   end
 
+  create_table "sectorials", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", :force => true do |t|
+    t.string "name"
+    t.string "abbr"
+    t.text   "level1"
+    t.text   "level2"
+    t.text   "level3"
+    t.text   "level4"
+  end
+
   create_table "unit_option_weapons", :force => true do |t|
     t.integer  "weapon_id"
     t.integer  "unit_option_id"
@@ -71,6 +90,15 @@ ActiveRecord::Schema.define(:version => 100) do
     t.float    "bonusswc",              :default => 0.0
     t.boolean  "isaddon",               :default => false
     t.integer  "parent_unit_option_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unit_skills", :force => true do |t|
+    t.integer  "unit_id"
+    t.integer  "skill_id"
+    t.integer  "rank"
+    t.string   "options"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
