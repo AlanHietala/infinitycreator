@@ -139,6 +139,9 @@ class ArmyListsController < ApplicationController
   # POST /army_lists.xml
   def create
     store_location
+    #expire cache
+    expire_page({:controller => 'pages', :action => 'index'})
+    
     @current_user = current_user
     @army_list = ArmyList.new(params[:army_list])
     @army_list.user_id = current_user.id

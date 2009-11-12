@@ -44,7 +44,7 @@ class Addunitsnov2009 < ActiveRecord::Migration
          weapon.emvul = false;
          weapon.cc = false;
          weapon.save
-    akrylatkanone = weapon;
+    akrylatkanone = weapon.id;
     ################### New Merc ##################
     @unit = Unit.new
     @unit.name ="Valerya Gromoz";

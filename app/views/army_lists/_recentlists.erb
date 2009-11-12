@@ -1,0 +1,5 @@
+<ul>
+	<% recentlists.each do |list|%>
+	<li><%=link_to list.name, user_army_list_url(list.user_id,list)%> - <%=list.army.name%></li>	
+	<%end%>
+</ul>

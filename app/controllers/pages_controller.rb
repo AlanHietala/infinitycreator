@@ -1,8 +1,9 @@
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
+  caches_page :index 
   def index
-    @pages = Page.find(:all)
+    
 
     respond_to do |format|
       format.html # index.html.erb

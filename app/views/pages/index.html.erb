@@ -7,22 +7,15 @@
 <h3>Example List</h3>
 <p>Infinity pool makes it easy to link a list to your friends <%=link_to "Yu Jing Example","/users/1/army_lists/2"%></p>
 </div>
-</div>
-<div class="span-6 last">
-<h2 class="textheader">Demo Account</h2>
-<div class="textblock">
-<p><strong>Login:</strong> test <br /><strong> Password:</strong> 123456 <br />
-<%=link_to "Login Here", login_path %></p>
-<p>If you like what you see in the demo account you can <%=link_to "sign up",signup_path%> for your own account. This gives you your own place to save your lists.</p>
-</div>
-</div>
-<div class="span-22 last">
+
+
+<div class="span-16 last">
 <h2 class="textheader">November Updates Live</h2>
  <div class="textblock">
 <p>The new units and weapons from november have been added to infinity pool. Have fun!</p>
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">Downtime</h2>
  <div class="textblock">
 <p>Infinity pool had some unexpected downtime yesterday. Steps have been taken to ensure that the website will come back up automatically in the event of an unexpected server restart.</p>
@@ -30,14 +23,14 @@
 </div>
 
 
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">Add Unit UI Streamlined</h2>
  <div class="textblock">
 <p>The add unit UI has been moved into the main army list page. You no longer need to navigate away from your list in order to add a unit.</p>
 
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">Search and Favourites Live</h2>
  <div class="textblock">
 <p>I've added searching and a favourite system to infinitypool. You can now search for others lists and save them in your favourites for later.</p>
@@ -45,13 +38,13 @@
 <p>If you see any bugs please let me know at alan -dot- hietala -at- gmail.com </p>
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">Print View Font Increased</h2>
  <div class="textblock">
 <p>The print view font was a little small and made it hard to look up units quickly. It is now bigger so printouts should be much easier to read.
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">100 Active Accounts with over 800 lists</h2>
  <div class="textblock">
 <p>infinity pool has just hit 100 active accounts and continues to grow at a rapid pace. There are also over 800 individual lists in the system now.</p>
@@ -59,17 +52,31 @@
 <p>Send me your thoughts <a href="mailto:alan.hietala@gmail.com">alan.hietala@gmail.com</a></p> 
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">June 18, 2009 UI Update</h2>
  <div class="textblock">
 <p>The UI has been updated. The main army list screen now only shows the important information that you need for army building. All of the unit stats are available in an expandable section by clicking the + sign at the left of the listed unit.</p>
 <p>This Section also will be used to show unit pictures and other additional information related to the unit.</p>
 </div>
 </div>
-<div class="span-22 last">
+<div class="span-16 last">
 <h2 class="textheader">June  15, 2009 Update</h2>
 <div class="textblock">
 <p> Mercenaries added to the system. You can now add both the mercenary army list type and mercenaries to regular army lists. Validation should occur properly availability will show as the non merc one in the list but it is calculated properly for valication reasons. I will fix the display issue in the next push.
 </div>
 </div>
-
+</div>
+<div class="span-6 last">
+	<h2 class="textheader">Recent Lists</h2>
+	<div class="textblock">
+		
+		<%=render :partial=>"/army_lists/recentlists",:object=> ArmyList.find(:all,:limit=>8,:include=>[:user,:army],:order => 'created_at DESC')%>
+		
+	</div>
+<h2 class="textheader">Demo Account</h2>
+<div class="textblock">
+<p><strong>Login:</strong> test <br /><strong> Password:</strong> 123456 <br />
+<%=link_to "Login Here", login_path %></p>
+<p>If you like what you see in the demo account you can <%=link_to "sign up",signup_path%> for your own account. This gives you your own place to save your lists.</p>
+</div>
+</div>
