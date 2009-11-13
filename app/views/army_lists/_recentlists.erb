@@ -1,5 +1,17 @@
 <ul>
 	<% recentlists.each do |list|%>
-	<li><%=link_to list.name, user_army_list_url(list.user_id,list)%> - <%=list.army.name%></li>	
+	<li>
+		<span class="recentimage"><%= case list.army_id
+			when 1 then image_tag("Ariadna-small.png")
+			when 2 then image_tag("IAECombinado-small.png")
+			when 3 then image_tag("Haqqislam-small.png")
+			when 4 then image_tag("Nomadas-small.png")
+			when 5 then image_tag("PanOceania-small.png")
+			when 6 then image_tag("YuJing-small.png")
+			when 7 then image_tag("LogoMercs-small.png")
+			end
+								%></span>
+								<span class="recentlink">
+	<%=link_to list.name, user_army_list_url(list.user_id,list)%></span></li>	
 	<%end%>
 </ul>

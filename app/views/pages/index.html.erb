@@ -68,7 +68,7 @@
 </div>
 <div class="span-6 last">
 	<h2 class="textheader">Recent Lists</h2>
-	<div class="textblock">
+	<div id="recentlists" class="textblock">
 		
 		<%=render :partial=>"/army_lists/recentlists",:object=> ArmyList.find(:all,:limit=>8,:include=>[:user,:army],:order => 'created_at DESC')%>
 		
