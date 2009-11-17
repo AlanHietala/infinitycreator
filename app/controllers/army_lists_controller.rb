@@ -333,7 +333,7 @@ private
     validation.actualpoints = armypoints
     validation.allowedpoints = army.maxpointvalue
     
-    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]"
+    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]\r\nGenerated with [url='http://infinitypool.failedsave.com']Infinity Pool[/url]"
     validation.bbcode = bbcode
     return validation
   end
@@ -481,7 +481,7 @@ private
     validation.actualpoints = armypoints
     validation.allowedpoints = army.maxpointvalue
     
-    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]"
+    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]\r\nGenerated with [url=http://infinitypool.failedsave.com]Infinity Pool[/url]"
     validation.bbcode = bbcode
     return validation
   end
