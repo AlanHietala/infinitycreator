@@ -188,9 +188,19 @@ color:#1E1E1E;
 .sharing textarea{
 	width:240px;
 	height:100px;
-	overflow:auto;
+	background:#aaa;
+
 	
 }
+
 #bbcode{
 	display:none;
+	position:absolute;
+	margin-top:20px;
+	background:#444;
+	padding:10px;
+	border:solid black 1px;
+}
+#togglebbcode{
+	float:right;
 }
