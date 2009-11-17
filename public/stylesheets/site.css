@@ -63,7 +63,7 @@ td{}
 .listdescription{
 	float:left;
 	margin-left:20px;
-	width:500px;
+	width:250px;
 }
 a{
 	color:#098eff;
@@ -179,4 +179,18 @@ color:#1E1E1E;
 .recentimage{
 	position:relative;
 	top:5px;
+}
+.sharing{
+	width:240px;
+	padding:5px;
+	float:left;
+}
+.sharing textarea{
+	width:240px;
+	height:100px;
+	overflow:auto;
+	
+}
+#bbcode{
+	display:none;
 }

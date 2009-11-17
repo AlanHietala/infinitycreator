@@ -74,5 +74,18 @@ jQuery(document).ready(function(){
 	});
 	
 	
+	jQuery("#togglebbcode").click(function(){
+		
+		jQuery("#bbcode").toggle();
+		// select all in the box
+		jQuery(".sharing textarea").select();
+		return false;
+	});
+	jQuery("#.sharing textarea").click(function(){
+		
+		jQuery(this).select();
+		return false;
+	});
+	
 });
 

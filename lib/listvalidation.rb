@@ -9,7 +9,8 @@ class ListValidation
       @currentswc = 0.0
       @actualpoints = 0
       @allowedpoints = 0
+      @bbcode = ""
     end
-    attr_accessor :errors,:weapons,:maxswc,:currentswc,:actualpoints,:allowedpoints,:combatgrouporders,:modelcount
+    attr_accessor :bbcode,:errors,:weapons,:maxswc,:currentswc,:actualpoints,:allowedpoints,:combatgrouporders,:modelcount
 end
   

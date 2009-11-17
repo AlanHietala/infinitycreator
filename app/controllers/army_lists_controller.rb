@@ -202,6 +202,38 @@ class ArmyListsController < ApplicationController
   end
   
 private
+  def bbcodeHeader(index)
+    return "\r\nCombat Group "+(index+1).to_s;
+    
+  end
+  def bbcodeUnit(unit)
+    #add this unit to the bbcode
+    combatgroupunits =""
+    linelength = unit.unit_option.unit.name.length
+    combatgroupunits = combatgroupunits + unit.unit_option.unit.name+" &raquo; "
+    if (unit.unit_option.name == nil or unit.unit_option.name=="")
+      unit.unit_option.bsweapons.each_with_index do |bs,ind|
+
+      	if(!bs.cc and ind<2)
+      	    n = bs.abbr != nil ? bs.abbr : bs.name;
+      	    combatgroupunits = combatgroupunits + n;
+      	    linelength = linelength + n.length
+    		end
+
+      end
+    else
+      linelength = linelength + unit.unit_option.name.length
+      combatgroupunits = combatgroupunits + unit.unit_option.name;
+    end
+    spacetab = 50
+    whitespacecounter = spacetab-linelength;
+    while(whitespacecounter>=0 and whitespacecounter<spacetab)
+      combatgroupunits = combatgroupunits + " ";
+      whitespacecounter = whitespacecounter - 1;
+    end
+    return combatgroupunits = combatgroupunits+"SWC:"+unit.unit_option.swc.to_s+"     Cost:"+unit.unit_option.cost.to_s+ "\r\n"
+    
+  end
   def validate_army(army)
     validation = ListValidation.new
     validation.errors = Array.new
@@ -209,6 +241,7 @@ private
     weaponHash = Hash.new
     swctotal = army.maxpointvalue.div(50)
     validation.weapons = Array.new
+    bbcode ="[code]"
     #validate swc
     armyswc = 0.0;
     armypoints = 0;
@@ -217,7 +250,13 @@ private
     army.combat_groups.each_with_index do |cgroup,i|
       validation.combatgrouporders[i]=0
       validation.modelcount[i]=0
+      
+      # do bbcode group header
+      combatgroupheader = bbcodeHeader(i);
+      combatgroupunits = ""
       cgroup.combat_group_units.each do |unit|
+        combatgroupunits = combatgroupunits + bbcodeUnit(unit);
+        
         #check if this unit gives an order to the pool
         if(unit.unit_option.unit.regular && !unit.unit_option.unit.ghost)
           validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
@@ -270,6 +309,8 @@ private
     	 end
        armypoints = armypoints + unit.unit_option.cost
       end
+      combatgroupheader = combatgroupheader + "     Orders: " +validation.combatgrouporders[i].to_s+"\r\n\r\n"
+      bbcode = bbcode + combatgroupheader + combatgroupunits
       if(validation.combatgrouporders[i]>10)
         validation.errors<<"Combat Group "+(i+1).to_s+" has too many units"
       end
@@ -291,15 +332,19 @@ private
     end
     validation.actualpoints = armypoints
     validation.allowedpoints = army.maxpointvalue
+    
+    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]"
+    validation.bbcode = bbcode
     return validation
   end
-  
+  ### Validation code for a Mercenary army it is handled differently
   def validate_mercarmy(army)
     validation = ListValidation.new
     validation.errors = Array.new
     unitCountHash = Hash.new
     weaponHash = Hash.new
     armyHash = Hash.new
+    bbcode ="[code]"
     swctotal = army.maxpointvalue.div(50)
     ava1total = army.maxpointvalue.div(200)
     validation.weapons = Array.new
@@ -313,7 +358,13 @@ private
     army.combat_groups.each_with_index do |cgroup,i|
       validation.combatgrouporders[i]=0
       validation.modelcount[i]=0
+      # do bbcode group header
+        combatgroupheader = bbcodeHeader(i);
+        combatgroupunits = ""
       cgroup.combat_group_units.each do |unit|
+        combatgroupunits = combatgroupunits + bbcodeUnit(unit);
+         
+          
         #check if this unit gives an order to the pool
         if(unit.unit_option.unit.regular && !unit.unit_option.unit.ghost)
           validation.combatgrouporders[i] = validation.combatgrouporders[i] + 1
@@ -403,6 +454,9 @@ private
 	end
        armypoints = armypoints + unit.unit_option.cost
       end
+      
+      combatgroupheader = combatgroupheader + "     Orders: " +validation.combatgrouporders[i].to_s+"\r\n\r\n"
+      bbcode = bbcode + combatgroupheader + combatgroupunits
       if(validation.combatgrouporders[i]>10)
         validation.errors<<"Combat Group "+(i+1).to_s+" has too many units"
       end
@@ -426,6 +480,9 @@ private
     end
     validation.actualpoints = armypoints
     validation.allowedpoints = army.maxpointvalue
+    
+    bbcode = bbcode + "\r\nTotal SWC: " + armyswc.to_s+"         Total Points: "+ armypoints.to_s+"[/code]"
+    validation.bbcode = bbcode
     return validation
   end
 end
