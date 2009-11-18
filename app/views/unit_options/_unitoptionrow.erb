@@ -3,15 +3,7 @@
 	
 <div class="span-1"><%=link_to image_tag("plus.png"),"#",:class=>"expand"%></div>	
 <div class="span-8 unitname
-	<%=case unitoptionrow.unit_option.unit.unit_type_id 
-when 1 then "lightinf"
-when 4 then "mediuminf"
-when 2 then "heavyinf"
-when 3 then "scout"
-when 7 then "warband"
-when 5 then "remote"
-when 6 then "tag"
-end%>
+	
 "><%=unitoptionrow.unit_option.unit.name%> &raquo;
 <%if (unitoptionrow.unit_option.name == nil or unitoptionrow.unit_option.name=="")%>
 <%unitoptionrow.unit_option.bsweapons.each_with_index do |bs,i|%>
@@ -38,9 +30,26 @@ Irregular
 		when 2 then " &raquo; frenzy"
 	end%>
 	</div>
+	<div class="span-1 <%=case unitoptionrow.unit_option.unit.unit_type_id 
+when 1 then "lightinf"
+when 4 then "mediuminf"
+when 2 then "heavyinf"
+when 3 then "scout"
+when 7 then "warband"
+when 5 then "remote"
+when 6 then "tag"
+end%>"><%=case unitoptionrow.unit_option.unit.unit_type_id 
+when 1 then "LI"
+when 4 then "MI"
+when 2 then "HI"
+when 3 then "SK"
+when 7 then "WB"
+when 5 then "REM"
+when 6 then "TAG"
+end%>
+</div>
 	
-	
-	<div class="span-6  swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
+	<div class="span-5  swccost">SWC: <%= unitoptionrow.unit_option.swc< 0 ? "+"+unitoptionrow.unit_option.swc.abs.to_s : unitoptionrow.unit_option.swc %> &raquo; Cost: <%=unitoptionrow.unit_option.cost%>
 	
 	
 	</div>
