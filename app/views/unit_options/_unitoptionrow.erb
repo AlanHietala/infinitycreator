@@ -2,7 +2,17 @@
 <div class="unitheader span-22 last ui-corner-all">
 	
 <div class="span-1"><%=link_to image_tag("plus.png"),"#",:class=>"expand"%></div>	
-<div class="span-8 unitname"><%=unitoptionrow.unit_option.unit.name%> &raquo;
+<div class="span-8 unitname
+	<%=case unitoptionrow.unit_option.unit.unit_type_id 
+when 1 then "lightinf"
+when 4 then "mediuminf"
+when 2 then "heavyinf"
+when 3 then "scout"
+when 7 then "warband"
+when 5 then "remote"
+when 6 then "tag"
+end%>
+"><%=unitoptionrow.unit_option.unit.name%> &raquo;
 <%if (unitoptionrow.unit_option.name == nil or unitoptionrow.unit_option.name=="")%>
 <%unitoptionrow.unit_option.bsweapons.each_with_index do |bs,i|%>
 		

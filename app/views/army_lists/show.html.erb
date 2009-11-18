@@ -26,7 +26,7 @@
 								%>
 	</div>
 	<div class="listinfo">
-		<div class="listtitle"><%=@army_list.name%> &raquo; <%=@army_list.user.login%></div>
+		<div class="listtitle"><%=h(@army_list.name)%> &raquo; <%=@army_list.user.login%></div>
 		<div class="liststats">
 			<div class="listtitlegroup"><strong>Points:</strong> <%=@validation.actualpoints%>  &raquo; <strong>Allowed:</strong> <%=@validation.allowedpoints%> </div> 
 			<div class="listtitlegroup"><strong>SWC:</strong> <%=@validation.currentswc %>  &raquo; <strong>Allowed:</strong> <%=@validation.maxswc%></div>
@@ -43,18 +43,19 @@
 			</div>
 		</div>
 		<div class="listdescription">
-			<%=@army_list.description%>
+			
+			<%=h(@army_list.description)%>
 			
 		</div>
 		
 		<div class="sharing">
-			
-		<a id="togglebbcode" href="#">BBCode</a>
+			Sharing &raquo;
+			<a id="togglebbcode" href="#">BBCode</a>
 		
-		<div id="bbcode">
-		<textarea><%=@validation.bbcode%></textarea>
+			<div id="bbcode">
+			<textarea><%=@validation.bbcode%></textarea>
 		
-		</div>
+			</div>
 		</div>
 		
 	</div>

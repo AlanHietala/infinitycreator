@@ -11,7 +11,7 @@
 <% for army_list in @army_lists %>
   <tr>
 
-    <td><%= link_to army_list.name, user_army_list_url(current_user,army_list) %></td>
+    <td><%= link_to h(army_list.name), user_army_list_url(current_user,army_list) %></td>
 	<td><%=army_list.army.name%></td>
 	<td><%=army_list.maxpointvalue%></td>
     <td><%= link_to image_tag("delete.png"), user_army_list_path(current_user,army_list), :confirm => 'Are you sure?', :method => :delete %></td>
