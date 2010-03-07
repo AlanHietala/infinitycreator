@@ -1,10 +1,50 @@
-<h1>New unit_options</h1>
+<h1>New unit_option</h1>
 
-<% form_for(@unit_options) do |f| %>
+<% form_for(@unit_option) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.submit "Create" %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :bsweapons %><br />
+    <%= f.text_field :bsweapons %>
+  </p>
+  <p>
+    <%= f.label :ccweapons %><br />
+    <%= f.text_field :ccweapons %>
+  </p>
+  <p>
+    <%= f.label :swc %><br />
+    <%= f.text_field :swc %>
+  </p>
+  <p>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </p>
+  <p>
+    <%= f.label :unit_id %><br />
+    <%= f.text_field :unit_id %>
+  </p>
+  <p>
+    <%= f.label :lt %><br />
+    <%= f.check_box :lt %>
+  </p>
+  <p>
+    <%= f.label :bonusswc %><br />
+    <%= f.text_field :bonusswc %>
+  </p>
+  <p>
+    <%= f.label :isaddon %><br />
+    <%= f.check_box :isaddon %>
+  </p>
+  <p>
+    <%= f.label :parent_unit_option_id %><br />
+    <%= f.text_field :parent_unit_option_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
   </p>
 <% end %>
 

@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+
+
+
+  map.resources :unit_options
+
   map.resources :favourites
 
   map.resources :unit_options
@@ -16,8 +21,20 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :units
 
   
-
-  map.homepage '/',:controller=>'pages', :action=>'index'
+  map.resource :admin do |admin|
+    admin.resources :weapons 
+    admin.resources :armies do |army|
+      army.resources :units, :collection=>[:copy,:copysave] do |unit|
+        unit.resources :unit_options do |unit_option|
+          unit_option.resources :unit_option_weapons do |unit_option_weapon|
+              
+          end
+        end
+      end
+    end
+  end
+  
+  map.homepage '/', :controller => 'pages', :action=>'index'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'

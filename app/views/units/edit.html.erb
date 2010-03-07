@@ -1,12 +1,84 @@
 <h1>Editing unit</h1>
 
-<% form_for(@unit) do |f| %>
+<% form_for([:admin,@unit.army,@unit]) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.submit "Update" %>
+    <%= f.label :mov1 %><br />
+    <%= f.text_field :mov1 %>
+  </p>
+  <p>
+    <%= f.label :mov2 %><br />
+    <%= f.text_field :mov2 %>
+  </p>
+  <p>
+    <%= f.label :cc %><br />
+    <%= f.text_field :cc %>
+  </p>
+  <p>
+    <%= f.label :bs %><br />
+    <%= f.text_field :bs %>
+  </p>
+  <p>
+    <%= f.label :ph %><br />
+    <%= f.text_field :ph %>
+  </p>
+  <p>
+    <%= f.label :wip %><br />
+    <%= f.text_field :wip %>
+  </p>
+  <p>
+    <%= f.label :arm %><br />
+    <%= f.text_field :arm %>
+  </p>
+  <p>
+    <%= f.label :bts %><br />
+    <%= f.text_field :bts %>
+  </p>
+  <p>
+    <%= f.label :w %><br />
+    <%= f.text_field :w %>
+  </p>
+
+  
+ 
+  <p>
+    <%= f.label :unit_type_id %><br />
+	<%=select_tag 'unit[unit_type_id]',options_from_collection_for_select(UnitType.all, :id, :name,:selected => @unit.unit_type_id)%>
+  </p>
+  <p>
+    <%= f.label 'availability: use -1 for total' %><br />
+    <%= f.text_field :avail %>
+  </p>
+  <p>
+    <%= f.label :regular %><br />
+    <%= f.check_box :regular %>
+  </p>
+  <p>
+    <%= f.label :impetuous %><br />
+    <%=select_tag 'unit[impetuous]','<option value="0" '+if @unit.impetuous == 0 then 'selected' else '' end+'>Not Impetuous</option><option value="1" '+if @unit.impetuous == 1 then 'selected' else '' end+'>Impetuous</option><option value="2" '+if @unit.impetuous == 2 then 'selected' else '' end+'>Frenzy</option>'%>
+  </p>
+  <p>
+    <%= f.label :cube %><br />
+    <%= f.check_box :cube %>
+  </p>
+  <p>
+    <%= f.label :skills %><br />
+    <%= f.text_field :skills %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.label "isaddon used for ghosted remotes does not contribute to model count for validation." %><br />
+    <%= f.check_box :isaddon %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
   </p>
 <% end %>
 
 <%= link_to 'Show', @unit %> |
-<%= link_to 'Back', units_path %>
+<%= link_to 'Back', admin_army_unit_path(@unit.army,@unit) %>

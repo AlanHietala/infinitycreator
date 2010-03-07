@@ -1,12 +1,53 @@
-<h1>Editing unit_options</h1>
-
-<% form_for(@unit_options) do |f| %>
+<h1>Editing <%= @unit_options.unit.name %> Option</h1>
+<%= link_to 'Back To Unit', admin_army_unit_path(@unit_options.unit.army,@unit_options.unit) %>
+<% form_for([:admin,@unit_options.unit.army,@unit_options.unit,@unit_options]) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.submit "Update" %>
+    <%= f.label "name overwrites auto-generated name from weapons list" %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.label :swc %><br />
+    <%= f.text_field :swc %>
+  </p>
+  <p>
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </p>
+  
+  <p>
+    <%= f.label :lt %><br />
+    <%= f.check_box :lt %>
+  </p>
+  
+  
+  <%= f.submit 'Update' %>
+  <p>
+    
   </p>
 <% end %>
+<h2>Weapons</h2>
 
-<%= link_to 'Show', @unit_options %> |
-<%= link_to 'Back', unit_options_path %>
+	<%= link_to "Create New Weapon", new_admin_weapon_path %> 
+
+<div class="prepend-top combatgroupheader span-22 last">
+	<div class="combatgrouptitle span-21 prepend-1 last">
+		<%form_for([:admin,@unit_options.unit.army,@unit_options.unit,@unit_options,:unit_option_weapons], :html=>{:method=>'Post'}) do |f|%>
+
+			<%=select_tag 'weapon_id',options_from_collection_for_select(Weapon.all, :id, :name)%>
+			<%= f.submit 'Add Existing Weapon' %>
+		<%end%>
+	
+	</div>
+</div>
+<div class="span-22 last">
+<table><% @unit_options.unit_option_weapons.each do |uoptweapon|%>
+	<tr>
+	<td><%= uoptweapon.weapon.name %></td>  <td><%= link_to 'Delete Weapon', admin_army_unit_unit_option_unit_option_weapon_path(@unit_options.unit.army,@unit_options.unit,@unit_options,uoptweapon), :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+<%end%>
+
+</table>
+</div>

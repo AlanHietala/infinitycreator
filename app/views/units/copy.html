@@ -1,0 +1,12 @@
+<%= form_tag '/admin/armies/'+params[:army_id]+'/units/copysave'%>
+<%=select_tag 'unit[id]',options_from_collection_for_select(@units, :id, :name),{:onChange=>remote_function(:update => "unitoptioncontainer",
+		:url =>{ :action => :getunit},
+		:with=>"'unit_id=' + this.value")}%>
+		
+	<%= submit_tag "Copy"  %>	
+	
+</form>
+<div class="unitoptioncontainer">
+	
+	<%=render :partial=>"combat_group_units/unitcard" ,:object=>@firstunit,:locals=>{:isInch=>true}%>
+</div>

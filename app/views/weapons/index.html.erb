@@ -1,18 +1,8 @@
-<h1>Listing weapons</h1>
+<%= link_to 'admin', admin_path %>
+<div class="combatgroupheader span-22 last prepend-top">
+	<div class="combatgrouptitle prepend-1 span-21 last">Weapons Table &raquo; <%= link_to 'New weapon', new_weapon_path %></div>
+</div>
 
-<table>
-  <tr>
-  </tr>
+<%= 	render :partial => 'weapons/weapontable',:object=>@weapons,:locals=>{:isAdmin=>true} %>
 
-<% for weapon in @weapons %>
-  <tr>
-    <td><%= link_to 'Show', weapon %></td>
-    <td><%= link_to 'Edit', edit_weapon_path(weapon) %></td>
-    <td><%= link_to 'Destroy', weapon, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
-<%= link_to 'New weapon', new_weapon_path %>

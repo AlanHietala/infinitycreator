@@ -2,17 +2,37 @@
 
 <table>
   <tr>
+    <th>Name</th>
+    <th>Bsweapons</th>
+    <th>Ccweapons</th>
+    <th>Swc</th>
+    <th>Cost</th>
+    <th>Unit</th>
+    <th>Lt</th>
+    <th>Bonusswc</th>
+    <th>Isaddon</th>
+    <th>Parent unit option</th>
   </tr>
 
-<% for unit_options in @unit_options %>
+<% @unit_options.each do |unit_option| %>
   <tr>
-    <td><%= link_to 'Show', unit_options %></td>
-    <td><%= link_to 'Edit', edit_unit_options_path(unit_options) %></td>
-    <td><%= link_to 'Destroy', unit_options, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h unit_option.name %></td>
+    <td><%=h unit_option.bsweapons %></td>
+    <td><%=h unit_option.ccweapons %></td>
+    <td><%=h unit_option.swc %></td>
+    <td><%=h unit_option.cost %></td>
+    <td><%=h unit_option.unit_id %></td>
+    <td><%=h unit_option.lt %></td>
+    <td><%=h unit_option.bonusswc %></td>
+    <td><%=h unit_option.isaddon %></td>
+    <td><%=h unit_option.parent_unit_option_id %></td>
+    <td><%= link_to 'Show', unit_option %></td>
+    <td><%= link_to 'Edit', edit_unit_option_path(unit_option) %></td>
+    <td><%= link_to 'Destroy', unit_option, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New unit_options', new_unit_options_path %>
+<%= link_to 'New unit_option', new_unit_option_path %>

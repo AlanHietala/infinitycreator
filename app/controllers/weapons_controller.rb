@@ -2,6 +2,7 @@ class WeaponsController < ApplicationController
   # GET /weapons
   # GET /weapons.xml
   before_filter :login_required
+  before_filter :admin_required
   def index
     @weapons = Weapon.find(:all)
 
@@ -34,9 +35,9 @@ class WeaponsController < ApplicationController
 #  end
 
   # GET /weapons/1/edit
-#  def edit
-#    @weapon = Weapon.find(params[:id])
-#  end
+ def edit
+   @weapon = Weapon.find(params[:id])
+ end
 
   # POST /weapons
   # POST /weapons.xml
@@ -57,20 +58,20 @@ class WeaponsController < ApplicationController
 
   # PUT /weapons/1
   # PUT /weapons/1.xml
- # def update
-#    @weapon = Weapon.find(params[:id])#
+ def update
+    @weapon = Weapon.find(params[:id])
 
-  #  respond_to do |format|
-   #   if @weapon.update_attributes(params[:weapon])
-  #      flash[:notice] = 'Weapon was successfully updated.'
-  #      format.html { redirect_to(@weapon) }
-  #      format.xml  { head :ok }
-  #    else
-  #      format.html { render :action => "edit" }
-  #      format.xml  { render :xml => @weapon.errors, :status => :unprocessable_entity }
-  #    end
-  #  end
-  #end
+    respond_to do |format|
+      if @weapon.update_attributes(params[:weapon])
+        flash[:notice] = 'Weapon was successfully updated.'
+        format.html { redirect_to(admin_weapons_path()) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @weapon.errors, :status => :unprocessable_entity }
+      end
+    end
+   end
 
   # DELETE /weapons/1
   # DELETE /weapons/1.xml

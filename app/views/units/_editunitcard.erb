@@ -1,0 +1,131 @@
+<div  class="span-20 last">
+		
+		<table>
+			<tr>
+				<th>Skills</th>
+			<th>Mov
+			</th>
+			<th>CC
+			</th>
+			<th>BS
+			</th>
+			<th>PH
+			</th>
+			<th>WIP
+			</th>
+			<th>ARM
+			</th>
+			<th>BTS
+			</th>
+			<th>W
+			</th>
+			<th>Avail
+			</th>
+			</tr>	
+			<tr>
+				<td>
+					<%if(editunitcard.regular)%>
+					regular, 
+					<%else%>
+					irregular, 
+					<%end%>
+				<%=case editunitcard.impetuous
+				   		when 0 then "not impetuous"
+						when 1 then "impetuous"
+						when 2 then "frenzy"
+					end%>
+					<%=editunitcard.skills%>
+					</td>
+				<td><%if(isInch)%>
+						<%=editunitcard.mov1%>-<%=editunitcard.mov2%>
+					<%else%>
+						<%=editunitcard.mov1*10/4%>-<%=editunitcard.mov2*10/4%>
+					<%end%>
+					</td>
+
+
+
+
+				<td><%=editunitcard.cc%></td>
+
+				<td><%=editunitcard.bs%></td>
+
+				<td><%=editunitcard.ph%></td>
+
+
+				<td><%=editunitcard.wip%></td>
+
+
+				<td><%=editunitcard.arm%></td>
+
+
+				<td><%=editunitcard.bts%></td>
+
+				<td><%=editunitcard.w%></td>
+
+				<td><%if(@isMerc)%>
+						<%if(editunitcard.avail<1)%>
+							4
+						<%elsif(editunitcard.avail==1)%>
+							S
+						<%else%>
+							<%=editunitcard.avail.div(2).to_s%>
+						<%end%>
+					<%else%>
+				<%=editunitcard.avail<1 ? "T" : editunitcard.avail%>
+					<%end%></td>
+		</tr>
+		</table>
+</div>
+<div class="span-20 last">
+	
+		
+	
+		<!--Unit Options -->
+		<table>
+			<tr>
+				<th>select</th>
+				<th>Name</th>
+				<th>BS Weapons</th>
+				<th>CC Weapons</th>
+				<th>SWC</th>
+				<th>Cost</th>
+			</tr>
+		<%editunitcard.unit_options.each_with_index do |uopt,ind|%>
+			<tr>
+			<td><%= link_to "edit",edit_admin_army_unit_unit_option_path(editunitcard.army,editunitcard,uopt)%></td>
+			<td>	<%=uopt.name%></td>
+
+				<td>
+				<%uopt.bsweapons.each do |bs|%>
+					<%if(!bs.cc)%>
+					<%=bs.name%>
+					<%end%> 
+				<%end%>
+				</td>
+				<td>
+					<%uopt.ccweapons.each do |cc|%>
+						<%if(cc.cc)%>
+						<%=cc.name%>
+						<%end%>
+					<%end%>
+				</td>
+				<td>
+						<%=uopt.swc< 0 ? "+"+uopt.swc.abs.to_s : uopt.swc %>
+				</td>
+				<td>
+					<%=uopt.cost%>
+				</td>
+			</tr>
+
+
+
+
+		<%end%>
+		</table>
+	
+		
+
+    
+  
+</div>

@@ -1,11 +1,72 @@
 <h1>New weapon</h1>
 
-<% form_for(@weapon) do |f| %>
+<% form_for(:admin,@weapon) do |f| %>
   <%= f.error_messages %>
-
+	<p>
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	</p>
+	<p>
+	    <%= f.label :abreviation %><br />
+	    <%= f.text_field :abbr %>
+	  </p>
+	<p>
+	    <%= f.label :shortrange %><br />
+	    <%= f.text_field :shortrange %>
+	  </p>
+	<p>
+	    <%= f.label 'short range modifier'%><br />
+	    <%= f.text_field :shortrangemod %>
+	  </p>
+	<p>
+	    <%= f.label :mediumrange %><br />
+	    <%= f.text_field :mediumrange %>
+	  </p>
+	<p>
+	    <%= f.label :mediumrangemod %><br />
+	    <%= f.text_field :mediumrangemod %>
+	  </p>
+	
+	<p>
+	    <%= f.label :longrange %><br />
+	    <%= f.text_field :longrange %>
+	  </p>
+	<p>
+	    <%= f.label :longrangemod %><br />
+	    <%= f.text_field :longrangemod %>
+	  </p>
+	<p>
+	    <%= f.label :maxrange %><br />
+	    <%= f.text_field :maxrange %>
+	  </p>
+	
+	<p>
+	    <%= f.label :maxrangemod %><br />
+	    <%= f.text_field :maxrangemod %>
+	  </p>
+	<p>
+	    <%= f.label :damage %><br />
+	    <%= f.text_field :damage %>
+	  </p>
+	<p>
+	    <%= f.label :burst %><br />
+	    <%= f.text_field :b %>
+	  </p>
+	<p>
+	    <%= f.label :template %><br />
+	    <%= f.text_field :template %>
+	  </p>
+	<p>
+	    <%= f.label 'E/M Vulnerability' %><br />
+	    <%= f.check_box :emvul %>
+	  </p>
+	<p>
+	    <%= f.label 'Close Combat Weapon' %><br />
+	    <%= f.check_box :cc %>
+	  </p>
   <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>
 
-<%= link_to 'Back', weapons_path %>
+<%= link_to 'Back', admin_path %>

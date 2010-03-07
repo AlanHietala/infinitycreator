@@ -1,3 +1,26 @@
+<h1>Army: <%= @army.name %></h1>
+<div class="prepend-top combatgroupheader span-22 last">
+	<div class="combatgrouptitle span-21 prepend-1 last">
+			<%= link_to 'Edit Army Details', edit_admin_army_path(@army) %> |
+			<%= link_to 'Back', admin_path %> |
+			<%= link_to 'Add Unit', new_admin_army_unit_path(@army)%> |
 
-<%= link_to 'Edit', edit_army_path(@army) %> |
-<%= link_to 'Back', armies_path %>
+			<%= link_to 'Copy Existing Unit', '/admin/armies/'+@army.id.to_s+'/units/copy'%>
+		</div>
+</div>
+
+<table>
+	<tr>
+	<th>Unit Name
+	</th>
+	<th>Actions
+	</th>
+	<tr>
+	<%@army.units.each do |unit| %>
+		<tr>
+			<td><%= link_to unit.name,admin_army_unit_path(@army,unit) %></td><td> <%= link_to 'Delete Unit', admin_army_unit_path(@army,unit), :confirm => 'Are you sure?', :method => :delete %></td>
+		</tr>
+	<%end%>
+	
+</table>
+
