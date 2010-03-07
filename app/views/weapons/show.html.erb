@@ -1,3 +1,4 @@
 
+<%= 	render :partial => 'weapons/weapontable',:object=>@weapons,:locals=>{:isAdmin=>true} %>
 <%= link_to 'Edit', edit_weapon_path(@weapon) %> |
 <%= link_to 'Back', weapons_path %>

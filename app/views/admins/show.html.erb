@@ -1,0 +1,22 @@
+<h1>Armies</h1>
+<div></div>
+<br />
+<div class="prepend-top combatgroupheader span-22 last">
+	<div class="combatgrouptitle span-21 prepend-1 last">
+		<%= link_to "New Army",new_admin_army_path() %>
+		&raquo; <%= link_to "Weapons Manager",admin_weapons_path() %>
+	</div>
+</div>
+<table class="armies">
+	<tr>
+		<th>Army Name</th>
+		<th>actions</th>
+	</tr>
+<%@armies.each do |army| %>
+	<tr>
+		<td><div class="army"><%=link_to army.name,admin_army_path(army) %></div></td>
+		<td></td>
+	</tr>
+	
+<%end%>
+</table>

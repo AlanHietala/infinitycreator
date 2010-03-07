@@ -1,6 +1,9 @@
 class UnitOptionsController < ApplicationController
   # GET /unit_options
   # GET /unit_options.xml
+  layout "application"
+  before_filter :login_required
+  before_filter :admin_required,:except => [:show]
   def index
     @unit_options = UnitOption.find(:all)
 
@@ -32,44 +35,44 @@ class UnitOptionsController < ApplicationController
   #   end
   # end
   # 
-  # # GET /unit_options/1/edit
-  # def edit
-  #   @unit_options = UnitOption.find(params[:id])
-  # end
+  # GET /unit_options/1/edit
+    def edit
+      @unit_options = UnitOption.find(params[:id])
+    end
   # 
-  # # POST /unit_options
-  # # POST /unit_options.xml
-  # def create
-  #   @unit_options = UnitOption.new(params[:unit_options])
+  # POST /unit_options
+    # POST /unit_options.xml
+    def create
+      @unit_options = UnitOption.new(params[:unit_options])
+    
+      respond_to do |format|
+        if @unit_options.save
+          flash[:notice] = 'UnitOptions was successfully created.'
+          format.html { redirect_to(@unit_options) }
+          format.xml  { render :xml => @unit_options, :status => :created, :location => @unit_options }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @unit_options.errors, :status => :unprocessable_entity }
+        end
+      end
+    end
   # 
-  #   respond_to do |format|
-  #     if @unit_options.save
-  #       flash[:notice] = 'UnitOptions was successfully created.'
-  #       format.html { redirect_to(@unit_options) }
-  #       format.xml  { render :xml => @unit_options, :status => :created, :location => @unit_options }
-  #     else
-  #       format.html { render :action => "new" }
-  #       format.xml  { render :xml => @unit_options.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
-  # 
-  # # PUT /unit_options/1
-  # # PUT /unit_options/1.xml
-  # def update
-  #   @unit_options = UnitOption.find(params[:id])
-  # 
-  #   respond_to do |format|
-  #     if @unit_options.update_attributes(params[:unit_options])
-  #       flash[:notice] = 'UnitOptions was successfully updated.'
-  #       format.html { redirect_to(@unit_options) }
-  #       format.xml  { head :ok }
-  #     else
-  #       format.html { render :action => "edit" }
-  #       format.xml  { render :xml => @unit_options.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    # PUT /unit_options/1
+      # PUT /unit_options/1.xml
+      def update
+        @unit_options = UnitOption.find(params[:id])
+      
+        respond_to do |format|
+          if @unit_options.update_attributes(params[:unit_option])
+            flash[:notice] = 'UnitOptions was successfully updated.'
+            format.html { redirect_to(edit_admin_army_unit_unit_option_path(@unit_options.unit.army,@unit_options.unit,@unit_options)) }
+            format.xml  { head :ok }
+          else
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @unit_options.errors, :status => :unprocessable_entity }
+          end
+        end
+      end
   # 
   # # DELETE /unit_options/1
   # # DELETE /unit_options/1.xml

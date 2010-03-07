@@ -34,7 +34,13 @@ module AuthenticatedSystem
     def authorized?(action = action_name, resource = nil)
       logged_in?
     end
-
+    def admin?
+      return (logged_in? && [1].include?(current_user.id))
+    end
+    
+    def admin_required
+      return admin? || access_denied
+    end
     # Filter method to enforce a login requirement.
     #
     # To require logins for all actions, use this in your controllers:

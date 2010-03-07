@@ -1,3 +1,12 @@
+<div class="prepend-top combatgroupheader span-22 last">
+	<div class="combatgrouptitle span-21 prepend-1 last">
+		<%= link_to 'Add Unit Option', edit_admin_army_unit_path(params[:army_id],@unit) %> &raquo;
+		<%= link_to 'Edit Unit', edit_admin_army_unit_path(params[:army_id],@unit) %> &raquo;
+		<%= link_to 'Back', admin_army_path(params[:army_id]) %>
+	</div>
+</div>
+<div class="unitoptioncontainer">
+	
+	<%=render :partial=>"units/editunitcard" ,:object=>@unit,:locals=>{:isInch=>true}%>
+</div>
 
-<%= link_to 'Edit', edit_unit_path(@unit) %> |
-<%= link_to 'Back', units_path %>
