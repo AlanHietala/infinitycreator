@@ -1,6 +1,6 @@
 <h1>New weapon</h1>
 
-<% form_for(:admin,@weapon) do |f| %>
+<% form_for([:admin,@weapon]) do |f| %>
   <%= f.error_messages %>
 	<p>
 	    <%= f.label :name %><br />

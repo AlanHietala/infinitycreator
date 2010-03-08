@@ -16,7 +16,7 @@ class WeaponsController < ApplicationController
   # GET /weapons/1.xml
   def show
     @weapon = Weapon.find(params[:id])
-
+    @isInch = true;
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @weapon }
@@ -25,14 +25,14 @@ class WeaponsController < ApplicationController
 
   # GET /weapons/new
   # GET /weapons/new.xml
-#  def new
-#    @weapon = Weapon.new
-#
-#    respond_to do |format|
-#      format.html # new.html.erb
-#      format.xml  { render :xml => @weapon }
-#    end
-#  end
+ def new
+   @weapon = Weapon.new
+
+   respond_to do |format|
+     format.html # new.html.erb
+     format.xml  { render :xml => @weapon }
+   end
+ end
 
   # GET /weapons/1/edit
  def edit
@@ -41,20 +41,20 @@ class WeaponsController < ApplicationController
 
   # POST /weapons
   # POST /weapons.xml
- # def create
-#    @weapon = Weapon.new(params[:weapon])#
+ def create
+    @weapon = Weapon.new(params[:weapon])
 
-#    respond_to do |format|
-#      if @weapon.save
-#        flash[:notice] = 'Weapon was successfully created.'
-#        format.html { redirect_to(@weapon) }
-##        format.xml  { render :xml => @weapon, :status => :created, :location => @weapon }
-#      else
-#        format.html { render :action => "new" }
-#        format.xml  { render :xml => @weapon.errors, :status => :unprocessable_entity }
-#      end
-#    end
-#  end
+    respond_to do |format|
+      if @weapon.save
+        flash[:notice] = 'Weapon was successfully created.'
+        format.html { redirect_to(admin_weapons_path()) }
+ #        format.xml  { render :xml => @weapon, :status => :created, :location => @weapon }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @weapon.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # PUT /weapons/1
   # PUT /weapons/1.xml

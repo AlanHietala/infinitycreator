@@ -1,8 +1,8 @@
 <%= link_to 'admin', admin_path %>
 <div class="combatgroupheader span-22 last prepend-top">
-	<div class="combatgrouptitle prepend-1 span-21 last">Weapons Table &raquo; <%= link_to 'New weapon', new_weapon_path %></div>
+	<div class="combatgrouptitle prepend-1 span-21 last">Weapons Table &raquo; <%= link_to 'New weapon', new_admin_weapon_path %></div>
 </div>
 
-<%= 	render :partial => 'weapons/weapontable',:object=>@weapons,:locals=>{:isAdmin=>true} %>
+<%= 	render :partial => 'weapons/weapontable',:object=>@weapons,:locals=>{:isAdmin=>true,:isInch => true} %>
 
 

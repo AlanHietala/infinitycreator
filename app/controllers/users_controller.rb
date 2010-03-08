@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     respond_to do |format|
         if @user.save
            flash[:notice] = 'Unit was successfully updated.'
-           format.html { redirect_back_or_default(army_lists_path) }
+           format.html { redirect_back_or_default(user_army_lists_path(@user)) }
            format.xml  { head :ok }
          else
            format.html { render :action => "edit" }
