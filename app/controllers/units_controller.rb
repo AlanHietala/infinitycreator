@@ -67,11 +67,11 @@ class UnitsController < ApplicationController
     # POST /units.xml
     def create
       @unit = Unit.new(params[:unit])
-    
+      @unit.army_id = params[:army_id]
       respond_to do |format|
         if @unit.save
           flash[:notice] = 'Unit was successfully created.'
-          format.html { redirect_to(@unit) }
+          format.html { redirect_to(admin_army_unit_path(@unit.army,@unit)) }
           format.xml  { render :xml => @unit, :status => :created, :location => @unit }
         else
           format.html { render :action => "new" }
@@ -110,7 +110,7 @@ class UnitsController < ApplicationController
       @unit.destroy
     
       respond_to do |format|
-        format.html { redirect_to(units_url) }
+        format.html { redirect_to(admin_army_path(@unit.army)) }
         format.xml  { head :ok }
       end
     end
