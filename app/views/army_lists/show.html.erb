@@ -97,7 +97,7 @@
 			<div class="combatgrouptitle prepend-1 span-21 last">Weapons Table</div>
 		</div>
 		<div class="span-22 last">
-	<%= 	render :partial => 'weapons/weapontable',:object=>@validation.weapons,:locals=>{:isAdmin=>false} %>
+	<%= 	render :partial => 'weapons/weapontable',:object=>@validation.weapons,:locals=>{:isAdmin=>false,:isInch =>@isInch} %>
 		</div>
 	<%end%>
 </div>
