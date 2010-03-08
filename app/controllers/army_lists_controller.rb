@@ -30,7 +30,7 @@ class ArmyListsController < ApplicationController
     if(@army_list.army_id == 7)
       @isMerc = true;
     end
-    @validation = validate_army(@army_list)
+    @validation = @army_list.validate_army()
     respond_to do |format|
       format.html {render :layout=>"print"}# show.html.erb
       format.xml  { render :xml => @army_list }
@@ -81,7 +81,7 @@ class ArmyListsController < ApplicationController
     if(@myList)
       
       
-      if(@army_list.army_id<7)
+      if(@army_list.army_id<7 || @army_list.army_id > 7)
         @units = Unit.find(:all,:conditions=>['army_id in (?,7)',@army_list.army_id])
       else
         @units = Unit.find(:all,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'])
