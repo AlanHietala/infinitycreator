@@ -40,21 +40,11 @@
     <%= f.label :w %><br />
     <%= f.text_field :w %>
   </p>
-  <p>
-    <%= f.label :str %><br />
-    <%= f.text_field :str %>
-  </p>
-  <p>
-    <%= f.label :swc %><br />
-    <%= f.text_field :swc %>
-  </p>
-  <p>
-    <%= f.label :cost %><br />
-    <%= f.text_field :cost %>
-  </p>
+ 
+ 
   <p>
     <%= f.label :unit_type_id %><br />
-    <%= f.text_field :unit_type_id %>
+    <%=select_tag 'unit[unit_type_id]',options_from_collection_for_select(UnitType.all, :id, :name,:selected => @unit.unit_type_id)%>
   </p>
   <p>
     <%= f.label :avail %><br />
@@ -66,7 +56,7 @@
   </p>
   <p>
     <%= f.label :impetuous %><br />
-    <%= f.text_field :impetuous %>
+    <%=select_tag 'unit[impetuous]','<option value="0">Not Impetuous</option><option value="1">Impetuous</option><option value="2">Frenzy</option>'%>
   </p>
   <p>
     <%= f.label :cube %><br />
@@ -81,10 +71,10 @@
     <%= f.text_field :name %>
   </p>
   
-    <%= f.hidden_field :army_id %>
+    
   </p>
   <p>
-    <%= f.label :isaddon %><br />
+    <%= f.label 'is Addon unit used for ghosts does not contribute to a combat group model count' %><br />
     <%= f.check_box :isaddon %>
   </p>
   <p>

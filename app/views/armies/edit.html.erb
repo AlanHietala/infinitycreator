@@ -1,12 +1,15 @@
 <h1>Editing army</h1>
 
-<% form_for(@army) do |f| %>
+<% form_for([:admin,@army]) do |f| %>
   <%= f.error_messages %>
-
+	<p>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
+	</p>
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @army %> |
-<%= link_to 'Back', armies_path %>
+
+<%= link_to 'Back', admin_army_path(@army) %>
