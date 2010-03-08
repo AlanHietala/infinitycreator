@@ -81,7 +81,7 @@ class ArmyListsController < ApplicationController
     if(@myList)
       
       
-      if(@army_list.army_id<7 && @army_list.army_id>7)
+      if(@army_list.army_id<7 || @army_list.army_id>7)
         @units = Unit.find(:all,:conditions=>['army_id in (?,7)',@army_list.army_id])
       else
         @units = Unit.find(:all,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'])
