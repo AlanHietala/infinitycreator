@@ -74,15 +74,15 @@ class UnitOptionsController < ApplicationController
         end
       end
   # 
-  # # DELETE /unit_options/1
-  # # DELETE /unit_options/1.xml
-  # def destroy
-  #   @unit_options = UnitOption.find(params[:id])
-  #   @unit_options.destroy
-  # 
-  #   respond_to do |format|
-  #     format.html { redirect_to(unit_options_url) }
-  #     format.xml  { head :ok }
-  #   end
-  # end
+  # DELETE /unit_options/1
+    # DELETE /unit_options/1.xml
+    def destroy
+      @unit_options = UnitOption.find(params[:id])
+      @unit_options.destroy
+    
+      respond_to do |format|
+        format.html { redirect_to(admin_army_unit_path(@unit_options.unit.army,@unit_options.unit)) }
+        format.xml  { head :ok }
+      end
+    end
 end

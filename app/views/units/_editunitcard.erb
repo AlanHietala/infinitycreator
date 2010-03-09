@@ -93,7 +93,7 @@
 			</tr>
 		<%editunitcard.unit_options.each_with_index do |uopt,ind|%>
 			<tr>
-			<td><%= link_to "edit",edit_admin_army_unit_unit_option_path(editunitcard.army,editunitcard,uopt)%></td>
+			<td><%= link_to "edit",edit_admin_army_unit_unit_option_path(editunitcard.army,editunitcard,uopt)%> | <%= link_to "delete",admin_army_unit_unit_option_path(editunitcard.army,editunitcard,uopt), :confirm => 'Are you sure?', :method => :delete%></td>
 			<td>	<%=uopt.name%></td>
 
 				<td>
