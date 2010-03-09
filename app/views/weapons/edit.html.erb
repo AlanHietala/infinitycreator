@@ -12,37 +12,103 @@
 	  </p>
 	<p>
 	    <%= f.label :shortrange %><br />
-	    <%= f.text_field :shortrange %>
+
+		<%=select_tag 'weapon[shortrange]','<option value="0">0</option>
+											<option value="4">4</option>
+											<option value="8">8</option>
+											<option value="12">12</option>
+											<option value="16">16</option>
+											<option value="24">24</option>
+											<option value="32">32</option>
+											<option value="36">36</option>
+											<option value="48">48</option>
+											<option value="52">52</option>
+											<option value="96">96</option>
+											<option value="104">104</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label 'short range modifier'%><br />
 	    <%= f.text_field :shortrangemod %>
+		<%=select_tag 'weapon[shortrangemod]','<option value="3">3</option>
+											<option value="0">0</option>
+											<option value="-3">-3</option>
+											<option value="-6">-6</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label :mediumrange %><br />
-	    <%= f.text_field :mediumrange %>
+	    <%=select_tag 'weapon[mediumrange]','<option value="0">0</option>
+											<option value="4">4</option>
+											<option value="8">8</option>
+											<option value="12">12</option>
+											<option value="16">16</option>
+											<option value="24">24</option>
+											<option value="32">32</option>
+											<option value="36">36</option>
+											<option value="48">48</option>
+											<option value="52">52</option>
+											<option value="96">96</option>
+											<option value="104">104</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label :mediumrangemod %><br />
-	    <%= f.text_field :mediumrangemod %>
+	    <%=select_tag 'weapon[mediumrangemod]','<option value="3">3</option>
+											<option value="0">0</option>
+											<option value="-3">-3</option>
+											<option value="-6">-6</option>
+											'%>
 	  </p>
-	
+
 	<p>
 	    <%= f.label :longrange %><br />
-	    <%= f.text_field :longrange %>
+	    <%=select_tag 'weapon[longrange]','<option value="0">0</option>
+											<option value="4">4</option>
+											<option value="8">8</option>
+											<option value="12">12</option>
+											<option value="16">16</option>
+											<option value="24">24</option>
+											<option value="32">32</option>
+											<option value="36">36</option>
+											<option value="48">48</option>
+											<option value="52">52</option>
+											<option value="96">96</option>
+											<option value="104">104</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label :longrangemod %><br />
-	    <%= f.text_field :longrangemod %>
+	    <%=select_tag 'weapon[longrangemod]','<option value="3">3</option>
+											<option value="0">0</option>
+											<option value="-3">-3</option>
+											<option value="-6">-6</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label :maxrange %><br />
-	    <%= f.text_field :maxrange %>
+	    <%=select_tag 'weapon[maxrange]','<option value="0">0</option>
+											<option value="4">4</option>
+											<option value="8">8</option>
+											<option value="12">12</option>
+											<option value="16">16</option>
+											<option value="24">24</option>
+											<option value="32">32</option>
+											<option value="36">36</option>
+											<option value="48">48</option>
+											<option value="52">52</option>
+											<option value="96">96</option>
+											<option value="104">104</option>
+											'%>
 	  </p>
-	
+
 	<p>
 	    <%= f.label :maxrangemod %><br />
-	    <%= f.text_field :maxrangemod %>
+	    <%=select_tag 'weapon[maxrangemod]','<option value="3">3</option>
+											<option value="0">0</option>
+											<option value="-3">-3</option>
+											<option value="-6">-6</option>
+											'%>
 	  </p>
 	<p>
 	    <%= f.label :ammo %><br />
