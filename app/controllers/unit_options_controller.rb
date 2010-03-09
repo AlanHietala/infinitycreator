@@ -78,6 +78,9 @@ class UnitOptionsController < ApplicationController
     # DELETE /unit_options/1.xml
     def destroy
       @unit_options = UnitOption.find(params[:id])
+      @unit_options.unit_option_weapons.each do |w|
+        w.destroy
+      end
       @unit_options.destroy
     
       respond_to do |format|
