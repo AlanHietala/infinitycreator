@@ -102,7 +102,7 @@ class UnitsController < ApplicationController
     def destroy
       @unit = Unit.find(params[:id])
       @unit.unit_options.each do |uopt|
-        @uopt.unit_option_weapons.each do |uoptweapons|
+        uopt.unit_option_weapons.each do |uoptweapons|
           uoptweapons.destroy
         end
         uopt.destroy
