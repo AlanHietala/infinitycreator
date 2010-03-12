@@ -78,7 +78,7 @@
 </div>
 <%if(@myList)%>
 <div id="addunitdiv" class="span-22 last">
-	<%=render :partial=>"combat_group_units/addunit"%>
+	<%=render :partial=>"combat_group_units/addunit",:locals=>{:firstunit=>@units[0]}%>
 </div>
 <%end%>
 <div class="span-22 last prepend-top">

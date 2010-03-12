@@ -39,55 +39,55 @@
 			</tr>	
 			<tr>
 				<td>
-					<%if(@firstunit.regular)%>
+					<%if(firstunit.regular)%>
 					regular, 
 					<%else%>
 					irregular, 
 					<%end%>
-				<%=case @firstunit.impetuous
+				<%=case firstunit.impetuous
 				   		when 0 then "not impetuous"
 						when 1 then "impetuous"
 						when 2 then "frenzy"
 					end%>
-					<%=@firstunit.skills%>
+					<%=firstunit.skills%>
 					</td>
 				<td><%if(@isInch)%>
-						<%=@firstunit.mov1%>-<%=@firstunit.mov2%>
+						<%=firstunit.mov1%>-<%=firstunit.mov2%>
 					<%else%>
-						<%=@firstunit.mov1*10/4%>-<%=@firstunit.mov2*10/4%>
+						<%=firstunit.mov1*10/4%>-<%=firstunit.mov2*10/4%>
 					<%end%>
 					</td>
 
 
 
 
-				<td><%=@firstunit.cc%></td>
+				<td><%=firstunit.cc%></td>
 
-				<td><%=@firstunit.bs%></td>
+				<td><%=firstunit.bs%></td>
 
-				<td><%=@firstunit.ph%></td>
-
-
-				<td><%=@firstunit.wip%></td>
+				<td><%=firstunit.ph%></td>
 
 
-				<td><%=@firstunit.arm%></td>
+				<td><%=firstunit.wip%></td>
 
 
-				<td><%=@firstunit.bts%></td>
+				<td><%=firstunit.arm%></td>
 
-				<td><%=@firstunit.w%></td>
+
+				<td><%=firstunit.bts%></td>
+
+				<td><%=firstunit.w%></td>
 
 				<td><%if(@isMerc)%>
-						<%if(@firstunit.avail<1)%>
+						<%if(firstunit.avail<1)%>
 							4
-						<%elsif(@firstunit.avail==1)%>
+						<%elsif(firstunit.avail==1)%>
 							S
 						<%else%>
-							<%=@firstunit.avail.div(2).to_s%>
+							<%=firstunit.avail.div(2).to_s%>
 						<%end%>
 					<%else%>
-				<%=@firstunit.avail<1 ? "T" : @firstunit.avail%>
+				<%=firstunit.avail<1 ? "T" : firstunit.avail%>
 					<%end%></td>
 		</tr>
 		</table>
@@ -106,7 +106,7 @@
 				<th>SWC</th>
 				<th>Cost</th>
 			</tr>
-		<%@firstunit.unit_options.each_with_index do |uopt,ind|%>
+		<%firstunit.unit_options.each_with_index do |uopt,ind|%>
 			<tr>
 			<td><%if(ind==0)%><%=radio_button_tag "combat_group_unit[unit_option_id]",uopt.id, true%><%else%> <%=radio_button_tag "combat_group_unit[unit_option_id]",uopt.id%><%end%></td>
 			<td>	<%=uopt.name%></td>

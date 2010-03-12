@@ -106,11 +106,7 @@ class ArmyListsController < ApplicationController
             when 6 then @tag << unit
           end
       end
-       if(@army_list.army_id<7)
-          @firstunit = Unit.find(:first,:conditions=>["army_id in (?,7)",@army_list.army_id],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
-        else
-          @firstunit = Unit.find(:first,:conditions=>['army_id in (1,3,4,5,6,7) and isMerc = true'],:include=>[:unit_options=>[:bsweapons,:ccweapons]])
-        end
+       
 
       @combat_group_unit = CombatGroupUnit.new
       
