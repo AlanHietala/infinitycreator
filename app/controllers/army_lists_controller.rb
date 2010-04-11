@@ -33,6 +33,7 @@ class ArmyListsController < ApplicationController
     @validation = @army_list.validate_army()
     respond_to do |format|
       format.html {render :layout=>"print"}# show.html.erb
+      format.mobile
       format.xml  { render :xml => @army_list }
     end
     
@@ -46,6 +47,7 @@ class ArmyListsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
       format.xml  { render :xml => @army_lists }
     end
   end
@@ -113,6 +115,7 @@ class ArmyListsController < ApplicationController
     end
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile
       format.xml  { render :xml => @army_list }
     end
   end
@@ -125,6 +128,7 @@ class ArmyListsController < ApplicationController
     @army_list = ArmyList.new
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
       format.xml  { render :xml => @army_list }
     end
   end
@@ -151,6 +155,7 @@ class ArmyListsController < ApplicationController
         @combat_group.save
         flash[:notice] = 'ArmyList was successfully created.'
         format.html { redirect_to([current_user,@army_list]) }
+        format.mobile{ redirect_to([current_user,@army_list]) }
         format.xml  { render :xml => @army_list, :status => :created, :location => @army_list }
       else
         format.html { render :action => "new" }

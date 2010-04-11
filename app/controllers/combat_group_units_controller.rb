@@ -1,4 +1,5 @@
 class CombatGroupUnitsController < ApplicationController
+    layout "application"
     before_filter :login_required
   def movelower
      @combat_group_unit = CombatGroupUnit.find(params[:id],:include=>[:combat_group=>:army_list])
@@ -37,9 +38,15 @@ class CombatGroupUnitsController < ApplicationController
   # GET /combat_group_units/1.xml
   def show
     @combat_group_unit = CombatGroupUnit.find(params[:id])
-
+    @isInch = true
+     
+    if(current_user!=nil && !current_user.isinch)
+     @isInch = false
+    end
+    @isMerc = false;
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile
       format.xml  { render :xml => @combat_group_unit }
     end
   end

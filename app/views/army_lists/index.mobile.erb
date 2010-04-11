@@ -1,0 +1,45 @@
+<div class="list-header">
+	My Army Lists
+</div>
+
+
+	
+<% for army_list in @army_lists %>
+<div class="select-item armylist-item">
+	<div class="item-icon left">
+	<a href="<%= user_army_list_url(current_user,army_list)%>"> <%= case army_list.army_id
+		when 1 then image_tag("Ariadna.png",:class=>"army-icon")
+		when 2 then image_tag("IAECombinado.png",:class=>"army-icon")
+		when 3 then image_tag("Haqqislam.png",:class=>"army-icon")
+		when 4 then image_tag("Nomadas.png",:class=>"army-icon")
+		when 5 then image_tag("PanOceania.png",:class=>"army-icon")
+		when 6 then image_tag("YuJing.png",:class=>"army-icon")
+		when 7 then image_tag("LogoMERCS.png",:class=>"army-icon")
+		when 8 then image_tag("PanOceania.png",:class=>"army-icon")
+		when 9 then image_tag("PanOceania.png",:class=>"army-icon")
+		when 10 then image_tag("PanOceania.png",:class=>"army-icon")
+		when 11 then image_tag("YuJing.png",:class=>"army-icon")
+		when 12 then image_tag("YuJing.png",:class=>"army-icon")
+		when 13 then image_tag("Caledonia.png",:class=>"army-icon")
+		when 14 then image_tag("Ariadna.png",:class=>"army-icon")
+		when 15 then image_tag("Hassassin.png",:class=>"army-icon")
+						
+		when 16 then image_tag("Haqqislam.png")
+		when 17 then image_tag("IAECombinado.png")
+		when 18 then image_tag("IAECombinado.png")
+		when 19 then image_tag("Nomadas.png")
+		when 20 then image_tag("Nomadas.png")
+		when 21 then image_tag("aleph.png")
+		end%></a>
+	</div>
+	<div class="item-detail left">
+	<%=link_to army_list.name,user_army_list_url(current_user,army_list)%>
+	</div>
+	<div class="item-actions right">
+    
+	</div>
+	<div class="clear"></div>
+  </div>
+<% end %>
+
+</div>

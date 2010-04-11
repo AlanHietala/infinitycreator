@@ -1,0 +1,60 @@
+<%= link_to "Back To list",user_army_list_path(@combat_group_unit.combat_group.army_list.user_id,@combat_group_unit.combat_group.army_list) %>
+<div class="unit-name">
+	<h2><%=@combat_group_unit.unit_option.unit.name%> &raquo;
+	<%if (@combat_group_unit.unit_option.name == nil or @combat_group_unit.unit_option.name=="")%>
+	<%@combat_group_unit.unit_option.bsweapons.each_with_index do |bs,i|%>
+
+			<%if(!bs.cc and i<2) %>	<%= bs.abbr != nil ? bs.abbr : bs.name%> 
+			<%end%>
+
+		<%end%>
+
+	<%else%>
+	 <%=@combat_group_unit.unit_option.name%>
+	<%end%></h2>
+</div>
+<div class="unit-stats select-item">
+	<div class="left stat-item">Mov <br /> <%if(@isInch)%>
+	                                <%=@combat_group_unit.unit_option.unit.mov1%>-<%=@combat_group_unit.unit_option.unit.mov2%>
+	                        <%else%>
+	                                <%=@combat_group_unit.unit_option.unit.mov1*10/4%>-<%=@combat_group_unit.unit_option.unit.mov2*10/4%>
+	                        <%end%></div>
+	<div class="left stat-item">CC <br /><%=@combat_group_unit.unit_option.unit.cc%></div>
+	<div class="left stat-item">BS <br /><%=@combat_group_unit.unit_option.unit.bs%></div>
+	<div class="left stat-item">PH <br /><%=@combat_group_unit.unit_option.unit.ph%></div>
+	<div class="left stat-item">WIP <br /><%=@combat_group_unit.unit_option.unit.wip%></div>
+	<div class="left stat-item">ARM <br /><%=@combat_group_unit.unit_option.unit.arm%></div>
+	<div class="left stat-item">BTS <br /><%=@combat_group_unit.unit_option.unit.bts%></div>
+	<div class="left stat-item">W <br /><%=@combat_group_unit.unit_option.unit.w%></div>
+	<div class="left stat-item">Ava <br /><%if(@isMerc)%>
+	                <%if(@combat_group_unit.unit_option.unit.avail<1)%>
+	                        4
+	                <%elsif(@combat_group_unit.unit_option.unit.avail==1)%>
+	                        S
+	                <%else%>
+	                        <%=@combat_group_unit.unit_option.unit.avail.div(2).to_s%>
+	                <%end%>
+	        <%else%>
+	<%=@combat_group_unit.unit_option.unit.avail<1 ? "T" : @combat_group_unit.unit_option.unit.avail%>
+	        <%end%>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="skills">
+	<strong>Skills:</strong>
+	<div class="select-item">
+ <%=@combat_group_unit.unit_option.unit.skills == nil ? "None" : @combat_group_unit.unit_option.unit.skills %>
+	</div>
+</div>
+
+
+<div class="weapons">
+<strong>Weapons:</strong> 	
+
+
+		<%= 	render :partial => 'weapons/mobile_weaponstable',:object=>@combat_group_unit.unit_option.weapons,:locals=>{:isAdmin=>false,:isInch =>@isInch} %>
+
+
+
+</div>

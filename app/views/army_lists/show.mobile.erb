@@ -1,0 +1,81 @@
+<div class="list-header">
+Army list: <%= @army_list.name %> &raquo; <%= link_to "My Lists",user_army_lists_path(params[:user_id]) %>
+</div>
+<%@army_list.combat_groups.each_with_index do |cgroup,i|%>
+
+	<div class="combatgroupheader select-item">
+		<div class="combatgrouptitle">Combat Group <%=(i+1).to_s%>  &raquo; Order Pool: <%=@validation.combatgrouporders[i]%></div>
+	
+	
+	</div>
+
+	
+	<%cgroup.combat_group_units.each do |u|%>
+		<div class="unit indent-item">
+			<div class="item-content left">
+				
+
+				<div class="unitname"><%=u.unit_option.unit.name%> &raquo;
+				<%if (u.unit_option.name == nil or u.unit_option.name=="")%>
+				<%u.unit_option.bsweapons.each_with_index do |bs,i|%>
+
+						<%if(!bs.cc and i<2) %>	<%= bs.abbr != nil ? bs.abbr : bs.name%> 
+						<%end%>
+
+					<%end%>
+
+				<%else%>
+				 <%=u.unit_option.name%>
+				<%end%>
+				</div>
+				<div class="unit-details">
+					<div class="orderspan">
+					<%if(u.unit_option.unit.regular)%>
+					Regular
+					<%else%>
+					Irregular
+					<%end%>
+					<%=case u.unit_option.unit.impetuous
+							when 0 then " &raquo; not impetuous" 
+							when 1 then " &raquo; impetuous"
+							when 2 then " &raquo; frenzy"
+						end%>
+						</div>
+					<span class="<%=case u.unit_option.unit.unit_type_id 
+					when 1 then "lightinf"
+					when 4 then "mediuminf"
+					when 2 then "heavyinf"
+					when 3 then "scout"
+					when 7 then "warband"
+					when 5 then "remote"
+					when 6 then "tag"
+					end%>"><%=case u.unit_option.unit.unit_type_id 
+					when 1 then "LI"
+					when 4 then "MI"
+					when 2 then "HI"
+					when 3 then "SK"
+					when 7 then "WB"
+					when 5 then "REM"
+					when 6 then "TAG"
+					end%>
+					</span>
+
+						<span class="swccost"> &raquo; SWC: <%= u.unit_option.swc< 0 ? "+"+u.unit_option.swc.abs.to_s : u.unit_option.swc %> &raquo; Cost: <%=u.unit_option.cost%>
+
+
+						</span>
+					
+				</div>
+			</div>
+			<div class="item-arrow right">
+				<%= link_to image_tag('mobile/rightarrow.png',:width=>25),combat_group_unit_path(u) %>
+			</div>
+			<div class="clear"></div>
+			
+</div>
+
+
+		
+	<%end%>
+
+<%end%>

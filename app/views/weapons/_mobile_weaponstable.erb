@@ -1,0 +1,45 @@
+
+	
+<%mobile_weaponstable.each do |w|
+	s = isInch ? w.shortrange : (w.shortrange*10/4);
+	m =  isInch ? w.mediumrange : (w.mediumrange*10/4);
+	l =  isInch ? w.longrange : (w.longrange*10/4);
+	x =  isInch ? w.maxrange : (w.maxrange*10/4);
+	%>
+	<div class="select-item">
+	<strong><%=w.name%></strong>
+	<table class="weapon-table">
+	<tr>
+		<td class="weapon-title-column">Short</td>
+		<td class="weapon-value-column"><%= (w.shortrange>0) ? "0-"+s.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
+		<td class="weapon-title-column">B</td>
+		<td class="weapon-value-column"><%=w.b%></td>
+		</tr>
+		<tr>
+		<td class="weapon-title-column">Medium</td>
+		<td class="weapon-value-column"><%= (w.mediumrange>0) ? s.to_s+"-"+m.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
+		<td class="weapon-title-column">Ammo</td>
+		<td class="weapon-value-column"><%=w.ammo%></td>
+		</tr>
+		<tr>
+		<td class="weapon-title-column">Long</td>
+		<td class="weapon-value-column"><%= (w.longrange>0) ? m.to_s+"-"+l.to_s+"/"+w.longrangemod.to_s : "-"%></td>
+		<td class="weapon-title-column">Template</td>
+		<td class="weapon-value-column"><%=w.template%></td>
+		</tr>
+		<tr>
+		<td class="weapon-title-column">Max</td>
+		<td class="weapon-value-column"><%= (w.maxrange>0) ? l.to_s+"-"+x.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
+		<td class="weapon-title-column">EM Vul</td>
+		<td class="weapon-value-column"><%=w.emvul ? "Yes" : "No"%></td>
+		</tr>
+		<td class="weapon-title-column">Dam</td>
+		<td class="weapon-value-column"><%=w.damage%></td>
+		<td class="weapon-title-column">CC</td>
+		<td class="weapon-value-column"><%=w.cc ? "Yes" : "No"%></td>
+		</tr>
+		
+	
+	</table>
+	</div>
+<%end%>

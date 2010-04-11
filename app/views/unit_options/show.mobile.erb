@@ -1,0 +1,44 @@
+<div class="unitdetails span-22 last ui-corner-all">
+<div class="span-1 prepend-top"></div>			
+<div class="prepend-top span-20 last" style="border:solid 1px black">
+<div class="span-20 last" style="background:#303030">
+<div class="">Mov <%if(@isInch)%>
+                                <%=u.unit_option.unit.mov1%>-<%=u.unit_option.unit.mov2%>
+                        <%else%>
+                                <%=u.unit_option.unit.mov1*10/4%>-<%=u.unit_option.unit.mov2*10/4%>
+                        <%end%></div>
+<div class="">CC <%=u.unit_option.unit.cc%></div>
+<div class="">BS <%=u.unit_option.unit.bs%></div>
+<div class="">PH <%=u.unit_option.unit.ph%></div>
+<div class="">WIP <%=u.unit_option.unit.wip%></div>
+<div class="">ARM <%=u.unit_option.unit.arm%></div>
+<div class="">BTS <%=u.unit_option.unit.bts%></div>
+<div class="">W <%=u.unit_option.unit.w%></div>
+<div class="">Ava <%if(@isMerc)%>
+                <%if(u.unit_option.unit.avail<1)%>
+                        4
+                <%elsif(u.unit_option.unit.avail==1)%>
+                        S
+                <%else%>
+                        <%=u.unit_option.unit.avail.div(2).to_s%>
+                <%end%>
+        <%else%>
+<%=u.unit_option.unit.avail<1 ? "T" : u.unit_option.unit.avail%>
+        <%end%></div>
+</div>
+
+
+<div class="span-20 prepend-1 last">
+<strong>Weapons:</strong> 	<%u.unit_option.bsweapons.each do |bs|%>
+
+		<%= bs.abbr != nil ? bs.abbr : bs.name%>,
+
+
+<%end%>
+</div>
+<div class="span-20 prepend-1 append-bottom last">
+<strong>Skills:</strong> <%=u.unit_option.unit.skills%>
+</div>
+<div class="clear"></div>
+</div>
+</div>

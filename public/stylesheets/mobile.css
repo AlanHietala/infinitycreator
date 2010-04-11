@@ -1,0 +1,42 @@
+body{background:#303030;margin:0; padding:0;color:#ddd;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+img{border-style:none;}
+a{color:#ddd;}
+.header{background:url(/images/mobile/bluegrad.png);margin:0;color:#1e1e1e;height:30px;}
+.list-header{height:30px;padding:10px 20px}
+.content{}
+.section{background:#444444;padding:20px;margin:20px 2px;border:solid 1px #1e1e1e;}
+.section a{}
+.select-item,.indent-item{background:#444444;
+			border-left:solid 1px #1e1e1e;
+			border-right:solid 1px #1e1e1e;
+			border-bottom:solid 1px #1e1e1e;
+			border-top:solid 1px #666;
+			padding:10px;
+			}
+.combatgroupheader{background:#666666;}
+.armylist-item a{display:block;height:50px;float:left;width:100%;text-decoration:none;}
+.armylist-item .item-icon{width:20%;}
+.armylist-item .item-icon img{height:50px;}
+.armylist-item .item-detail{width:60%;}
+.armylist-item .item-detail a{}
+.armylist-item .item-actions{width:20%;}
+.indent-item{margin-left:20px;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+.unitname{}
+.orderspan{}
+.item-arrow{border-left: solid 1px #1e1e1e;width:6%;}
+.item-content{width:92%;}
+.unit .unit-details{font-size:.7em;margin:5px 20px;}
+.lightinf{color:#00f935;}
+.mediuminf{color:yellow;}
+.heavyinf{color:#ef0000;}
+.scout{color:#c500ef;}
+.warband{color:teal;}
+.remote{color:brown;}
+.tag{color:#ff6600;}
+.weapon-table{width:100%;}
+
+.weapon-value-column{padding:3px 10px;}
+.stat-item{padding:1px;}

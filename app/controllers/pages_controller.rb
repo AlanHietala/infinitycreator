@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
       format.xml  { render :xml => @pages }
     end
   end
@@ -18,6 +19,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile 
       format.xml  { render :xml => @page }
     end
   end

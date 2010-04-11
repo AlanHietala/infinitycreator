@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  before_filter :adjust_format_for_mobile
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
@@ -13,4 +14,13 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  def adjust_format_for_mobile
+    if request.subdomains.first == "m" || 
+       (RAILS_ENV != "production" && 
+        request.env["HTTP_USER_AGENT"] && 
+        request.env["HTTP_USER_AGENT"][/(iPhone|iPod)/])
+      request.format = :mobile
+    end
+  end
 end
