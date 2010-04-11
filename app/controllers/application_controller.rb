@@ -16,10 +16,7 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   def adjust_format_for_mobile
-    if request.subdomains.first == "m" || 
-       (RAILS_ENV != "production" && 
-        request.env["HTTP_USER_AGENT"] && 
-        request.env["HTTP_USER_AGENT"][/(iPhone|iPod)/])
+    if (request.subdomains.first == "m")
       request.format = :mobile
     end
   end
