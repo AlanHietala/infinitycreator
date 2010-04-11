@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.xml
-  caches_page :index 
+   
   def index
     
 
