@@ -7,7 +7,11 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.mobile
+      format.mobile{
+        if(current_user)
+          redirect_to(user_army_lists_path(current_user))
+        end
+      }
       format.xml  { render :xml => @pages }
     end
   end
