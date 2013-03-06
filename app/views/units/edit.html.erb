@@ -72,9 +72,15 @@
   </p>
   
   <p>
-    <%= f.label "isaddon used for ghosted remotes does not contribute to model count for validation." %><br />
+    <%= f.label "isaddon used for second profiles does not contribute to swc for validation." %><br />
     <%= f.check_box :isaddon %>
   </p>
+<p>
+
+    <%= f.label "ghost used for ghosted remotes does not contribute to model count for validation." %><br />
+	
+    <%= f.check_box :ghost %>
+</p>
   <p>
     <%= f.submit 'Update' %>
   </p>

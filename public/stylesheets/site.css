@@ -159,6 +159,7 @@ color:#1E1E1E;
 .hide-text{
 	text-indent:-99999px;
 	position:absolute;
+	display:none;
 }
 .login-controls{
 	margin-top:80px;
