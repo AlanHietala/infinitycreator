@@ -35,7 +35,7 @@ module AuthenticatedSystem
       logged_in?
     end
     def admin?
-      return (logged_in? && [1].include?(current_user.id))
+      return (logged_in? && [1,48,241,288].include?(current_user.id))
     end
     
     def admin_required
