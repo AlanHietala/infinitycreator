@@ -25,7 +25,7 @@ class ArmyListsController < ApplicationController
      if(current_user!=nil && !current_user.isinch)
       @isInch = false
      end
-    @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
+    @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:bsweapons,:ccweapons,:unit]]]])
     @isMerc = false;
     if(@army_list.army_id == 7)
       @isMerc = true;
@@ -67,7 +67,7 @@ class ArmyListsController < ApplicationController
     @isInch = false
    end
    @isMerc = false;
-    @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:ccweapons,:bsweapons,:unit]]]])
+    @army_list = ArmyList.find(params[:id],:include=>[:combat_groups=>[:combat_group_units=>[:unit_option=>[:bsweapons,:ccweapons,:unit]]]])
     if(@army_list.army_id != 7)
       
     else

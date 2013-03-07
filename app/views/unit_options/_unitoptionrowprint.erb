@@ -52,7 +52,7 @@
 	<%=unitoptionrowprint.unit_option.unit.avail<1 ? "T" : unitoptionrowprint.unit_option.unit.avail%>
 		<%end%>
 		</td>
-	<td><%unitoptionrowprint.unit_option.bsweapons.each do |bs|%>
+	<td><%unitoptionrowprint.unit_option.weapons.each do |bs|%>
 		
 			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
 

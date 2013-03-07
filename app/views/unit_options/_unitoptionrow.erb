@@ -126,12 +126,13 @@ end%>
 </div>
 </div>
 	<div class="span-20 prepend-1 last">
-	<strong>Weapons:</strong> 	<%unitoptionrow.unit_option.bsweapons.each do |bs|%>
+	<strong>Weapons:</strong> 	<%unitoptionrow.unit_option.weapons.each do |bs|%>
 		
 			<%= bs.abbr != nil ? bs.abbr : bs.name%>,
 
 		
 	<%end%>
+ 	
 	</div>
 	<div class="span-20 prepend-1 append-bottom last">
 	<strong>Skills:</strong> <%=unitoptionrow.unit_option.unit.skills%>

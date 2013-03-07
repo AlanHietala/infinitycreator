@@ -38,6 +38,7 @@ class UnitOptionsController < ApplicationController
   # GET /unit_options/1/edit
     def edit
       @unit_options = UnitOption.find(params[:id])
+      @unit_option_weapons = UnitOptionWeapon.new
     end
   # 
   # POST /unit_options
