@@ -218,18 +218,11 @@ class ArmyList < ActiveRecord::Base
           bonusswc = bonusswc+1
         end
        #add weapons to the weapon list
-       unit.unit_option.bsweapons.each do |bs|
+       unit.unit_option.weapons.each do |bs|
          if(weaponHash[bs.name]==nil)
            weaponHash[bs.name]=true
            validation.weapons<<bs
          end
-       end
-       unit.unit_option.ccweapons.each do |cc|
-          if(weaponHash[cc.name]==nil)
-            weaponHash[cc.name]=true
-            validation.weapons<<cc
-          end
-         
        end
        if(unit.unit_option.unit.avail>0)## check availablity validity
          if(unitCountHash[unit.unit_option.unit.name]==nil) #First time we've seen this unit

@@ -34,7 +34,7 @@
 
 <div class="prepend-top combatgroupheader span-22 last">
 	<div class="combatgrouptitle span-21 prepend-1 last">
-		<%form_for([:admin,@unit_options.unit.army,@unit_options.unit,@unit_options,:unit_option_weapons], :html=>{:method=>'Post'}) do |f|%>
+		<%form_for([:admin,@unit_options.unit.army,@unit_options.unit,@unit_options,@unit_option_weapons], :html=>{:method=>'Post'}) do |f|%>
 
 			<%=select_tag 'weapon_id',options_from_collection_for_select(Weapon.all, :id, :name)%>
 			<%= f.submit 'Add Existing Weapon' %>
