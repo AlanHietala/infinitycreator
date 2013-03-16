@@ -42,13 +42,25 @@
 	<td>	<%=unitoptioncard.name%></td>
 	
 		<td>
-		<%unitoptioncard.bsweapons.each do |bs|%>
+		<%unitoptioncard.weapons.each do |bs|
+			if(bs.cc == false)
+		%>
 			
 			<%=bs.name%>
+			<%end%>
 			 
 		<%end%>
 		</td>
-		
+		<td>
+		<%unitoptioncard.weapons.each do |cc|
+			if(cc.cc == true)
+		%>
+			
+			<%=cc.name%>
+			<%end%>
+			 
+		<%end%>
+		</td>
 		<td>
 				<%=unitoptioncard.swc%>
 		</td>

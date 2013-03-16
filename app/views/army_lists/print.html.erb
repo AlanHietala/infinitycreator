@@ -62,13 +62,18 @@
 		<th>CC</th>
 		
 	</tr>
-<%@validation.weapons.each do |w|%>
+<%@validation.weapons.each do |w|
+	s = isInch ? w.shortrange : (w.shortrange*10/4);
+	m =  isInch ? w.mediumrange : (w.mediumrange*10/4);
+	l =  isInch ? w.longrange : (w.longrange*10/4);
+	x =  isInch ? w.maxrange : (w.maxrange*10/4);
+	%>
 	<tr>
 		<td><%=w.name%></td>
-		<td><%= (w.shortrange>0) ? "0-"+w.shortrange.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
-		<td><%= (w.mediumrange>0) ? w.shortrange.to_s+"-"+w.mediumrange.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
-		<td><%= (w.longrange>0) ? w.mediumrange.to_s+"-"+w.longrange.to_s+"/"+w.longrangemod.to_s : "-"%></td>
-		<td><%= (w.maxrange>0) ? w.longrange.to_s+"-"+w.maxrange.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
+		<td><%= (w.shortrange>0) ? "0-"+s.to_s+"/"+w.shortrangemod.to_s : "-"%></td>
+		<td><%= (w.mediumrange>0) ? s.to_s+"-"+m.to_s+"/"+w.mediumrangemod.to_s : "-"%></td>
+		<td><%= (w.longrange>0) ? m.to_s+"-"+l.to_s+"/"+w.longrangemod.to_s : "-"%></td>
+		<td><%= (w.maxrange>0) ? l.to_s+"-"+x.to_s+"/"+w.maxrangemod.to_s : "-"%></td>
 		<td><%=w.damage%></td>
 		<td><%=w.b%></td>
 		<td><%=w.ammo%></td>
