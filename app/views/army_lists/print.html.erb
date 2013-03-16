@@ -63,10 +63,10 @@
 		
 	</tr>
 <%@validation.weapons.each do |w|
-	s = isInch ? w.shortrange : (w.shortrange*10/4);
-	m =  isInch ? w.mediumrange : (w.mediumrange*10/4);
-	l =  isInch ? w.longrange : (w.longrange*10/4);
-	x =  isInch ? w.maxrange : (w.maxrange*10/4);
+	s = @isInch ? w.shortrange : (w.shortrange*10/4);
+	m =  @isInch ? w.mediumrange : (w.mediumrange*10/4);
+	l =  @isInch ? w.longrange : (w.longrange*10/4);
+	x =  @isInch ? w.maxrange : (w.maxrange*10/4);
 	%>
 	<tr>
 		<td><%=w.name%></td>
