@@ -97,14 +97,14 @@
 			<td>	<%=uopt.name%></td>
 
 				<td>
-				<%uopt.bsweapons.each do |bs|%>
+				<%uopt.weapons.each do |bs|%>
 					<%if(!bs.cc)%>
 					<%=bs.name%>
 					<%end%> 
 				<%end%>
 				</td>
 				<td>
-					<%uopt.ccweapons.each do |cc|%>
+					<%uopt.weapons.each do |cc|%>
 						<%if(cc.cc)%>
 						<%=cc.name%>
 						<%end%>
