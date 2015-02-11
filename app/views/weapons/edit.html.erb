@@ -13,7 +13,7 @@
 	<p>
 	    <%= f.label :shortrange %><br />
 
-		<%=select_tag 'weapon[shortrange]',options_for_select([ 4, 8, 12,16,24,32,36,48,52, 96,104],  @weapon.shortrange)%>
+		<%=select_tag 'weapon[shortrange]',options_for_select([-1, 4, 8, 12,16,24,32,36,40,48,52, 96,104],  @weapon.shortrange)%>
 	  </p>
 	<p>
 	    <%= f.label 'short range modifier'%><br />
@@ -21,7 +21,7 @@
 	  </p>
 	<p>
 	    <%= f.label :mediumrange %><br />
-	    <%=select_tag 'weapon[mediumrange]',options_for_select([ 4, 8, 12,16,24,32,36,48,52, 96,104],  @weapon.mediumrange)%>
+	    <%=select_tag 'weapon[mediumrange]',options_for_select([-1, 4, 8, 12,16,24,32,36,40,48,52, 96,104],  @weapon.mediumrange)%>
 	  </p>
 	<p>
 	    <%= f.label :mediumrangemod %><br />
@@ -30,7 +30,7 @@
 
 	<p>
 	    <%= f.label :longrange %><br />
-	    <%=select_tag 'weapon[longrange]',options_for_select([ 4, 8, 12,16,24,32,36,48,52, 96,104],  @weapon.longrange)%>
+	    <%=select_tag 'weapon[longrange]',options_for_select([-1, 4, 8, 12,16,24,32,36,40,48,52, 96,104],  @weapon.longrange)%>
 	  </p>
 	<p>
 	    <%= f.label :longrangemod %><br />
@@ -38,7 +38,7 @@
 	  </p>
 	<p>
 	    <%= f.label :maxrange %><br />
-	    <%=select_tag 'weapon[maxrange]',options_for_select([ 4, 8, 12,16,24,32,36,48,52, 96,104],  @weapon.maxrange)%>
+	    <%=select_tag 'weapon[maxrange]',options_for_select([-1, 4, 8, 12,16,24,32,36,40,48,52, 96,104],  @weapon.maxrange)%>
 	  </p>
 
 	<p>
