@@ -17,89 +17,33 @@
 	  </p>
 	<p>
 	    <%= f.label 'short range modifier'%><br />
-		<%=select_tag 'weapon[shortrangemod]','<option value="6">+6</option>
-											<option value="3">+3</option>
-											<option value="0">0</option>
-											<option value="-3">-3</option>
-											<option value="-6">-6</option>
-											'%>
+		<%=select_tag 'weapon[shortrangemod]',options_for_select(["6","3","0","-3","-6"], @weapon.shortrangemod)%>
 	  </p>
 	<p>
 	    <%= f.label :mediumrange %><br />
-	    <%=select_tag 'weapon[mediumrange]','<option value="0">0</option>
-											<option value="4">4</option>
-											<option value="8">8</option>
-											<option value="12">12</option>
-											<option value="16">16</option>
-											<option value="24">24</option>
-											<option value="32">32</option>
-											<option value="36">36</option>
-											<option value="48">48</option>
-											<option value="52">52</option>
-											<option value="96">96</option>
-											<option value="104">104</option>
-											'%>
+	    <%=select_tag 'weapon[mediumrange]',options_for_select([ "4", "8", "12","16","24","32","36","48","52", "96","104"],  @weapon.mediumrange)%>
 	  </p>
 	<p>
 	    <%= f.label :mediumrangemod %><br />
-	    <%=select_tag 'weapon[mediumrangemod]','<option value="6">+6</option>
-	    									<option value="3">+3</option>
-											<option value="0">0</option>
-											<option value="-3">-3</option>
-											<option value="-6">-6</option>
-											'%>
+	    <%=select_tag 'weapon[mediumrangemod]',options_for_select(["6","3","0","-3","-6"], @weapon.mediumrangemod)%>
 	  </p>
 
 	<p>
 	    <%= f.label :longrange %><br />
-	    <%=select_tag 'weapon[longrange]','<option value="0">0</option>
-											<option value="4">4</option>
-											<option value="8">8</option>
-											<option value="12">12</option>
-											<option value="16">16</option>
-											<option value="24">24</option>
-											<option value="32">32</option>
-											<option value="36">36</option>
-											<option value="48">48</option>
-											<option value="52">52</option>
-											<option value="96">96</option>
-											<option value="104">104</option>
-											'%>
+	    <%=select_tag 'weapon[longrange]',options_for_select([ "4", "8", "12","16","24","32","36","48","52", "96","104"],  @weapon.longrange)%>
 	  </p>
 	<p>
 	    <%= f.label :longrangemod %><br />
-	    <%=select_tag 'weapon[longrangemod]','<option value="6">+6</option>
-	    									<option value="3">+3</option>
-											<option value="0">0</option>
-											<option value="-3">-3</option>
-											<option value="-6">-6</option>
-											'%>
+	    <%=select_tag 'weapon[longrangemod]',options_for_select(["6","3","0","-3","-6"], @weapon.longrangemod)%>
 	  </p>
 	<p>
 	    <%= f.label :maxrange %><br />
-	    <%=select_tag 'weapon[maxrange]','<option value="0">0</option>
-											<option value="4">4</option>
-											<option value="8">8</option>
-											<option value="12">12</option>
-											<option value="16">16</option>
-											<option value="24">24</option>
-											<option value="32">32</option>
-											<option value="36">36</option>
-											<option value="48">48</option>
-											<option value="52">52</option>
-											<option value="96">96</option>
-											<option value="104">104</option>
-											'%>
+	    <%=select_tag 'weapon[maxrange]',options_for_select([ "4", "8", "12","16","24","32","36","48","52", "96","104"],  @weapon.maxrange)%>
 	  </p>
 
 	<p>
 	    <%= f.label :maxrangemod %><br />
-	    <%=select_tag 'weapon[maxrangemod]','<option value="6">+6</option>
-	    									<option value="3">+3</option>
-											<option value="0">0</option>
-											<option value="-3">-3</option>
-											<option value="-6">-6</option>
-											'%>
+	    <%=select_tag 'weapon[maxrangemod]',options_for_select(["6","3","0","-3","-6"], @weapon.maxrangemod)%>
 	  </p>
 	<p>
 	    <%= f.label :ammo %><br />
