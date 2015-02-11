@@ -13,19 +13,7 @@
 	<p>
 	    <%= f.label :shortrange %><br />
 
-		<%=select_tag 'weapon[shortrange]','<option value="0">0</option>
-											<option value="4">4</option>
-											<option value="8">8</option>
-											<option value="12">12</option>
-											<option value="16">16</option>
-											<option value="24">24</option>
-											<option value="32">32</option>
-											<option value="36">36</option>
-											<option value="48">48</option>
-											<option value="52">52</option>
-											<option value="96">96</option>
-											<option value="104">104</option>
-											'%>
+		<%=select_tag 'weapon[shortrange]',options_for_select([ "4", "8", "12","16","24","32","36","48","52", "96","104"], :shortrange)%>
 	  </p>
 	<p>
 	    <%= f.label 'short range modifier'%><br />
