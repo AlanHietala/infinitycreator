@@ -60,7 +60,10 @@
   </p>
   <p>
     <%= f.label :impetuous %><br />
-    <%=select_tag 'unit[impetuous]','<option value="0" '+if @unit.impetuous == 0 then 'selected' else '' end+'>Not Impetuous</option><option value="1" '+if @unit.impetuous == 1 then 'selected' else '' end+'>Impetuous</option><option value="2" '+if @unit.impetuous == 2 then 'selected' else '' end+'>Frenzy</option>'%>
+    <%=select_tag 'unit[impetuous]','<option value="0" '+if @unit.impetuous == 0 then 'selected' else '' end+'>Not Impetuous</option>
+      <option value="1" '+if @unit.impetuous == 1 then 'selected' else '' end+'>Impetuous</option>
+      <option value="2" '+if @unit.impetuous == 2 then 'selected' else '' end+'>Frenzy</option>
+      <option value="3" '+if @unit.impetuous == 3 then 'selected' else '' end+'>Extreme Impetuous</option>'%>
   </p>
   <p>
     <%= f.label :cube %><br />
